@@ -11,30 +11,33 @@ import javax.crypto.spec.SecretKeySpec;
 open class SecurityUtils {
 
     private var key1: ByteArray
+
+    private var key2: ByteArray = ByteArray(0)
     get() {
-       return key1
+        return field
     }
 
     set(value) {
-        key1 = value
-    }
-
-    private var key2: ByteArray
-    get() {
-        return key2
-    }
-
-    set(value) {
-        key2 = value
+        field = value
     }
 
     companion object {
         @JvmStatic var BLOCKS = 128
         @JvmStatic var CIPHER = "AES"
 
+        fun generateKey(): ByteArray {
+
+            return ByteArray(0)
+
+        }
+
         fun pad(seed: ByteArray): ByteArray {
             return ByteArray(0)
         }
+    }
+
+    init {
+        key1 = generateKey()
     }
 
     fun encrypt(plainText: ByteArray): ByteArray {
@@ -43,12 +46,6 @@ open class SecurityUtils {
 
     fun decrypt(cipherText: ByteArray): ByteArray {
         return cipherText
-    }
-
-    fun generateKey(): ByteArray {
-
-        return ByteArray(0)
-
     }
 
 }
