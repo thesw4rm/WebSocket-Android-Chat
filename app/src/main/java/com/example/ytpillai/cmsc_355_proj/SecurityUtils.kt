@@ -8,7 +8,10 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.SecretKeySpec;
 
-class SecurityUtils {
+open class SecurityUtils {
+
+    private var key1: ByteArray = ByteArray(0)
+    private var key2: ByteArray = ByteArray(0)
 
     companion object {
         @JvmStatic var BLOCKS = 128
@@ -20,11 +23,11 @@ class SecurityUtils {
     }
 
     fun encrypt(plainText: ByteArray): ByteArray {
-        return ByteArray(0)
+        return plainText
     }
 
     fun decrypt(cipherText: ByteArray): ByteArray {
-        return ByteArray(0)
+        return cipherText
     }
 
     fun generateKey(): ByteArray {
