@@ -10,8 +10,23 @@ import javax.crypto.spec.SecretKeySpec;
 
 open class SecurityUtils {
 
-    private var key1: ByteArray = ByteArray(0)
-    private var key2: ByteArray = ByteArray(0)
+    private var key1: ByteArray
+    get() {
+       return key1
+    }
+
+    set(value) {
+        key1 = value
+    }
+
+    private var key2: ByteArray
+    get() {
+        return key2
+    }
+
+    set(value) {
+        key2 = value
+    }
 
     companion object {
         @JvmStatic var BLOCKS = 128
