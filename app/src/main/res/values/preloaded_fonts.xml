@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+<<<<<<< HEAD
         <item>@font/open_sans</item>
+=======
+>>>>>>> cadd39e09c5b1f27a0bafe613d7387174ca2fd63
         <item>@font/quicksand</item>
     </array>
 </resources>
