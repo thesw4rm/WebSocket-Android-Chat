@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">cmsc_355_proj</string>
+    <string name="private_key_filename">id_rsa.pem</string>
+    <string name="public_key_filename">id_rsa.pub</string>
 </resources>

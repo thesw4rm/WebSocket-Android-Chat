@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed({
             val preferences = getSharedPreferences("PREFS", 0)
             val password = preferences.getString("password", "0")
+
             if (password == "0") {
                 val intent = Intent(applicationContext, CreatePasswordActivity::class.java)
                 startActivity(intent)
@@ -28,6 +29,15 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }, 2000)
+        }, 0)
+
+        val PASSWORD_HASH = getSharedPreferences("PREFS", 0).getString("password", "0")
+
+
+
     }
+
+
+
+
 }
