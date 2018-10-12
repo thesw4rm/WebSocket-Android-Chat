@@ -1,9 +1,9 @@
 <resources>
-<<<<<<< HEAD
+
     <string name="app_name">inko</string>
     <string name="private_key_filename">id_rsa.pem</string>
     <string name="public_key_filename">id_rsa.pub</string>
-=======
-    <string name="app_name">cmsc_355_proj</string>
->>>>>>> cadd39e09c5b1f27a0bafe613d7387174ca2fd63
+
+
+
 </resources>
