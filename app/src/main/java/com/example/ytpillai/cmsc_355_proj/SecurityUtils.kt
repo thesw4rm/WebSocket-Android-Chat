@@ -13,10 +13,11 @@ open class SecurityUtils {
 
     companion object {
         const val KEY_ALIAS = "INKO_Key"
+        var keyAliases  = ArrayList<String>()
     }
 
 
-    fun encryptMessage(plainText: String, alias: String): String {
+    fun encryptMessage(plainText: String, alias: String = KEY_ALIAS): String {
 
 
 
@@ -31,32 +32,30 @@ open class SecurityUtils {
     }
 
     /**
-     * Gets the local public key if it exist, otherwise generates
+     * Gets the local public key as a string if it exist, otherwise generates
      * TODO: AES encrypt files with the password hash
      *
      * @alias: Alias of the key
      */
-    fun getEncryptionKey(alias: String = KEY_ALIAS): PublicKey {
+    fun getEncryptionKey(alias: String = KEY_ALIAS): String {
 //        if (keyPairExists(keyDir)){
 //            val privateKey = File(keyDir + R.string.private_key_filename).readText()
 //            val publicKey = File(keyDir + R.string.public_key_filename).readText()
 //
 //        }
 
-        if (keyPairExists(alias)) {
+        return if (keyPairExists(alias)) {
 
             val ks = KeyStore.getInstance("AndroidKeyStore")
             val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
-            val publicKey = privateKeyEntry.certificate.publicKey
 
-
-            return publicKey
+            privateKeyEntry.certificate.publicKey.toString() // public key
 
         } else {
 
             val kp = generateKeyPair()
 
-            return kp.public
+            kp.public.toString()
 
         }
     }
