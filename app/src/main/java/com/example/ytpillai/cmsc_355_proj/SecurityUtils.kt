@@ -85,7 +85,9 @@ open class SecurityUtils {
     private fun generateKeyPair(): KeyPair {
 
         val gen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore")
-        val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(KEY_ALIAS).run {
+        val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(
+                KEY_ALIAS,
+                KeyProperties.PURPOSE_SIGN).run {
             KeyProperties.DIGEST_SHA256
             build()
         }
