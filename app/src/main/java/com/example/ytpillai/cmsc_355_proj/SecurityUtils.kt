@@ -3,7 +3,10 @@ package com.example.ytpillai.cmsc_355_proj
 import android.util.Log
 // import java.io.File
 import android.security.keystore.KeyProperties
-import java.security.*
+import java.security.KeyStore
+import java.security.KeyPair
+import java.security.KeyPairGenerator
+import java.security.SecureRandom
 
 open class SecurityUtils {
 
@@ -84,7 +87,7 @@ open class SecurityUtils {
     }
 
     /**
-     * Check keystore for aliases
+     * Check android keystore for aliases
      * TODO: validate keys in case of tampering. Maybe use some sort of signing method?
      *
      * @alias: nickname for the key
