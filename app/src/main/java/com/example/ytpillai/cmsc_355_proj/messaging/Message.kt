@@ -1,4 +1,7 @@
 package com.example.ytpillai.cmsc_355_proj.messaging
 
-class Message {
+open class Message(msgDestIP: String, msgBody: String) {
+    private var messageDestination: String = msgDestIP
+    private var messageBody: String = msgBody
+
 }
