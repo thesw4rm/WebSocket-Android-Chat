@@ -1,17 +1,21 @@
 package com.example.ytpillai.cmsc_355_proj
 
 import android.os.Build
+import android.support.annotation.RequiresApi
 import android.util.Log
 // import java.io.File
 import android.security.keystore.KeyProperties
 import android.security.keystore.KeyGenParameterSpec
-import android.support.annotation.RequiresApi
+import android.util.Base64
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.lang.Exception
 import java.security.KeyStore
 import java.security.KeyPair
 import java.security.KeyPairGenerator
-import java.security.SecureRandom
-
-
+import javax.crypto.Cipher
+import javax.crypto.CipherInputStream
+import javax.crypto.CipherOutputStream
 
 
 open class SecurityUtils {
@@ -28,11 +32,37 @@ open class SecurityUtils {
      * @plainText: The plaintext string to be encrypted
      * @alias: The alias of the key pair
      */
-    fun encryptMessage(plainText: String, alias: String = KEY_ALIAS): String {
+    fun encryptMessage(plainText: String, alias: String = KEY_ALIAS): String? {
 
+        try {
+            val ks = KeyStore.getInstance("AndroidKeyStore")
 
+            val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
+            val publicKey = privateKeyEntry.certificate.publicKey
 
-        return plainText
+            // Encrypt the text
+            if (plainText.isEmpty()) {
+                return null
+            }
+
+            val input = Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidOpenSSL")
+            input.init(Cipher.ENCRYPT_MODE, publicKey)
+
+            val outputStream = ByteArrayOutputStream()
+            val cipherOutputStream = CipherOutputStream(
+                    outputStream, input)
+            cipherOutputStream.write(plainText.toByteArray(charset("UTF-8")))
+            cipherOutputStream.close()
+
+            val vals = outputStream.toByteArray()
+
+            return Base64.encodeToString(vals, Base64.DEFAULT)
+
+        } catch (e: Exception) {
+            Log.e("Encrypt", Log.getStackTraceString(e))
+        }
+
+        return null
     }
 
     /**
@@ -41,11 +71,43 @@ open class SecurityUtils {
      * @cipherText: ciphertext to be decrypted
      * @aliasID: Id of the alias to be used for decryption
      */
-    fun decryptMessage(cipherText: String, aliasID: Int): String {
+    fun decryptMessage(cipherText: String, aliasID: Int): String? {
 
-        val alias = keyAliases[aliasID]
+        try {
 
-        return cipherText
+            val alias = keyAliases[aliasID]
+
+            val ks = KeyStore.getInstance("AndroidKeyStore")
+
+            val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
+            val privateKey = privateKeyEntry.privateKey
+
+            val output = Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidOpenSSL")
+            output.init(Cipher.DECRYPT_MODE, privateKey)
+
+            val cipherInputStream = CipherInputStream(
+                    ByteArrayInputStream(Base64.decode(cipherText, Base64.DEFAULT)),
+                    output)
+
+            var values = ArrayList<Byte>()
+            var nextByte: Int = cipherInputStream.read()
+            while (nextByte != -1) {
+                values.add(nextByte as Byte)
+                nextByte = cipherInputStream.read()
+            }
+
+            var bytes = ByteArray(values.size)
+            for (i in 0..bytes.size) {
+                bytes[i] = values[i]
+            }
+
+            return String(bytes, 0, bytes.size, Charsets.UTF_8) // Final text
+
+        } catch (e: Exception) {
+            Log.e("Decrypt", Log.getStackTraceString(e));
+        }
+
+        return null
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -87,7 +149,7 @@ open class SecurityUtils {
         val gen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore")
         val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(
                 KEY_ALIAS,
-                KeyProperties.PURPOSE_SIGN).run {
+                KeyProperties.PURPOSE_ENCRYPT).run {
             KeyProperties.DIGEST_SHA256
             build()
         }
