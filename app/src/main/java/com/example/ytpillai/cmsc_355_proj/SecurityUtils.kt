@@ -92,7 +92,7 @@ open class SecurityUtils {
             var values = ArrayList<Byte>()
             var nextByte: Int = cipherInputStream.read()
             while (nextByte != -1) {
-                values.add(nextByte as Byte)
+                values.add(nextByte.toByte())
                 nextByte = cipherInputStream.read()
             }
 
