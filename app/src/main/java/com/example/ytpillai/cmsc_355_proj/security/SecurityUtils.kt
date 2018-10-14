@@ -1,4 +1,4 @@
-package com.example.ytpillai.cmsc_355_proj
+package com.example.ytpillai.cmsc_355_proj.security
 
 import android.os.Build
 import android.support.annotation.RequiresApi
@@ -7,6 +7,7 @@ import android.util.Log
 import android.security.keystore.KeyProperties
 import android.security.keystore.KeyGenParameterSpec
 import android.util.Base64
+import com.example.ytpillai.cmsc_355_proj.BuildConfig
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
@@ -104,7 +105,7 @@ open class SecurityUtils {
             return String(bytes, 0, bytes.size, Charsets.UTF_8) // Final text
 
         } catch (e: Exception) {
-            Log.e("Decrypt", Log.getStackTraceString(e));
+            Log.e("Decrypt", Log.getStackTraceString(e))
         }
 
         return null
