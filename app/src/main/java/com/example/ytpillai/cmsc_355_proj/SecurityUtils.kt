@@ -19,10 +19,15 @@ open class SecurityUtils {
     }
 
     fun encryptMessage(plainText: String, alias: String): String {
+
+
         return plainText
     }
 
     fun decryptMessage(cipherText: String, alias: String): String {
+
+
+
         return cipherText
     }
 
@@ -30,7 +35,7 @@ open class SecurityUtils {
      * Gets the encryption keys if they exist, otherwise generates and writes them to the file
      * TODO: AES encrypt files with the password hash
      */
-    fun getEncryptionKeys(passwordHash: String = "0") {
+    fun getEncryptionKey(alias: String): PublicKey {
 //        if (keyPairExists(keyDir)){
 //            val privateKey = File(keyDir + R.string.private_key_filename).readText()
 //            val publicKey = File(keyDir + R.string.public_key_filename).readText()
@@ -42,6 +47,8 @@ open class SecurityUtils {
         val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
         val publicKey = privateKeyEntry.certificate.publicKey
 
+
+        return publicKey
             
     }
     /**
@@ -61,10 +68,10 @@ open class SecurityUtils {
     }
 
     /**
-     * Checks if private/public keys exist at specified directory.
+     * Check keystore for aliases
      * TODO: validate keys in case of tampering. Maybe use some sort of signing method?
      *
-     * @keyDir: the directory where the keys should be located
+     * @alias: nickname for the key
      */
     private fun keyPairExists(alias: String): Boolean {
 //        val privateKeyFile = File(keyDir + R.string.private_key_filename)
