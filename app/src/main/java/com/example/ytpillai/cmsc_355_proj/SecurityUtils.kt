@@ -1,12 +1,18 @@
 package com.example.ytpillai.cmsc_355_proj
 
+import android.os.Build
 import android.util.Log
 // import java.io.File
 import android.security.keystore.KeyProperties
+import android.security.keystore.KeyGenParameterSpec
+import android.support.annotation.RequiresApi
 import java.security.KeyStore
 import java.security.KeyPair
 import java.security.KeyPairGenerator
 import java.security.SecureRandom
+
+
+
 
 open class SecurityUtils {
 
@@ -42,7 +48,8 @@ open class SecurityUtils {
         return cipherText
     }
 
-    /**
+    @RequiresApi(Build.VERSION_CODES.M)
+     /**
      * Gets the local public key as a string if it exist, otherwise generates
      *
      * @alias: Alias of the key
@@ -65,6 +72,7 @@ open class SecurityUtils {
 
             val kp = generateKeyPair()
 
+
             kp.public.toString()
 
         }
@@ -73,9 +81,16 @@ open class SecurityUtils {
     /**
      * Generates a 2048 bit RSA key pair
      */
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun generateKeyPair(): KeyPair {
+
         val gen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore")
-        gen.initialize(2048, SecureRandom())
+        val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(KEY_ALIAS).run {
+            KeyProperties.DIGEST_SHA256
+            build()
+        }
+
+        gen.initialize(parameterSpec)
         val keyPair = gen.genKeyPair()
         if (BuildConfig.DEBUG) {
             Log.d("Public key generated", keyPair.public.toString())
