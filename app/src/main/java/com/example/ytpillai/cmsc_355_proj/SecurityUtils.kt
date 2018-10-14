@@ -2,12 +2,8 @@ package com.example.ytpillai.cmsc_355_proj
 
 import android.util.Log
 // import java.io.File
-import java.security.PublicKey
-import java.security.KeyPair
-import java.security.KeyPairGenerator
-import java.security.SecureRandom
-import java.security.KeyStore
 import android.security.keystore.KeyProperties
+import java.security.*
 
 open class SecurityUtils {
 
@@ -17,6 +13,12 @@ open class SecurityUtils {
     }
 
 
+    /**
+     * Encrypt plaintext with the device keypair
+     *
+     * @plainText: The plaintext string to be encrypted
+     * @alias: The alias of the key pair
+     */
     fun encryptMessage(plainText: String, alias: String = KEY_ALIAS): String {
 
 
@@ -24,16 +26,21 @@ open class SecurityUtils {
         return plainText
     }
 
-    fun decryptMessage(cipherText: String, alias: String): String {
+    /**
+     * Decrypt ciphers with using public key
+     *
+     * @cipherText: ciphertext to be decrypted
+     * @aliasID: Id of the alias to be used for decryption
+     */
+    fun decryptMessage(cipherText: String, aliasID: Int): String {
 
-
+        val alias = keyAliases[aliasID]
 
         return cipherText
     }
 
     /**
      * Gets the local public key as a string if it exist, otherwise generates
-     * TODO: AES encrypt files with the password hash
      *
      * @alias: Alias of the key
      */
