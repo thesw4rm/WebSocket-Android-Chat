@@ -16,6 +16,7 @@ class ProgramActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
         var messageSocketServer = MessageSocketServer(InetSocketAddress("10.1.1.1", 8112))
+        messageSocketServer.start()
     }
 
     /*This is the activity that is loaded after user creates password for the first time or enters correct password*/
