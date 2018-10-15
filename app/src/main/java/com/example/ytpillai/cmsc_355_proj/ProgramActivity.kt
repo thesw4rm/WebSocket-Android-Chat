@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketClient
 import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketServer
 import java.net.InetSocketAddress
 
@@ -18,6 +19,7 @@ class ProgramActivity : AppCompatActivity() {
         var messageSocketServer = MessageSocketServer(InetSocketAddress("10.1.1.1", 8112))
         messageSocketServer.start()
 
+        var messageSocketClient = MessageSocketClient()
     }
 
     /*This is the activity that is loaded after user creates password for the first time or enters correct password*/
