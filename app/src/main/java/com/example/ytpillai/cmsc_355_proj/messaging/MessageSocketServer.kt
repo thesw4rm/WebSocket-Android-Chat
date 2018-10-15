@@ -34,7 +34,7 @@ class MessageSocketServer(address: InetSocketAddress) : WebSocketServer(address)
     }
 
     override fun onStart() {
-        Log.d("MESSAGE_SOCKET_SERVER", "WS server started.")
+        Log.d("MESSAGE_SOCKET_SERVER", "WebSocketgpg - server started.")
     }
 
     override fun onError(conn: WebSocket?, ex: Exception?) {

@@ -20,6 +20,7 @@ class ProgramActivity : AppCompatActivity() {
         messageSocketServer.start()
 
         var messageSocketClient = MessageSocketClient()
+
     }
 
     /*This is the activity that is loaded after user creates password for the first time or enters correct password*/
