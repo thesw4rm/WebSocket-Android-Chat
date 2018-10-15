@@ -30,6 +30,7 @@ class MessageSocketServer(address: InetSocketAddress) : WebSocketServer(address)
         if(conn == null){
             Log.e("MESSAGE_SOCKET_SERVER", "Tried to receive message on websocket server but got null connection. ")
         }
+        Log.d("MESSAGE_SOCKET_SERVER", "I GOT UR MESSAGE $message")
     }
 
     override fun onStart() {
