@@ -1,36 +1,27 @@
 package com.example.ytpillai.cmsc_355_proj
 
 import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import org.junit.Test
 
+class isValidIPUnitTest {
 
-
-class ProgramActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_program)
-
-
-    }
-
-    /*This is the activity that is loaded after user creates password for the first time or enters correct password*/
-
-    fun isValidIP(view: View) {
+    @Test
+    fun isValidIP(String checkMyIP) {
 
         var editTextHello = findViewById(R.id.ipAddress) as EditText
 
-        var check = editTextHello.text.toString()
+        var checkMyIP = editTextHello.text.toString()
 
-        var checkarray = check.toCharArray()
+
+
+        var checkMyIParray = checkMyIP.toCharArray()
 
         var validChar = false
 
-        for (i in checkarray) {
+        for (i in checkMyIParray) {
             when (i) {
                 '0' -> validChar = true
                 '1' -> validChar = true
@@ -60,16 +51,10 @@ class ProgramActivity : AppCompatActivity() {
         else {
             Toast.makeText(this, "Connecting...", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, OtherActivity::class.java)
-            startActivity(intent)
         }
 
-
-
-
+        assert()
 
     }
-
-
 
 }

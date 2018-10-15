@@ -19,9 +19,7 @@ class CreatePasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_password)
 
-        // mPatternLockView = findViewById<View>(R.id.pattern_lock_view)
         mPatternLockView = findViewById(R.id.pattern_lock_view)
-        //id is   pattern_lock_view
 
         mPatternLockView.addPatternLockListener(object : PatternLockViewListener {
             override fun onStarted() {
