@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-
+import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketServer
+import java.net.InetSocketAddress
 
 
 class ProgramActivity : AppCompatActivity() {
@@ -14,6 +15,7 @@ class ProgramActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
+        var messageSocketServer = MessageSocketServer(InetSocketAddress("10.1.1.1", 8112))
     }
 
     /*This is the activity that is loaded after user creates password for the first time or enters correct password*/
