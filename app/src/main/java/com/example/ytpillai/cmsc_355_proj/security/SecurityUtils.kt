@@ -1,19 +1,24 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
+
+import com.example.ytpillai.cmsc_355_proj.BuildConfig
+
 import android.os.Build
 import android.support.annotation.RequiresApi
+
 import android.util.Log
-// import java.io.File
+import android.util.Base64
+
 import android.security.keystore.KeyProperties
 import android.security.keystore.KeyGenParameterSpec
-import android.util.Base64
-import com.example.ytpillai.cmsc_355_proj.BuildConfig
+
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
+
 import java.security.KeyStore
 import java.security.KeyPair
 import java.security.KeyPairGenerator
+
 import javax.crypto.Cipher
 import javax.crypto.CipherInputStream
 import javax.crypto.CipherOutputStream
@@ -41,7 +46,7 @@ open class SecurityUtils {
             val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
             val publicKey = privateKeyEntry.certificate.publicKey
 
-            // Encrypt the text
+            // Check for empty string
             if (plainText.isEmpty()) {
                 return null
             }
@@ -73,6 +78,10 @@ open class SecurityUtils {
      * @aliasID: Id of the alias to be used for decryption
      */
     fun decryptMessage(cipherText: String, aliasID: Int): String? {
+
+        if (cipherText.isEmpty()) {
+            return null
+        }
 
         try {
 
@@ -111,12 +120,13 @@ open class SecurityUtils {
         return null
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-     /**
+
+    /**
      * Gets the local public key as a string if it exist, otherwise generates
      *
      * @alias: Alias of the key
      */
+    @RequiresApi(Build.VERSION_CODES.M)
     fun getEncryptionKey(alias: String = KEY_ALIAS): String {
 //        if (keyPairExists(keyDir)){
 //            val privateKey = File(keyDir + R.string.private_key_filename).readText()
@@ -134,7 +144,6 @@ open class SecurityUtils {
         } else {
 
             val kp = generateKeyPair()
-
 
             kp.public.toString()
 
@@ -173,14 +182,6 @@ open class SecurityUtils {
      * @alias: nickname for the key
      */
     private fun keyPairExists(alias: String = KEY_ALIAS): Boolean {
-//        val privateKeyFile = File(keyDir + R.string.private_key_filename)
-//        if (BuildConfig.DEBUG)
-//            Log.d("PRIVATE_KEY_CHECK", "Checking if private key exists")
-//        val publicKeyFile = File(keyDir + R.string.public_key_filename)
-//        if (BuildConfig.DEBUG)
-//            Log.d("PUBLIC_KEY_CHECK", "Checking if public key exists")
-//
-//        return privateKeyFile.exists() && publicKeyFile.exists()
 
         val ks = KeyStore.getInstance("AndroidKeyStore")
 
