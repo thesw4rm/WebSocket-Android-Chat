@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.example.ytpillai.cmsc_355_proj">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -29,9 +29,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Contacts"></activity>
+        <activity android:name=".Contacts" ></activity>
     </application>
 
 </manifest>
-
-
