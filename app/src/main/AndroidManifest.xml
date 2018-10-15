@@ -29,7 +29,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Contacts" ></activity>
+        <activity android:name=".Contacts" />
+        <activity android:name=".ConversationActivity"></activity>
     </application>
 
 </manifest>
