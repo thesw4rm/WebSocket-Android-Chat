@@ -11,6 +11,7 @@ class ProgramActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
+        
     }
 
     /*This is the activity that is loaded after user creates password for the first time or enters correct password*/
