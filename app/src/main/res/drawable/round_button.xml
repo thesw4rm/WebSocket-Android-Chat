@@ -6,7 +6,11 @@
             <corners android:radius="20dp" />
             <solid android:color="#6894ED" />
 
-
+            <padding
+                    android:bottom="4dp"
+                    android:left="10dp"
+                    android:right="10dp"
+                    android:top="4dp" />
         </shape>
     </item>
     <item android:state_pressed="true">
@@ -14,7 +18,11 @@
             <corners android:radius="20dp" />
             <solid android:color="#577ac4" />
 
-
+            <padding
+                    android:bottom="4dp"
+                    android:left="10dp"
+                    android:right="10dp"
+                    android:top="4dp" />
         </shape>
     </item>
 </selector>

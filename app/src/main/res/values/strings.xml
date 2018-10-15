@@ -3,7 +3,7 @@
     <string name="app_name">inko</string>
     <string name="private_key_filename">id_rsa.pem</string>
     <string name="public_key_filename">id_rsa.pub</string>
-
+    <string name="title_activity_conversations">Conversations</string>
 
 
 </resources>
