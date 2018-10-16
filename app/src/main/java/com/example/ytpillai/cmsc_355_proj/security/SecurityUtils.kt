@@ -40,6 +40,8 @@ open class SecurityUtils {
         fun encryptMessage(plainText: String, alias: String = KEY_ALIAS): String? {
 
             try {
+                if(!keyPairExists())
+                    generateKeyPair()
                 val ks = KeyStore.getInstance("AndroidKeyStore")
 
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
