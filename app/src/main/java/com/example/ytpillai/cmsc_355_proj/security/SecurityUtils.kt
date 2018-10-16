@@ -43,7 +43,7 @@ open class SecurityUtils {
                 if(!keyPairExists())
                     generateKeyPair()
                 val ks = KeyStore.getInstance("AndroidKeyStore")
-
+                
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
                 val publicKey = privateKeyEntry.certificate.publicKey
 

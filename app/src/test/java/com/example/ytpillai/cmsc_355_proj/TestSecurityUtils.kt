@@ -1,40 +1,17 @@
 package com.example.ytpillai.cmsc_355_proj
 
-import android.util.Log
-import com.example.ytpillai.cmsc_355_proj.security.SecurityUtils
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.not
-
+import android.support.test.runner.AndroidJUnit4
+import android.test.suitebuilder.annotation.LargeTest
 import org.junit.Test
-import org.junit.Assert.assertThat
-import org.junit.Before
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito
-import org.powermock.api.mockito.PowerMockito
-import org.powermock.core.classloader.annotations.PrepareForTest
-import org.powermock.modules.junit4.PowerMockRunner
 
-@RunWith(PowerMockRunner::class)
-@PrepareForTest(Log::class)
-class TestSecurityUtils{
+@RunWith(AndroidJUnit4::class)
+abstract class AcceptanceTest<T : Activity>(clazz: Class<T>) {
 
-    @Before
-    fun beforeTest() {
-        PowerMockito.mockStatic(Log::class.java)
-        Mockito.`when`(Log.e(any(), any())).then {
-            println(it.arguments[1] /*as String*/)
-            1
-        }
-    }
+    @Rule @JvmField
+    val testRule: ActivityTestRule<T> = IntentsTestRule(clazz)
 
-    @Test
-    fun testEncrypt() {
-
-        //plainText: String, alias: String = KEY_ALIAS
-        assertThat(SecurityUtils.encryptMessage(
-                "My password is redqueen21"), `is` (("My Password is redqueen21")))
-
-    }
-
+    val checkThat: Matchers = Matchers()
+    val events: Events = Events()
 }
+
