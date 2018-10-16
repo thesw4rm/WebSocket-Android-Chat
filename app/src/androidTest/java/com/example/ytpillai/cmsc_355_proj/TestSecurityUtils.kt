@@ -13,8 +13,8 @@ import org.junit.runner.RunWith
 class TestSecurityUtils {
     @Test
     fun testEncryptMethod() {
-        assertThat(SecurityUtils.encryptMessage(
-                "My password is redqueen21"), `is` (SecurityUtils.decryptMessage("My Password is redqueen21", 0)))
+        assertThat(
+                SecurityUtils.decryptMessage(SecurityUtils.encryptMessage("My Password is redqueen21")!!), `is` ("My password is redqueen21"))
     }
 }
 

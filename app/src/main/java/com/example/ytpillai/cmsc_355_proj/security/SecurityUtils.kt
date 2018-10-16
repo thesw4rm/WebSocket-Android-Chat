@@ -78,7 +78,7 @@ open class SecurityUtils {
          * @cipherText: ciphertext to be decrypted
          * @aliasID: Id of the alias to be used for decryption
          */
-        fun decryptMessage(cipherText: String, aliasID: Int): String? {
+        fun decryptMessage(cipherText: String, alias: String = KEY_ALIAS): String? {
 
             if (cipherText.isEmpty()) {
                 return null
@@ -86,13 +86,12 @@ open class SecurityUtils {
 
             try {
 
-                val alias = keyAliases[aliasID]
 
                 val ks = KeyStore.getInstance("AndroidKeyStore")
                 ks.load(null, null)
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
                 val privateKey = privateKeyEntry.privateKey
-
+                
                 val output = Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidOpenSSL")
                 output.init(Cipher.DECRYPT_MODE, privateKey)
 
