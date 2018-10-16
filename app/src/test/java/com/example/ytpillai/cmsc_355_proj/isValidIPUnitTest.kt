@@ -1,3 +1,4 @@
+/*
 package com.example.ytpillai.cmsc_355_proj
 
 import android.content.Intent
@@ -9,13 +10,11 @@ import org.junit.Test
 class isValidIPUnitTest {
 
     @Test
-    fun isValidIP(String checkMyIP) {
+    fun isValidIP() {
 
         var editTextHello = findViewById(R.id.ipAddress) as EditText
 
         var checkMyIP = editTextHello.text.toString()
-
-
 
         var checkMyIParray = checkMyIP.toCharArray()
 
@@ -53,8 +52,8 @@ class isValidIPUnitTest {
 
         }
 
-        assert()
+
 
     }
 
-}
+}*/

@@ -13,13 +13,17 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.v4.content.ContextCompat.startActivity
 import org.junit.Rule
 import org.junit.runner.RunWith
+import android.support.test.InstrumentationRegistry.getTargetContext
+import android.content.ComponentName
+import android.support.test.espresso.intent.Intents.intended
+import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
 
 
 class ProgramActivityTest {
 
     @Rule
     @JvmField
-    val activity = ActivityTestRule<ProgramActivity>(ProgramActivity::class.java::class.java)
+    val activity = ActivityTestRule<ProgramActivity>(ProgramActivity::class.java)
 
 
     @Test
@@ -32,12 +36,7 @@ class ProgramActivityTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.startChat)).perform(ViewActions.click())
 
-        val intent = Intent(this, OtherActivity::class.java)
-        startActivity(intent)
 
-
-     /*   Espresso.onView(ViewMatchers.withId(R.id.MyTextView))
-                .check(ViewAssertions.matches(ViewMatchers.withText("Hello mars")))*/
 
     }
 }
