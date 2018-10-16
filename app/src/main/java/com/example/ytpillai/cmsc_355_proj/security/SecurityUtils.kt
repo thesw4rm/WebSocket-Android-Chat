@@ -43,7 +43,7 @@ open class SecurityUtils {
                 if(!keyPairExists())
                     generateKeyPair()
                 val ks = KeyStore.getInstance("AndroidKeyStore")
-                
+                ks.load(null, null)
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
                 val publicKey = privateKeyEntry.certificate.publicKey
 
@@ -89,7 +89,7 @@ open class SecurityUtils {
                 val alias = keyAliases[aliasID]
 
                 val ks = KeyStore.getInstance("AndroidKeyStore")
-
+                ks.load(null, null)
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
                 val privateKey = privateKeyEntry.privateKey
 
@@ -167,10 +167,6 @@ open class SecurityUtils {
 
             gen.initialize(parameterSpec)
             val keyPair = gen.genKeyPair()
-            if (BuildConfig.DEBUG) {
-                Log.d("Public key generated", keyPair.public.toString())
-                Log.d("Private key generated", keyPair.private.toString())
-            }
 
             return keyPair
 
@@ -185,7 +181,7 @@ open class SecurityUtils {
         private fun keyPairExists(alias: String = KEY_ALIAS): Boolean {
 
             val ks = KeyStore.getInstance("AndroidKeyStore")
-
+            ks.load(null, null)
             return ks.containsAlias(alias)
         }
     }
