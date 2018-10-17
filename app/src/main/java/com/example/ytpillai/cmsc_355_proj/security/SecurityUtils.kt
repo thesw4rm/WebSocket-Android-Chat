@@ -28,7 +28,7 @@ open class SecurityUtils {
 
     companion object {
         const val KEY_ALIAS = "INKO_Key"
-        var keyAliases  = ArrayList<String>()
+//        var keyAliases  = ArrayList<String>()
 
 
         /**
@@ -78,7 +78,7 @@ open class SecurityUtils {
          * @cipherText: ciphertext to be decrypted
          * @aliasID: Id of the alias to be used for decryption
          */
-        fun decryptMessage(cipherText: String, aliasID: Int): String? {
+        fun decryptMessage(cipherText: String, alias: String = KEY_ALIAS): String? {
 
             if (cipherText.isEmpty()) {
                 return null
@@ -86,7 +86,7 @@ open class SecurityUtils {
 
             try {
 
-                val alias = keyAliases[aliasID]
+//                val alias = keyAliases[aliasID]
 
                 val ks = KeyStore.getInstance("AndroidKeyStore")
                 ks.load(null, null)
@@ -185,8 +185,5 @@ open class SecurityUtils {
             return ks.containsAlias(alias)
         }
     }
-
-
-
 
 }
