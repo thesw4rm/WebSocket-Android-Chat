@@ -16,8 +16,7 @@ class ProgramActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
-        var messageSocketServer = MessageSocketServer(InetSocketAddress("10.1.1.1", 8112))
-        messageSocketServer.start()
+
 
         var messageSocketClient = MessageSocketClient()
 
