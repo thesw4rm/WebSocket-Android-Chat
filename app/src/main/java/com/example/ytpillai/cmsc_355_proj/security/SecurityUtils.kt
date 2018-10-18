@@ -16,6 +16,7 @@ import java.security.KeyStore
 import java.security.KeyPair
 import java.security.KeyPairGenerator
 import java.security.PrivateKey
+import java.security.PublicKey
 import java.security.interfaces.RSAPrivateKey
 
 import javax.crypto.Cipher
@@ -26,7 +27,7 @@ open class SecurityUtils {
 
     companion object {
         const val KEY_ALIAS = "INKO_Key"
-//        var keyAliases  = ArrayList<String>()
+        var keyAliases  = HashMap<String, PublicKey>()
 
 
         /**
@@ -164,6 +165,12 @@ open class SecurityUtils {
             val ks = KeyStore.getInstance("AndroidKeyStore")
             ks.load(null, null)
             return ks.containsAlias(alias)
+        }
+
+        fun insertKey(key: PublicKey, alias: String) {
+
+            keyAliases[alias] = key
+
         }
     }
 
