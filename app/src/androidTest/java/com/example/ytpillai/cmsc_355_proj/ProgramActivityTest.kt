@@ -26,7 +26,7 @@ class ProgramActivityTest {
     }
 
 
-    //Scenario: 3.4
+    //Scenario: 3.4 User presses Start Chat button, opens up conversation
     @Test
     fun connectChat() {
 
