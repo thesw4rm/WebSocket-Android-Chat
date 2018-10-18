@@ -18,10 +18,14 @@ import java.io.ByteArrayOutputStream
 import java.security.KeyStore
 import java.security.KeyPair
 import java.security.KeyPairGenerator
+import java.security.PrivateKey
+import java.security.interfaces.RSAPrivateKey
 
 import javax.crypto.Cipher
 import javax.crypto.CipherInputStream
 import javax.crypto.CipherOutputStream
+import com.sun.org.apache.xml.internal.security.keys.keyresolver.KeyResolver.getPublicKey
+import java.security.interfaces.RSAPublicKey
 
 
 open class SecurityUtils {
@@ -40,20 +44,22 @@ open class SecurityUtils {
         fun encryptMessage(plainText: String, alias: String = KEY_ALIAS): String? {
 
             try {
-                if(!keyPairExists())
+
+                if (!keyPairExists())
                     generateKeyPair()
+                generateKeyPair()
                 val ks = KeyStore.getInstance("AndroidKeyStore")
                 ks.load(null, null)
-                val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
-                val publicKey = privateKeyEntry.certificate.publicKey
+                val entry = ks.getEntry(KEY_ALIAS, null) as KeyStore.PrivateKeyEntry
+                val pubKey = entry.certificate.publicKey as RSAPublicKey
 
                 // Check for empty string
                 if (plainText.isEmpty()) {
                     return null
                 }
 
-                val input = Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidOpenSSL")
-                input.init(Cipher.ENCRYPT_MODE, publicKey)
+                val input = Cipher.getInstance("RSA/ECB/NoPadding")
+                input.init(Cipher.ENCRYPT_MODE, pubKey)
 
                 val outputStream = ByteArrayOutputStream()
                 val cipherOutputStream = CipherOutputStream(
@@ -90,24 +96,24 @@ open class SecurityUtils {
 
                 val ks = KeyStore.getInstance("AndroidKeyStore")
                 ks.load(null, null)
+                if (!keyPairExists())
+                    generateKeyPair()
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
-                val privateKey = privateKeyEntry.privateKey
-
-                val output = Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidOpenSSL")
-                output.init(Cipher.DECRYPT_MODE, privateKey)
+                val output = Cipher.getInstance("RSA/ECB/NoPadding")
+                output.init(Cipher.DECRYPT_MODE, privateKeyEntry.privateKey)
 
                 val cipherInputStream = CipherInputStream(
                         ByteArrayInputStream(Base64.decode(cipherText, Base64.DEFAULT)),
                         output)
 
-                var values = ArrayList<Byte>()
+                val values = ArrayList<Byte>()
                 var nextByte: Int = cipherInputStream.read()
                 while (nextByte != -1) {
                     values.add(nextByte.toByte())
                     nextByte = cipherInputStream.read()
                 }
 
-                var bytes = ByteArray(values.size)
+                val bytes = ByteArray(values.size)
                 for (i in 0..bytes.size) {
                     bytes[i] = values[i]
                 }
@@ -162,8 +168,12 @@ open class SecurityUtils {
                     KEY_ALIAS,
                     KeyProperties.PURPOSE_ENCRYPT).run {
                 KeyProperties.DIGEST_SHA256
+                setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                setRandomizedEncryptionRequired(false)
                 build()
+
             }
+
 
             gen.initialize(parameterSpec)
             val keyPair = gen.genKeyPair()
