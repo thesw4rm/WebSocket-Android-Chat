@@ -7,6 +7,7 @@ import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matchers.`is`
 import org.junit.Assert.assertThat
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -27,11 +28,18 @@ class TestSecurityUtil {
     @Test
     fun testDecryptmethod() {
 
-        var encryptedMsg = SecurityUtils.encryptMessage(SENT_MESSAGE).toString()
+        val encryptedMsg = SecurityUtils.encryptMessage(SENT_MESSAGE).toString()
 
         assertThat((equalTo(SecurityUtils.decryptMessage(encryptedMsg))).toString(), `is`("\"" + SENT_MESSAGE + "\""))
 
 
+    }
+
+    //Scenario: 2.3 Ensure KeyPair is generated
+    @Test
+    fun testGenKeyPair(){
+        SecurityUtils.encryptMessage(SENT_MESSAGE) //Should auto generate keypair
+        assertTrue(SecurityUtils.keyPairExists())
     }
 }
 
