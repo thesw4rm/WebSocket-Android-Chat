@@ -12,26 +12,28 @@ import java.net.InetSocketAddress
 
 class MessageService : Service() {
     var messageSocketServer: MessageSocketServer
+    val DEFAULT_PORT = 8112
     init{
         val ipAddress = NetworkingUtils.getWifiIPAddress()
         if(ipAddress == null){
             Log.e("MESSAGE_SERVICE_INIT", "IP address was null for local address")
             throw NullPointerException("IP address was null for local address")
         }
-        
+        val ipSocketAddress = InetSocketAddress(ipAddress, DEFAULT_PORT)
+        messageSocketServer = MessageSocketServer(ipSocketAddress)
+
     }
     override fun onBind(intent: Intent): IBinder {
         TODO("Return the communication channel to the service.")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-         = MessageSocketServer(InetSocketAddress("10.1.1.1", 8112))
         messageSocketServer.start()
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {
-        messageSo
+
         super.onDestroy()
     }
 }
