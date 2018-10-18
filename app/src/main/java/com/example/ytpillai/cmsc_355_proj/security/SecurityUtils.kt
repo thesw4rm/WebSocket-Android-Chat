@@ -1,33 +1,25 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
 
-import com.example.ytpillai.cmsc_355_proj.BuildConfig
-
 import android.os.Build
-import android.support.annotation.RequiresApi
-
-import android.util.Log
-import android.util.Base64
-
-import android.security.keystore.KeyProperties
 import android.security.keystore.KeyGenParameterSpec
-
-import java.security.KeyStore
+import android.security.keystore.KeyProperties
+import android.support.annotation.RequiresApi
+import android.util.Base64
+import android.util.Log
 import java.security.KeyPair
 import java.security.KeyPairGenerator
-import java.security.PrivateKey
+import java.security.KeyStore
 import java.security.PublicKey
-import java.security.interfaces.RSAPrivateKey
-
-import javax.crypto.Cipher
 import java.security.interfaces.RSAPublicKey
+import javax.crypto.Cipher
 
 
 open class SecurityUtils {
 
     companion object {
         const val KEY_ALIAS = "INKO_Key"
-        var keyAliases  = HashMap<String, PublicKey>()
+        var keyAliases = HashMap<String, PublicKey>()
 
 
         /**
@@ -115,7 +107,9 @@ open class SecurityUtils {
             return if (keyPairExists(alias)) {
 
                 val ks = KeyStore.getInstance("AndroidKeyStore")
+                ks.load(null)
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
+                Log.d("HAHAHAHA", privateKeyEntry.certificate.publicKey.toString())
 
                 privateKeyEntry.certificate.publicKey.toString() // public key
 
