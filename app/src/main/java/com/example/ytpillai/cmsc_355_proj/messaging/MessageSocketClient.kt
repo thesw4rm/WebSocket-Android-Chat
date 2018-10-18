@@ -1,13 +1,16 @@
 package com.example.ytpillai.cmsc_355_proj.messaging
 
+import android.content.Intent
+import android.content.Context
 import android.util.Log
+import com.example.ytpillai.cmsc_355_proj.R
 import okhttp3.Response
 import okhttp3.WebSocketListener
 import okhttp3.WebSocket
 import okio.ByteString
 
 
-class MessageSocketClient() : WebSocketListener() {
+class MessageSocketClient(var context: Context) : WebSocketListener() {
     private val NORMAL_CLOSURE_STATUS = 1000
 
     override fun onOpen(webSocket: WebSocket, response: Response) {
@@ -24,10 +27,22 @@ class MessageSocketClient() : WebSocketListener() {
 
     override fun onMessage(webSocket: WebSocket?, text: String?) {
         Log.d("MESSAGE_SOCKET_CLIENT", "Receiving text: " + text!!)
+
+        Intent().also { intent ->
+            intent.action = context.resources.getString(R.string.ACTION_RECEIVED_MESSAGE)
+            intent.putExtra("message", text)
+            context.sendBroadcast(intent)
+        }
     }
 
     override fun onMessage(webSocket: WebSocket?, bytes: ByteString?) {
         Log.d("MESSAGE_SOCKET_CLIENT" ,"Receiving bytes" + bytes!!.hex())
+
+        Intent().also { intent ->
+            intent.action = context.resources.getString(R.string.ACTION_RECEIVED_MESSAGE)
+            intent.putExtra("message", bytes)
+            context.sendBroadcast(intent)
+        }
     }
 
     override fun onClosing(webSocket: WebSocket?, code: Int, reason: String?) {
