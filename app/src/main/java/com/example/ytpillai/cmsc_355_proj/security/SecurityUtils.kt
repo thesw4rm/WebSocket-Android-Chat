@@ -57,7 +57,7 @@ open class SecurityUtils {
                     return null
                 }
 
-                val input = Cipher.getInstance("RSA/ECB/NoPadding")
+                val input = Cipher.getInstance("RSA/ECB/PKCS1Padding")
                 input.init(Cipher.ENCRYPT_MODE, pubKey)
 
 //                val outputStream = ByteArrayOutputStream()
@@ -100,7 +100,7 @@ open class SecurityUtils {
                 if (!keyPairExists())
                     generateKeyPair()
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
-                val output = Cipher.getInstance("RSA/ECB/NoPadding")
+                val output = Cipher.getInstance("RSA/ECB/PKCS1Padding")
                 output.init(Cipher.DECRYPT_MODE, privateKeyEntry.privateKey)
 
 //                val cipherInputStream = CipherInputStream(
