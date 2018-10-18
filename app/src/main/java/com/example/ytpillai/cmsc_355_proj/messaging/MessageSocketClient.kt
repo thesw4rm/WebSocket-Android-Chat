@@ -16,6 +16,10 @@ class MessageSocketClient() : WebSocketListener() {
         webSocket.send(ByteString.decodeHex("deadbeef"))
         webSocket.close(NORMAL_CLOSURE_STATUS, "Goodbye !")
         Log.d("MESSAGE_SOCKET_CLIENT", "Opened connection")
+
+        // Get public get
+
+        //
     }
 
     override fun onMessage(webSocket: WebSocket?, text: String?) {

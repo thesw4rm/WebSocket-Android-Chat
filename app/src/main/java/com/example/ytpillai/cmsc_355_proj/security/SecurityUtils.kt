@@ -1,34 +1,25 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
 
-import com.example.ytpillai.cmsc_355_proj.BuildConfig
-
 import android.os.Build
-import android.support.annotation.RequiresApi
-
-import android.util.Log
-import android.util.Base64
-
-import android.security.keystore.KeyProperties
 import android.security.keystore.KeyGenParameterSpec
-
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
-import java.security.*
-
-import java.security.interfaces.RSAPrivateKey
-
-import javax.crypto.Cipher
-import javax.crypto.CipherInputStream
-import javax.crypto.CipherOutputStream
+import android.security.keystore.KeyProperties
+import android.support.annotation.RequiresApi
+import android.util.Base64
+import android.util.Log
+import java.security.KeyPair
+import java.security.KeyPairGenerator
+import java.security.KeyStore
+import java.security.PublicKey
 import java.security.interfaces.RSAPublicKey
+import javax.crypto.Cipher
 
 
 open class SecurityUtils {
 
     companion object {
         const val KEY_ALIAS = "INKO_Key"
-//        var keyAliases  = ArrayList<String>()
+        var keyAliases = HashMap<String, PublicKey>()
 
 
         /**
@@ -57,14 +48,6 @@ open class SecurityUtils {
 
                 val input = Cipher.getInstance("RSA/ECB/PKCS1Padding")
                 input.init(Cipher.ENCRYPT_MODE, pubKey)
-
-//                val outputStream = ByteArrayOutputStream()
-//                val cipherOutputStream = CipherOutputStream(
-//                        outputStream, input)
-//                cipherOutputStream.write(plainText.toByteArray(charset("UTF-8")))
-//                cipherOutputStream.close()
-//
-//                val vals = outputStream.toByteArray()
 
                 val encryptBytes = input.doFinal(plainText.toByteArray())
 
@@ -101,22 +84,6 @@ open class SecurityUtils {
                 val output = Cipher.getInstance("RSA/ECB/PKCS1Padding")
                 output.init(Cipher.DECRYPT_MODE, privateKeyEntry.privateKey)
 
-//                val cipherInputStream = CipherInputStream(
-//                        ByteArrayInputStream(Base64.decode(cipherText, Base64.DEFAULT)),
-//                        output)
-//
-//                val values = ArrayList<Byte>()
-//                var nextByte: Int = cipherInputStream.read()
-//                while (nextByte != -1) {
-//                    values.add(nextByte.toByte())
-//                    nextByte = cipherInputStream.read()
-//                }
-//
-//                val bytes = ByteArray(values.size)
-//                for (i in 0..bytes.size) {
-//                    bytes[i] = values[i]
-//                }
-
                 val decryptedBytes = output.doFinal(Base64.decode(cipherText, Base64.DEFAULT))
 
                 return String(decryptedBytes, 0, decryptedBytes.size, Charsets.UTF_8) // Final text
@@ -136,11 +103,6 @@ open class SecurityUtils {
          */
         @RequiresApi(Build.VERSION_CODES.M)
         fun getEncryptionKey(alias: String = KEY_ALIAS): String {
-//        if (keyPairExists(keyDir)){
-//            val privateKey = File(keyDir + R.string.private_key_filename).readText()
-//            val publicKey = File(keyDir + R.string.public_key_filename).readText()
-//
-//        }
 
             return if (keyPairExists(alias)) {
 
@@ -197,6 +159,12 @@ open class SecurityUtils {
             val ks = KeyStore.getInstance("AndroidKeyStore")
             ks.load(null, null)
             return ks.containsAlias(alias)
+        }
+
+        fun insertKey(key: PublicKey, alias: String) {
+
+            keyAliases[alias] = key
+
         }
     }
 
