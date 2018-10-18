@@ -6,6 +6,7 @@ import android.util.Log
 import com.example.ytpillai.cmsc_355_proj.ConversationActivity
 import com.example.ytpillai.cmsc_355_proj.ProgramActivity
 import com.example.ytpillai.cmsc_355_proj.R
+import com.example.ytpillai.cmsc_355_proj.security.SecurityUtils
 import org.java_websocket.WebSocket
 import org.java_websocket.handshake.ClientHandshake
 import org.java_websocket.server.WebSocketServer
@@ -21,7 +22,7 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
         if (conn == null) {
             Log.e("MESSAGE_SOCKET_SERVER", "Tried to open a client's connection the ws server on this device, but got null connection. ")
         }
-        conn!!.send("Ya I got the connection bro!") //Need to make this do important stuff like initial handshake stuff and things
+        conn!!.send("RSA_PUBLIC_KEY\n" + SecurityUtils.getEncryptionKey()) //Need to make this do important stuff like initial handshake stuff and things. Eventually symmetric key encrypt this
 
     }
 
@@ -30,6 +31,10 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
             Log.e("MESSAGE_SOCKET_SERVER", "Tried to close websocket server but got null connection. ")
         }
         conn!!.close(200, "Closing the connection because why not?")
+        Intent().also { intent ->
+            intent.action = context.resources.getString(R.string.ACTION_CONVO_CLOSED)
+            context.sendBroadcast(intent)
+        }
     }
 
     override fun onMessage(conn: WebSocket?, message: String?) {
@@ -38,10 +43,14 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
         else
             Log.d("MESSAGE_SOCKET_SERVER", "I GOT UR MESSAGE $message")
 
-        Intent().also { intent ->
-            intent.action = context.resources.getString(R.string.ACTION_RECEIVED_MESSAGE)
-            intent.putExtra("message", message)
-            context.sendBroadcast(intent)
+        if (message!!.substring(0, "RSA_PUBLIC_KEY\n".length) == "RSA_PUBLIC_KEY\n")
+            //setOtherKeyAlias("${getRemoteSocketAddress(conn).address}_PUBLIC_KEY", message.substring("RSA_PUBLIC_KEY\n".length - 1, message.length))
+        else {
+            Intent().also { intent ->
+                intent.action = context.resources.getString(R.string.ACTION_RECEIVED_MESSAGE)
+                intent.putExtra("message", message)
+                context.sendBroadcast(intent)
+            }
         }
 
     }

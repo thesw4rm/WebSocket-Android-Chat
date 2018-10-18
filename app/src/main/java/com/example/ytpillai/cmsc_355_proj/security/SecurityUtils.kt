@@ -14,11 +14,8 @@ import android.security.keystore.KeyGenParameterSpec
 
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.security.*
 
-import java.security.KeyStore
-import java.security.KeyPair
-import java.security.KeyPairGenerator
-import java.security.PrivateKey
 import java.security.interfaces.RSAPrivateKey
 
 import javax.crypto.Cipher
@@ -148,7 +145,9 @@ open class SecurityUtils {
             return if (keyPairExists(alias)) {
 
                 val ks = KeyStore.getInstance("AndroidKeyStore")
+                ks.load(null)
                 val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
+                Log.d("HAHAHAHA", privateKeyEntry.certificate.publicKey.toString())
 
                 privateKeyEntry.certificate.publicKey.toString() // public key
 

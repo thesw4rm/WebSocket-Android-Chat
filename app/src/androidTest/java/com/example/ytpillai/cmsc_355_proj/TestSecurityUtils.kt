@@ -4,8 +4,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.test.suitebuilder.annotation.MediumTest
 import com.example.ytpillai.cmsc_355_proj.security.SecurityUtils
 import org.hamcrest.core.Is.`is`
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -17,7 +16,7 @@ class TestSecurityUtils {
     @Test
     fun testEncryptMethod() {
         assertThat(
-                SecurityUtils.decryptMessage(SecurityUtils.encryptMessage("My Password is redqueen21")!!), `is` ("My password is redqueen21"))
+                SecurityUtils.decryptMessage(SecurityUtils.encryptMessage("My Password is redqueen21")!!), `is`("My password is redqueen21"))
     }
 
     @Test
@@ -25,12 +24,18 @@ class TestSecurityUtils {
 
         var encryptedMsg = SecurityUtils.encryptMessage(SENT_MESSAGE)
 
-        if(encryptedMsg != null) {
+        if (encryptedMsg != null) {
 
             assertEquals(SENT_MESSAGE, SecurityUtils.decryptMessage(encryptedMsg))
 
         }
     }
+
+    @Test
+    fun testEncryptionKey() {
+        assertNotNull(SecurityUtils.getEncryptionKey())
+    }
+
 }
 
 
