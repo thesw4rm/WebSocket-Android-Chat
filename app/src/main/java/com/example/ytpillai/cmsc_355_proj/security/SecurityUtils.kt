@@ -44,11 +44,12 @@ open class SecurityUtils {
 
             try {
 
+
+                val ks = KeyStore.getInstance("AndroidKeyStore")
+                ks.load(null, null)
                 if (!keyPairExists())
                     generateKeyPair()
                 generateKeyPair()
-                val ks = KeyStore.getInstance("AndroidKeyStore")
-                ks.load(null, null)
                 val entry = ks.getEntry(KEY_ALIAS, null) as KeyStore.PrivateKeyEntry
                 val pubKey = entry.certificate.publicKey as RSAPublicKey
 
@@ -169,9 +170,10 @@ open class SecurityUtils {
             val gen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore")
             val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(
                     KEY_ALIAS,
-                    KeyProperties.PURPOSE_ENCRYPT).run {
+                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
+            ).run {
                 KeyProperties.DIGEST_SHA256
-                setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_RSA_PKCS1)
                 setRandomizedEncryptionRequired(false)
                 build()
 
