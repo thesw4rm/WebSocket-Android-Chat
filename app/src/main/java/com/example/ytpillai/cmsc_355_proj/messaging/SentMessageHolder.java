@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.example.ytpillai.cmsc_355_proj.R;
 
-private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
+class ReceivedMessageHolder extends RecyclerView.ViewHolder {
     private TextView messageText, timeText, nameText;
     ImageView profileImage;
 
