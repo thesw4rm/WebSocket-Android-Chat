@@ -4,6 +4,7 @@
     <string name="private_key_filename">id_rsa.pem</string>
     <string name="public_key_filename">id_rsa.pub</string>
     <string name="title_activity_conversations">Conversations</string>
-
-
+    <string name="ACTION_START">com.example.ytpillai.cmsc_355_proj.services.action.MESSAGE_SERVER_START</string>
+    <string name="ACTION_STOP">com.example.ytpillai.cmsc_355_proj.services.action.MESSAGE_SERVER_STOP</string>
+    <string name="ACTION_RECEIVED_MESSAGE">com.example.ytpillai.cmsc_355_proj.services.action.MESSAGE_SERVER_RECEIVED</string>
 </resources>
