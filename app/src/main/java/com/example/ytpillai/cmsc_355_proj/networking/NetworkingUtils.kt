@@ -20,13 +20,15 @@ class NetworkingUtils {
                     while (enumIpAddr.hasMoreElements()) {
                         val inetAddress = enumIpAddr.nextElement()
 
-                        if (!inetAddress.isLoopbackAddress()) {
+                        if (inetAddress != null && !inetAddress.isLoopbackAddress) {
                             return inetAddress
                         }
                     }
                 }
+
+
             } catch (ex: SocketException) {
-                Log.e("NETWORKING_UTILS_GET_IP", "Error getting Wifi IP address", ex);
+                Log.e("NETWORKING_UTILS_GETIP", "Error getting Wifi IP address", ex);
                 return null
             }
             return null
