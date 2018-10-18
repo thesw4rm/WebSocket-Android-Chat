@@ -10,7 +10,7 @@ import java.net.SocketException
 class NetworkingUtils {
 
     companion object {
-        fun getWifiIPAddress(): InetAddress{
+        fun getWifiIPAddress(): InetAddress?{
             var ipAddress: String? = null
             try {
                 val en = NetworkInterface.getNetworkInterfaces()
@@ -21,15 +21,15 @@ class NetworkingUtils {
                         val inetAddress = enumIpAddr.nextElement()
 
                         if (!inetAddress.isLoopbackAddress()) {
-                            ipAddress = inetAddress.getHostAddress().toString()
                             return inetAddress
                         }
                     }
                 }
             } catch (ex: SocketException) {
                 Log.e("NETWORKING_UTILS_GET_IP", "Error getting Wifi IP address", ex);
-                return InetAddress.getLocalHost();
+                return null
             }
+            return null
         }
     }
 }
