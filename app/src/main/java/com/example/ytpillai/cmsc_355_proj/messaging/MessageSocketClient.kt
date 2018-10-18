@@ -8,16 +8,15 @@ import okhttp3.Response
 import okhttp3.WebSocketListener
 import okhttp3.WebSocket
 import okio.ByteString
+import java.net.InetSocketAddress
+import java.net.URI
 
 
-class MessageSocketClient(var context: Context) : WebSocketListener() {
+class MessageSocketClient(uri: URI, var context: Context) : WebSocketListener() {
     private val NORMAL_CLOSURE_STATUS = 1000
 
     override fun onOpen(webSocket: WebSocket, response: Response) {
-        webSocket.send("Hello, it's SSaurel !")
-        webSocket.send("What's up ?")
-        webSocket.send(ByteString.decodeHex("deadbeef"))
-        webSocket.close(NORMAL_CLOSURE_STATUS, "Goodbye !")
+        webSocket.send("Chat has been connected by client!")
         Log.d("MESSAGE_SOCKET_CLIENT", "Opened connection")
 
         // Get public get
@@ -33,6 +32,7 @@ class MessageSocketClient(var context: Context) : WebSocketListener() {
             intent.putExtra("message", text)
             context.sendBroadcast(intent)
         }
+
     }
 
     override fun onMessage(webSocket: WebSocket?, bytes: ByteString?) {
@@ -48,6 +48,10 @@ class MessageSocketClient(var context: Context) : WebSocketListener() {
     override fun onClosing(webSocket: WebSocket?, code: Int, reason: String?) {
         webSocket!!.close(NORMAL_CLOSURE_STATUS, null)
         Log.d("MESSAGE_SOCKET_CLIENT", "Close WebSocketListener: $code / $reason")
+        Intent().also { intent ->
+            intent.action = context.resources.getString(R.string.ACTION_CONVO_CLOSED)
+            context.sendBroadcast(intent)
+        }
     }
 
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response) {
