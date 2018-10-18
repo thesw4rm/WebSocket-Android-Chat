@@ -28,7 +28,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:padding="5dp"
-        android:fontFamily="@font/quicksand"
+        android:fontFamily="@font/open_sans"
         android:text="inko chat"
         android:textAlignment="center"
         android:textAllCaps="true"

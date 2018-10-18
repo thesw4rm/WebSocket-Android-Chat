@@ -7,7 +7,7 @@
               android:layout_height="wrap_content">
 
   <ImageView
-      android:id="@+id/avitar"
+      android:id="@+id/avatar"
       android:layout_width="50dp"
       android:layout_height="50dp"
       tools:src="@tools:sample/avatars" />
