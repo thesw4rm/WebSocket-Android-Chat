@@ -60,15 +60,17 @@ open class SecurityUtils {
                 val input = Cipher.getInstance("RSA/ECB/NoPadding")
                 input.init(Cipher.ENCRYPT_MODE, pubKey)
 
-                val outputStream = ByteArrayOutputStream()
-                val cipherOutputStream = CipherOutputStream(
-                        outputStream, input)
-                cipherOutputStream.write(plainText.toByteArray(charset("UTF-8")))
-                cipherOutputStream.close()
+//                val outputStream = ByteArrayOutputStream()
+//                val cipherOutputStream = CipherOutputStream(
+//                        outputStream, input)
+//                cipherOutputStream.write(plainText.toByteArray(charset("UTF-8")))
+//                cipherOutputStream.close()
+//
+//                val vals = outputStream.toByteArray()
 
-                val vals = outputStream.toByteArray()
+                val encryptBytes = input.doFinal(plainText.toByteArray())
 
-                return Base64.encodeToString(vals, Base64.DEFAULT)
+                return Base64.encodeToString(encryptBytes, Base64.DEFAULT)
 
             } catch (e: Exception) {
                 Log.e("Encrypt", Log.getStackTraceString(e))
@@ -101,23 +103,25 @@ open class SecurityUtils {
                 val output = Cipher.getInstance("RSA/ECB/NoPadding")
                 output.init(Cipher.DECRYPT_MODE, privateKeyEntry.privateKey)
 
-                val cipherInputStream = CipherInputStream(
-                        ByteArrayInputStream(Base64.decode(cipherText, Base64.DEFAULT)),
-                        output)
+//                val cipherInputStream = CipherInputStream(
+//                        ByteArrayInputStream(Base64.decode(cipherText, Base64.DEFAULT)),
+//                        output)
+//
+//                val values = ArrayList<Byte>()
+//                var nextByte: Int = cipherInputStream.read()
+//                while (nextByte != -1) {
+//                    values.add(nextByte.toByte())
+//                    nextByte = cipherInputStream.read()
+//                }
+//
+//                val bytes = ByteArray(values.size)
+//                for (i in 0..bytes.size) {
+//                    bytes[i] = values[i]
+//                }
 
-                val values = ArrayList<Byte>()
-                var nextByte: Int = cipherInputStream.read()
-                while (nextByte != -1) {
-                    values.add(nextByte.toByte())
-                    nextByte = cipherInputStream.read()
-                }
+                val decryptedBytes = output.doFinal(Base64.decode(cipherText, Base64.DEFAULT))
 
-                val bytes = ByteArray(values.size)
-                for (i in 0..bytes.size) {
-                    bytes[i] = values[i]
-                }
-
-                return String(bytes, 0, bytes.size, Charsets.UTF_8) // Final text
+                return String(decryptedBytes, 0, decryptedBytes.size, Charsets.UTF_8) // Final text
 
             } catch (e: Exception) {
                 Log.e("Decrypt", Log.getStackTraceString(e))
