@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketClient
 import com.example.ytpillai.cmsc_355_proj.services.MessageService
 
 
@@ -18,6 +19,8 @@ class ProgramActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
+
+        var messageSocketClient = MessageSocketClient()
 
 
         val messageServiceIntent = Intent(this, MessageService::class.java)
@@ -40,6 +43,7 @@ class ProgramActivity : AppCompatActivity() {
 
         }
         registerReceiver(messageBroadcastReceiver, IntentFilter(resources.getString(R.string.ACTION_RECEIVED_MESSAGE)))
+
 
     }
 
@@ -81,6 +85,7 @@ class ProgramActivity : AppCompatActivity() {
 
         if (validChar == false) {
             Toast.makeText(this, "Please Enter Valid IP", Toast.LENGTH_SHORT).show()
+
         } else {
             Toast.makeText(this, "Connecting...", Toast.LENGTH_SHORT).show()
 

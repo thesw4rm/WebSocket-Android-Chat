@@ -14,23 +14,6 @@ import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import org.junit.Before
 
-//import android.app.PendingIntent.getActivity
-//import android.content.Intent
-//import android.support.test.espresso.assertion.ViewAssertions
-//import android.support.test.runner.AndroidJUnit4
-//import android.support.v4.content.ContextCompat.startActivity
-//import android.support.test.espresso.matcher.ViewMatchers.withText
-//import org.junit.runner.RunWith
-//import android.support.test.InstrumentationRegistry.getTargetContext
-//import android.content.ComponentName
-//import java.util.regex.Pattern.matches
-//import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-//import android.support.test.espresso.matcher.RootMatchers.withDecorView
-//import android.support.test.espresso.Espresso.onView
-//import org.hamcrest.CoreMatchers.`is`
-//import org.hamcrest.CoreMatchers.not
-
-
 class ProgramActivityTest {
 
     @Rule
@@ -54,19 +37,5 @@ class ProgramActivityTest {
         intended(hasComponent(ConversationActivity::class.java!!.getName()))
     }
 
-//    @Test
-//    fun notValidIP() {
-//
-//
-//
-//
-//        onView(withText(R.string.TOAST_STRING)).inRoot(withDecorView(not(getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
-//
-//        onView(withId(R.id.ipAddress)).perform(typeText("1234--"));
-//
-//        Espresso.onView(ViewMatchers.withId(R.id.startChat)).perform(ViewActions.click())
-//
-////        onView(withText(R.string.TOAST_STRING)).inRoot(withDecorView(not(`is`(getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()))
-//    }
 
 }
