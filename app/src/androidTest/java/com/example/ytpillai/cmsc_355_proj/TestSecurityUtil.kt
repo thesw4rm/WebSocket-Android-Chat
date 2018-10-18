@@ -16,14 +16,14 @@ class TestSecurityUtil {
 
     val SENT_MESSAGE = "My password is redqueen21"
 
-    //Scenario: 2.1
+    //Scenario: 2.1 Check that encryption works
     @Test
     fun testEncryptMethod() {
 
         assertThat((equalTo(SecurityUtils.encryptMessage(SENT_MESSAGE)).toString()), not((SENT_MESSAGE)))
     }
 
-    //Scenario: 2.2
+    //Scenario: 2.2 Check that decryption works
     @Test
     fun testDecryptmethod() {
 

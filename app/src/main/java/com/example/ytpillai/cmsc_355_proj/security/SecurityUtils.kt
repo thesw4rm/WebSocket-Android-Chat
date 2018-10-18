@@ -126,7 +126,7 @@ open class SecurityUtils {
          * Generates a 2048 bit RSA key pair
          */
         @RequiresApi(Build.VERSION_CODES.M)
-        private fun generateKeyPair(): KeyPair {
+         fun generateKeyPair(): KeyPair {
 
             val gen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore")
             val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(
