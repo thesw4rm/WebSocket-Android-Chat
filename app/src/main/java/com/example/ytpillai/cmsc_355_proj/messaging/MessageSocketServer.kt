@@ -38,10 +38,11 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
         else
             Log.d("MESSAGE_SOCKET_SERVER", "I GOT UR MESSAGE $message")
 
-        val intent = Intent(context, ProgramActivity::class.java)
-        intent.action = context.resources.getString(R.string.ACTION_START)
-        intent.putExtra("message", message)
-        context.sendBroadcast(intent)
+        Intent().also { intent ->
+            intent.action = context.resources.getString(R.string.ACTION_RECEIVED_MESSAGE)
+            intent.putExtra("message", message)
+            context.sendBroadcast(intent)
+        }
 
     }
 

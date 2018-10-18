@@ -3,17 +3,14 @@ package com.example.ytpillai.cmsc_355_proj
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketClient
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketServer
-import com.example.ytpillai.cmsc_355_proj.services.MessageIntentService
-import java.lang.StringBuilder
-import java.net.InetSocketAddress
+import com.example.ytpillai.cmsc_355_proj.services.MessageService
 
 
 class ProgramActivity : AppCompatActivity() {
@@ -23,15 +20,14 @@ class ProgramActivity : AppCompatActivity() {
         setContentView(R.layout.activity_program)
 
 
-        val messageServiceIntent = Intent(this, MessageIntentService::class.java)
-        messageServiceIntent.action = resources.getString(R.string.ACTION_START)
+        val messageServiceIntent = Intent(this, MessageService::class.java)
         this.startService(messageServiceIntent)
 
         val messageBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 Log.d("PROGRAM_ACTIVITY", "Something received by program activity: ${intent!!.extras["message"]}")
 
-                if (intent!!.action.equals(resources.getString(R.string.ACTION_RECEIVED_MESSAGE))){
+                if (intent!!.action.equals(resources.getString(R.string.ACTION_RECEIVED_MESSAGE))) {
                     StringBuilder().apply {
                         append("Message received: ${intent.extras["message"]}")
                         toString().also { log ->
@@ -43,6 +39,7 @@ class ProgramActivity : AppCompatActivity() {
             }
 
         }
+        registerReceiver(messageBroadcastReceiver, IntentFilter(resources.getString(R.string.ACTION_RECEIVED_MESSAGE)))
 
     }
 
@@ -50,11 +47,11 @@ class ProgramActivity : AppCompatActivity() {
 
     fun isValidIP(view: View) {
 
-        var editTextHello = findViewById(R.id.ipAddress) as EditText
+        val editTextHello = findViewById(R.id.ipAddress) as EditText
 
-        var check = editTextHello.text.toString()
+        val check = editTextHello.text.toString()
 
-        var checkarray = check.toCharArray()
+        val checkarray = check.toCharArray()
 
         var validChar = false
 

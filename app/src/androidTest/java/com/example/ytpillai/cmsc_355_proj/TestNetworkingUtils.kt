@@ -5,6 +5,7 @@ import android.os.IBinder
 import android.support.test.InstrumentationRegistry
 import android.support.test.rule.ServiceTestRule
 import android.support.test.runner.AndroidJUnit4
+import com.example.ytpillai.cmsc_355_proj.services.MessageService
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
@@ -17,7 +18,7 @@ class TestNetworkingUtils {
     @get:Rule
     val mMessageServiceRule = ServiceTestRule()
 
-    @Test
+    /*@Test
     @Throws(TimeoutException::class)
     fun testgetIpAddress(){
         val serviceIntent = Intent(
@@ -30,5 +31,5 @@ class TestNetworkingUtils {
         assertNotNull(service.getIpAddressIHope())
 
 
-    }
+    }*/
 }

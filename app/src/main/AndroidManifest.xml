@@ -39,8 +39,9 @@
                 android:exported="true">
         </service>
         <service
-                android:name=".services.MessageIntentService"
-                android:exported="false">
+                android:name=".services.MessageService"
+                android:enabled="true"
+                android:exported="true">
         </service>
     </application>
 
