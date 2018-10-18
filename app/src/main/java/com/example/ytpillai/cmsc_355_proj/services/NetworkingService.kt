@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.IBinder
 
 /**
- * Eventually will have network methods which I lazily put in MessageService
+ * Eventually will have network methods which I lazily put in MessageServerService
  */
 class NetworkingService : Service() {
 

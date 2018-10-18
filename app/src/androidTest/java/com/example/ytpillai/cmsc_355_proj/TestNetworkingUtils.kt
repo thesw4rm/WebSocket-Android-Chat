@@ -6,7 +6,7 @@ import android.os.IBinder
 import android.support.test.InstrumentationRegistry
 import android.support.test.rule.ServiceTestRule
 import android.support.test.runner.AndroidJUnit4
-import com.example.ytpillai.cmsc_355_proj.services.MessageService
+import com.example.ytpillai.cmsc_355_proj.services.MessageServerService
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
@@ -24,11 +24,11 @@ class TestNetworkingUtils {
     fun testgetIpAddress(){
         val serviceIntent = Intent(
                 InstrumentationRegistry.getTargetContext(),
-                MessageService::class.java
+                MessageServerService::class.java
         )
 
         val binder: IBinder = mMessageServiceRule.bindService(serviceIntent)
-        val service: MessageService = (binder as MessageService.LocalBinder).service
+        val service: MessageServerService = (binder as MessageServerService.LocalBinder).service
         assertNotNull(service.getIpAddressIHope())
 
 

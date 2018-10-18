@@ -154,7 +154,7 @@ open class SecurityUtils {
          *
          * @alias: nickname for the key
          */
-        private fun keyPairExists(alias: String = KEY_ALIAS): Boolean {
+        fun keyPairExists(alias: String = KEY_ALIAS): Boolean {
 
             val ks = KeyStore.getInstance("AndroidKeyStore")
             ks.load(null, null)
