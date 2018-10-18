@@ -21,7 +21,7 @@ class ProgramActivityTest {
     val activity = ActivityTestRule<ProgramActivity>(ProgramActivity::class.java)
 
     @Before
-    fun reqiuredComponents() {
+    fun requiredComponents() {
         Intents.init()
     }
 
