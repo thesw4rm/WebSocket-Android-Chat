@@ -126,7 +126,7 @@ open class SecurityUtils {
          * Generates a 2048 bit RSA key pair
          */
         @RequiresApi(Build.VERSION_CODES.M)
-        private fun generateKeyPair(): KeyPair {
+         fun generateKeyPair(): KeyPair {
 
             val gen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore")
             val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(
@@ -154,7 +154,7 @@ open class SecurityUtils {
          *
          * @alias: nickname for the key
          */
-        private fun keyPairExists(alias: String = KEY_ALIAS): Boolean {
+        fun keyPairExists(alias: String = KEY_ALIAS): Boolean {
 
             val ks = KeyStore.getInstance("AndroidKeyStore")
             ks.load(null, null)

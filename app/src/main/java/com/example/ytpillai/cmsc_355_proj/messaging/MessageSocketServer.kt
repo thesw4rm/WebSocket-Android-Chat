@@ -30,7 +30,7 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
         if (conn == null) {
             Log.e("MESSAGE_SOCKET_SERVER", "Tried to close websocket server but got null connection. ")
         }
-        conn!!.close(200, "Closing the connection because why not?")
+        conn!!.close(200, "Closing the connection because why not? $code / $reason")
         Intent().also { intent ->
             intent.action = context.resources.getString(R.string.ACTION_CONVO_CLOSED)
             context.sendBroadcast(intent)

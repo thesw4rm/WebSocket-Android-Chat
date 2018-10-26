@@ -8,11 +8,9 @@ import android.os.IBinder
 import android.text.format.Formatter
 import android.util.Log
 import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketServer
-import java.net.InetAddress
 import java.net.InetSocketAddress
-import java.net.ServerSocket
 
-class MessageService : Service() {
+class MessageServerService : Service() {
     private var messageSocketServer: MessageSocketServer?
     private val DEFAULT_PORT = 8112
 
@@ -28,8 +26,8 @@ class MessageService : Service() {
         return super.onStartCommand(intent, flags, startId)
     }
 
-    override fun onBind(intent: Intent): IBinder {
-        TODO("Return the communication channel to the service.")
+    override fun onBind(intent: Intent): IBinder? {
+        return null;
     }
 
     override fun onCreate() {

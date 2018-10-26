@@ -21,12 +21,12 @@ class ProgramActivityTest {
     val activity = ActivityTestRule<ProgramActivity>(ProgramActivity::class.java)
 
     @Before
-    fun reqiuredComponents() {
+    fun requiredComponents() {
         Intents.init()
     }
 
 
-    //Scenario: 3.4
+    //Scenario: 3.4 User presses Start Chat button, opens up conversation
     @Test
     fun connectChat() {
 

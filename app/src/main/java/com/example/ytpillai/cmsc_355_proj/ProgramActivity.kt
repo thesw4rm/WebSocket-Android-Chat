@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketClient
-import com.example.ytpillai.cmsc_355_proj.services.MessageService
+import com.example.ytpillai.cmsc_355_proj.services.MessageServerService
 
 
 class ProgramActivity : AppCompatActivity() {
@@ -20,10 +20,9 @@ class ProgramActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
 
-        var messageSocketClient = MessageSocketClient()
 
 
-        val messageServiceIntent = Intent(this, MessageService::class.java)
+        val messageServiceIntent = Intent(this, MessageServerService::class.java)
         this.startService(messageServiceIntent)
 
         val messageBroadcastReceiver = object : BroadcastReceiver() {
