@@ -15,7 +15,7 @@ private const val MY_MESSAGE = 1
 private const val OTHER_MESSAGE = 2
 
 class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHolder>() {
-    private val messages: ArrayList<com.example.ytpillai.cmsc_355_proj.messaging.Message> = ArrayList()
+    private val messages: ArrayList<Message> = ArrayList()
 
     fun addMessage(message: Message){
         messages.add(message)
@@ -47,7 +47,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
     }
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-        val message = messages.get(position)
+        val message = messages[position]
 
         holder.bind(message)
     }
@@ -75,6 +75,6 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
     }
 }
 
-open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     open fun bind(message:Message) {}
 }

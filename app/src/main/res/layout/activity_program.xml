@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="89dp"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/quicksand"
         android:text="Getting\nConnected"
         android:textColor="#343434"
         android:textSize="30sp"
