@@ -2,7 +2,7 @@ package com.example.ytpillai.cmsc_355_proj
 
 import android.support.test.filters.MediumTest
 import android.support.test.runner.AndroidJUnit4
-import com.example.ytpillai.cmsc_355_proj.security.SecurityUtils
+import com.example.ytpillai.cmsc_355_proj.security.RSA
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matchers.`is`
@@ -21,16 +21,16 @@ class TestSecurityUtil {
     @Test
     fun testEncryptMethod() {
 
-        assertThat((equalTo(SecurityUtils.encryptMessage(SENT_MESSAGE)).toString()), not((SENT_MESSAGE)))
+        assertThat((equalTo(RSA.encrypt(SENT_MESSAGE)).toString()), not((SENT_MESSAGE)))
     }
 
     //Scenario: 2.2 Check that decryption works
     @Test
-    fun testDecryptmethod() {
+    fun testDecryptMethod() {
 
-        val encryptedMsg = SecurityUtils.encryptMessage(SENT_MESSAGE).toString()
+        val encryptedMsg = RSA.encrypt(SENT_MESSAGE).toString()
 
-        assertThat((equalTo(SecurityUtils.decryptMessage(encryptedMsg))).toString(), `is`("\"" + SENT_MESSAGE + "\""))
+        assertThat((equalTo(RSA.decrypt(encryptedMsg))).toString(), `is`("\"" + SENT_MESSAGE + "\""))
 
 
     }
@@ -38,8 +38,8 @@ class TestSecurityUtil {
     //Scenario: 2.3 Ensure KeyPair is generated
     @Test
     fun testGenKeyPair(){
-        SecurityUtils.encryptMessage(SENT_MESSAGE) //Should auto generate keypair
-        assertTrue(SecurityUtils.keyPairExists())
+        RSA.encrypt(SENT_MESSAGE) //Should auto generate keypair
+        assertTrue(RSA.keyPairExists())
     }
 }
 
