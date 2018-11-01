@@ -90,6 +90,7 @@ class ProgramActivity : AppCompatActivity() {
 
             val intent = Intent(this, ConversationActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
 

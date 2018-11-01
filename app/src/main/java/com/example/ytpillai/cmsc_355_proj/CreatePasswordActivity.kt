@@ -45,5 +45,12 @@ class CreatePasswordActivity : AppCompatActivity() {
 
             }
         })
+
+    }
+
+    fun skipPassword(view: View) {
+        val intent2 = Intent(this, ProgramActivity::class.java)
+        startActivity(intent2)
+        finish()
     }
 }
