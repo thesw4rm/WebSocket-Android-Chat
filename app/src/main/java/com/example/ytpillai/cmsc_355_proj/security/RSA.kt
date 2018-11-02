@@ -17,7 +17,7 @@ import javax.crypto.Cipher as jCipher
 
 open class RSA private constructor() : Cipher() {
 
-    private var keyAliases: HashMap<String, PublicKey> = HashMap<String, PublicKey>()
+    private var keyAliases: HashMap<String, PublicKey> = HashMap() // Won't be a hashmap for long
 
     private object Holder { val INSTANCE = RSA() }
 
@@ -40,7 +40,6 @@ open class RSA private constructor() : Cipher() {
             ks.load(null, null)
             if (!keyPairExists())
                 generateKeyPair()
-            generateKeyPair()
             val entry = ks.getEntry(KEY_ALIAS, null) as KeyStore.PrivateKeyEntry
             val pubKey = entry.certificate.publicKey as RSAPublicKey
 
@@ -159,6 +158,9 @@ open class RSA private constructor() : Cipher() {
         return ks.containsAlias(alias)
     }
 
+    /**
+     * Don't worry, this won't be a hashmap for very long
+     */
     fun insertKey(key: PublicKey, alias: String) {
 
         keyAliases[alias] = key
