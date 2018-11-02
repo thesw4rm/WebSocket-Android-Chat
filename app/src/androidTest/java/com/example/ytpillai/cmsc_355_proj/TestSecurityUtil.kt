@@ -15,22 +15,24 @@ import org.junit.runner.RunWith
 @MediumTest
 class TestSecurityUtil {
 
+    val rsa = RSA.instance
+
     val SENT_MESSAGE = "My password is redqueen21"
 
     //Scenario: 2.1 Check that encryption works
     @Test
     fun testEncryptMethod() {
 
-        assertThat((equalTo(RSA.encrypt(SENT_MESSAGE)).toString()), not((SENT_MESSAGE)))
+        assertThat((equalTo(rsa.encrypt(SENT_MESSAGE, rsa.KEY_ALIAS)).toString()), not((SENT_MESSAGE)))
     }
 
     //Scenario: 2.2 Check that decryption works
     @Test
     fun testDecryptMethod() {
 
-        val encryptedMsg = RSA.encrypt(SENT_MESSAGE).toString()
+        val encryptedMsg = rsa.encrypt(SENT_MESSAGE, rsa.KEY_ALIAS).toString()
 
-        assertThat((equalTo(RSA.decrypt(encryptedMsg))).toString(), `is`("\"" + SENT_MESSAGE + "\""))
+        assertThat((equalTo(rsa.decrypt(encryptedMsg, rsa.KEY_ALIAS))).toString(), `is`("\"" + SENT_MESSAGE + "\""))
 
 
     }
@@ -38,8 +40,8 @@ class TestSecurityUtil {
     //Scenario: 2.3 Ensure KeyPair is generated
     @Test
     fun testGenKeyPair(){
-        RSA.encrypt(SENT_MESSAGE) //Should auto generate keypair
-        assertTrue(RSA.keyPairExists())
+        rsa.encrypt(SENT_MESSAGE, rsa.KEY_ALIAS) //Should auto generate keypair
+        assertTrue(rsa.keyPairExists())
     }
 }
 

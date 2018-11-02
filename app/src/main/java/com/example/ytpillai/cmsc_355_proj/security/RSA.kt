@@ -15,10 +15,14 @@ import java.security.interfaces.RSAPublicKey
 import javax.crypto.Cipher as jCipher
 
 
-open class RSA : Cipher() {
+open class RSA private constructor() : Cipher() {
+
+    private var keyAliases: HashMap<String, PublicKey> = HashMap<String, PublicKey>()
+
+    private object Holder { val INSTANCE = RSA() }
 
     companion object {
-        var keyAliases = HashMap<String, PublicKey>()
+        val instance: RSA by lazy { Holder.INSTANCE }
     }
 
     /**
