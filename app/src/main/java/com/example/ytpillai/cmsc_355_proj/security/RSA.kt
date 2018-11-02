@@ -18,6 +18,7 @@ import javax.crypto.Cipher as jCipher
 open class RSA private constructor() : Cipher() {
 
     private var keyAliases: HashMap<String, PublicKey> = HashMap() // Won't be a hashmap for long
+    private val KEY_ALIAS: String = "INKO_KEY"
 
     private object Holder { val INSTANCE = RSA() }
 
