@@ -1,16 +1,19 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
 import android.os.Build
+import android.support.annotation.RequiresApi
+
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
-import android.support.annotation.RequiresApi
-import android.util.Base64
-import android.util.Log
 
 import java.security.KeyPair
 import java.security.KeyPairGenerator
 import java.security.interfaces.RSAPublicKey
+
 import javax.crypto.Cipher as jCipher
+
+import android.util.Base64
+import android.util.Log
 
 open class RSA private constructor() : Cipher {
 

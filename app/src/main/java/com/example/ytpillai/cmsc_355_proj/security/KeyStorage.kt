@@ -2,8 +2,12 @@ package com.example.ytpillai.cmsc_355_proj.security
 
 import android.os.Build
 import android.support.annotation.RequiresApi
+
+import java.security.PublicKey
+import java.security.PrivateKey
+import java.security.KeyStore
+
 import android.util.Log
-import java.security.*
 import java.util.Enumeration
 
 class KeyStorage {
@@ -15,7 +19,7 @@ class KeyStorage {
     }
 
     /**
-     * Gets the local public key as a string if it exist, otherwise generates
+     * Gets the public key from an alias if it exist
      *
      * @alias: Alias of the key
      */
@@ -36,6 +40,11 @@ class KeyStorage {
         }
     }
 
+    /**
+     * Gets the private key from an alias if it exists
+     *
+     * @alias: Alias of the key
+     */
     fun getDecryptionKey(alias: String): PrivateKey? {
 
         return if (keyPairExists(alias)) {
@@ -64,6 +73,9 @@ class KeyStorage {
         return ks.containsAlias(alias)
     }
 
+    /**
+     * List all aliases entered into the KeyStore
+     */
     fun listAliases(): Enumeration<String> {
         val ks: KeyStore = KeyStore.getInstance("AndroidKeyStore").apply{
             load(null)
@@ -74,6 +86,9 @@ class KeyStorage {
 
     /**
      * Insert a new key into the Android KeyStore
+     *
+     * @key: The public key to insert
+     * @alias: The alias for the key
      */
     fun insertKey(key: PublicKey, alias: String) {
 
