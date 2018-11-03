@@ -88,7 +88,7 @@ open class RSA private constructor() : Cipher {
 
 
     /**
-     * Generates a 2048 bit RSA key pair
+     * Generates a 2048 bit RSA key pair and add the keypair to the keystore
      */
     @RequiresApi(Build.VERSION_CODES.M)
      fun generateKeyPair(): KeyPair {

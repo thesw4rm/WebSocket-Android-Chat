@@ -3,9 +3,7 @@ package com.example.ytpillai.cmsc_355_proj.security
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.util.Log
-import java.security.KeyStore
-import java.security.PrivateKey
-import java.security.PublicKey
+import java.security.*
 import java.util.Enumeration
 
 class KeyStorage {
@@ -15,8 +13,6 @@ class KeyStorage {
     companion object {
         val instance: KeyStorage by lazy { Holder.INSTANCE }
     }
-
-    private var keyAliases: HashMap<String, PublicKey> = HashMap() // Won't be a hashmap for long
 
     /**
      * Gets the local public key as a string if it exist, otherwise generates
@@ -77,11 +73,13 @@ class KeyStorage {
     }
 
     /**
-     * Don't worry, this won't be a hashmap for very long
+     * Insert a new key into the Android KeyStore
      */
     fun insertKey(key: PublicKey, alias: String) {
 
-        keyAliases[alias] = key
+        val ks = KeyStore.getInstance("AndroidKeyStore")
+
+        ks.setKeyEntry(alias, key, null, null)
 
     }
 
