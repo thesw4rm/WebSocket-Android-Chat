@@ -71,8 +71,6 @@ open class RSA private constructor() : Cipher {
 
         try {
 
-//                val alias = keyAliases[aliasID]
-
             val ks = KeyStore.getInstance("AndroidKeyStore")
             ks.load(null, null)
             if (!keyPairExists())
