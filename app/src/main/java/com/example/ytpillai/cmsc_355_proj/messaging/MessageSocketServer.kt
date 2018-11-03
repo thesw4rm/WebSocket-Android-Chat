@@ -6,7 +6,7 @@ import android.util.Log
 import com.example.ytpillai.cmsc_355_proj.ConversationActivity
 import com.example.ytpillai.cmsc_355_proj.ProgramActivity
 import com.example.ytpillai.cmsc_355_proj.R
-import com.example.ytpillai.cmsc_355_proj.security.SecurityUtils
+import com.example.ytpillai.cmsc_355_proj.security.RSA
 import org.java_websocket.WebSocket
 import org.java_websocket.handshake.ClientHandshake
 import org.java_websocket.server.WebSocketServer
@@ -22,7 +22,7 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
         if (conn == null) {
             Log.e("MESSAGE_SOCKET_SERVER", "Tried to open a client's connection the ws server on this device, but got null connection. ")
         }
-        conn!!.send("RSA_PUBLIC_KEY\n" + SecurityUtils.getEncryptionKey()) //Need to make this do important stuff like initial handshake stuff and things. Eventually symmetric key encrypt this
+        conn!!.send("RSA_PUBLIC_KEY\n" + RSA.getEncryptionKey()) //Need to make this do important stuff like initial handshake stuff and things. Eventually symmetric key encrypt this
 
     }
 

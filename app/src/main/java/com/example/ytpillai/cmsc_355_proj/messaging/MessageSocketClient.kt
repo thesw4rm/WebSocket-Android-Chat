@@ -21,7 +21,6 @@ class MessageSocketClient(uri: URI, var context: Context) : WebSocketListener() 
 
         // Get public get
 
-        //
     }
 
     override fun onMessage(webSocket: WebSocket?, text: String?) {
