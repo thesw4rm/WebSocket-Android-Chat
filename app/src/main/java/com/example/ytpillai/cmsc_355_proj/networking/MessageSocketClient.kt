@@ -1,4 +1,4 @@
-package com.example.ytpillai.cmsc_355_proj.messaging
+package com.example.ytpillai.cmsc_355_proj.networking
 
 import android.content.Intent
 import android.content.Context
@@ -8,7 +8,6 @@ import okhttp3.Response
 import okhttp3.WebSocketListener
 import okhttp3.WebSocket
 import okio.ByteString
-import java.net.InetSocketAddress
 import java.net.URI
 
 

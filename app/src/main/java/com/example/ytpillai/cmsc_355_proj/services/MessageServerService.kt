@@ -7,7 +7,7 @@ import android.net.wifi.WifiManager
 import android.os.IBinder
 import android.text.format.Formatter
 import android.util.Log
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketServer
+import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketServer
 import java.net.InetSocketAddress
 
 class MessageServerService : Service() {

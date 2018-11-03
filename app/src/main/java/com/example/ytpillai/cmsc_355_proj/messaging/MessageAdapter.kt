@@ -27,7 +27,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
     }
 
     override fun getItemViewType(position: Int): Int {
-        val message = messages.get(position)
+        val message = messages[position]
 
         return if(App.nickname == message.nickname) {
             MY_MESSAGE
