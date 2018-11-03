@@ -2,12 +2,12 @@ package com.example.ytpillai.cmsc_355_proj.security
 
 import android.os.Build
 import android.support.annotation.RequiresApi
+import android.util.Log
 
 import java.security.PublicKey
 import java.security.PrivateKey
 import java.security.KeyStore
 
-import android.util.Log
 import java.util.Enumeration
 
 class KeyStorage {
