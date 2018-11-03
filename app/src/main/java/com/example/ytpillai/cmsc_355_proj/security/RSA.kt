@@ -1,6 +1,5 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
-
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
@@ -14,11 +13,11 @@ import java.security.PublicKey
 import java.security.interfaces.RSAPublicKey
 import javax.crypto.Cipher as jCipher
 
-
-open class RSA private constructor() : Cipher() {
+open class RSA private constructor() : Cipher {
 
     private var keyAliases: HashMap<String, PublicKey> = HashMap() // Won't be a hashmap for long
-    private val KEY_ALIAS: String = "INKO_KEY"
+    
+    val KEY_ALIAS: String = "INKO_KEY"
 
     private object Holder { val INSTANCE = RSA() }
 
@@ -35,7 +34,6 @@ open class RSA private constructor() : Cipher() {
     override fun encrypt(plainText: String, alias: String): String? {
 
         try {
-
 
             val ks = KeyStore.getInstance("AndroidKeyStore")
             ks.load(null, null)

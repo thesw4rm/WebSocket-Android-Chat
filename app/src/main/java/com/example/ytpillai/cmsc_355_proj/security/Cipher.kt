@@ -1,7 +1,7 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
-abstract class Cipher {
+interface Cipher {
 
-    abstract fun encrypt(plainText: String, alias: String): String?
-    abstract fun decrypt(cipherText: String, alias: String): String?
+    fun encrypt(plainText: String, alias: String): String?
+    fun decrypt(cipherText: String, alias: String): String?
 }
