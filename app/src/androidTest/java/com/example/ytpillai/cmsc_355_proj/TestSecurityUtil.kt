@@ -19,14 +19,14 @@ class TestSecurityUtil {
 
     val SENT_MESSAGE = "My password is redqueen21"
 
-    //Scenario: 2.1 Check that encryption works
+    // Scenario: 2.1 Check that encryption works
     @Test
     fun testEncryptMethod() {
 
         assertThat((equalTo(rsa.encrypt(SENT_MESSAGE, rsa.KEY_ALIAS)).toString()), not((SENT_MESSAGE)))
     }
 
-    //Scenario: 2.2 Check that decryption works
+    // Scenario: 2.2 Check that decryption works
     @Test
     fun testDecryptMethod() {
 
@@ -37,7 +37,7 @@ class TestSecurityUtil {
 
     }
 
-    //Scenario: 2.3 Ensure KeyPair is generated
+    // Scenario: 2.3 Ensure KeyPair is generated
     @Test
     fun testGenKeyPair(){
         rsa.encrypt(SENT_MESSAGE, rsa.KEY_ALIAS) //Should auto generate keypair
