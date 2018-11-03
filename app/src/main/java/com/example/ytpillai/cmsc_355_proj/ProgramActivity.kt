@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketClient
 import com.example.ytpillai.cmsc_355_proj.services.MessageServerService
 
 
