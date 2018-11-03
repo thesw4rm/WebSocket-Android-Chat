@@ -34,14 +34,13 @@ class TestSecurityUtil {
 
         assertThat((equalTo(rsa.decrypt(encryptedMsg, rsa.KEY_ALIAS))).toString(), `is`("\"" + SENT_MESSAGE + "\""))
 
-
     }
 
     // Scenario: 2.3 Ensure KeyPair is generated
     @Test
     fun testGenKeyPair(){
         rsa.encrypt(SENT_MESSAGE, rsa.KEY_ALIAS) //Should auto generate keypair
-        assertTrue(rsa.keyPairExists())
+        assertTrue(rsa.keyStorage.keyPairExists(rsa.KEY_ALIAS))
     }
 }
 
