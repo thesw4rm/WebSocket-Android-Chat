@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.content.Intent
 import kotlinx.android.synthetic.main.activity_contacts.*
 
-class Contacts : AppCompatActivity() {
+class ContactsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

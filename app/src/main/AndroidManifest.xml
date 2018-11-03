@@ -37,7 +37,7 @@
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>
 
-        <activity android:name=".Contacts"/>
+        <activity android:name=".ContactsActivity"/>
         <activity android:name=".ConversationActivity"/>
 
         <service

@@ -20,7 +20,7 @@ class ConversationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_conversation)
 
         backArrowBtn.setOnClickListener {
-            val intent = Intent(this,Contacts::class.java)
+            val intent = Intent(this,ContactsActivity::class.java)
             startActivity(intent)
         }
 
