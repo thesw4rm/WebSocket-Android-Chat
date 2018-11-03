@@ -20,6 +20,7 @@ class KeyStorage {
 
     /**
      * Gets the public key from an alias if it exist
+     * TODO: validate keys in case of tampering. Maybe use some sort of signing method?
      *
      * @alias: Alias of the key
      */
@@ -42,6 +43,7 @@ class KeyStorage {
 
     /**
      * Gets the private key from an alias if it exists
+     * TODO: validate keys in case of tampering. Maybe use some sort of signing method?
      *
      * @alias: Alias of the key
      */
@@ -62,7 +64,6 @@ class KeyStorage {
 
     /**
      * Check android keystore for aliases
-     * TODO: validate keys in case of tampering. Maybe use some sort of signing method?
      *
      * @alias: nickname for the key
      */
