@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 
 import com.andrognito.patternlockview.PatternLockView
 import com.andrognito.patternlockview.listener.PatternLockViewListener
@@ -13,7 +14,11 @@ import com.andrognito.patternlockview.utils.PatternLockUtils
 
 class CreatePasswordActivity : AppCompatActivity() {
 
-    internal lateinit  var mPatternLockView: PatternLockView
+    internal lateinit var mPatternLockView: PatternLockView
+
+//    internal var password: String? = null
+
+    internal var x: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +36,32 @@ class CreatePasswordActivity : AppCompatActivity() {
             }
 
             override fun onComplete(pattern: List<PatternLockView.Dot>) {
-                val preferences = getSharedPreferences("PREFS", 0)
-                val editor = preferences.edit()
-                editor.putString("password", PatternLockUtils.patternToString(mPatternLockView, pattern))
-                editor.apply()
 
-                val intent = Intent(applicationContext, ProgramActivity::class.java)
-                startActivity(intent)
-                finish()
+                if (x == PatternLockUtils.patternToString(mPatternLockView, pattern)) {
+                    val intent = Intent(applicationContext, ProgramActivity::class.java)
+                    startActivity(intent)
+                    finish() }
+
+                else if(x == null){
+                    Toast.makeText(this@CreatePasswordActivity, "Confirm Pattern", Toast.LENGTH_SHORT).show()
+                    x = PatternLockUtils.patternToString(mPatternLockView, pattern)
+                    mPatternLockView.clearPattern()
+
+                }
+                else {
+                    Toast.makeText(this@CreatePasswordActivity, "Pattern not match, try again", Toast.LENGTH_SHORT).show()
+                    x = null
+                    mPatternLockView.clearPattern()
+                }
+
+
+//                val preferences = getSharedPreferences("PREFS", 0)
+//                val editor = preferences.edit()
+//                editor.putString("password", PatternLockUtils.patternToString(mPatternLockView, pattern))
+//                editor.apply()
+
+
+                mPatternLockView.clearPattern()
             }
 
             override fun onCleared() {
