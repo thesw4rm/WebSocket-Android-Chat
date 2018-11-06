@@ -39,6 +39,10 @@ class CreatePasswordActivity : AppCompatActivity() {
 
                 if (x == PatternLockUtils.patternToString(mPatternLockView, pattern)) {
                     val intent = Intent(applicationContext, ProgramActivity::class.java)
+                    val preferences = getSharedPreferences("PREFS", 0)
+                    val editor = preferences.edit()
+                    editor.putString("password", PatternLockUtils.patternToString(mPatternLockView, pattern))
+                    editor.apply()
                     startActivity(intent)
                     finish() }
 
@@ -55,10 +59,7 @@ class CreatePasswordActivity : AppCompatActivity() {
                 }
 
 
-//                val preferences = getSharedPreferences("PREFS", 0)
-//                val editor = preferences.edit()
-//                editor.putString("password", PatternLockUtils.patternToString(mPatternLockView, pattern))
-//                editor.apply()
+
 
 
                 mPatternLockView.clearPattern()
