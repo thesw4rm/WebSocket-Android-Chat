@@ -62,14 +62,14 @@
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/nickname" />
 
-    <Button
+     ,<Button
         android:id="@+id/startChat"
         android:layout_width="125dp"
         android:layout_height="39dp"
         android:layout_marginTop="23dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/rubik_medium"
         android:onClick="isValidIP"
         android:text="Start Chat"
         android:textColor="#ffffff"

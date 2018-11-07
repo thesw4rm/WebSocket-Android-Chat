@@ -14,18 +14,17 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="8dp"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"/>
+        tools:src="@tools:sample/avatars" />
 
 
     <TextView
         android:id="@+id/UserNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/open_sans"
         tools:text="@tools:sample/full_names"
@@ -39,8 +38,9 @@
         android:id="@+id/ChatBodyReceived"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/chat_bubble_gray"
         android:fontFamily="@font/open_sans"
         android:maxWidth="240dp"
