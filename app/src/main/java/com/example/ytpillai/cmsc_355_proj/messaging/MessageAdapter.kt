@@ -11,11 +11,13 @@ import kotlinx.android.synthetic.main.activity_conversation.view.*
 import kotlinx.android.synthetic.main.chat_sent.view.*
 import kotlinx.android.synthetic.main.chat_received.view.*
 
+
 private const val MY_MESSAGE = 1
 private const val OTHER_MESSAGE = 2
 
 class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHolder>() {
     private val messages: ArrayList<Message> = ArrayList()
+
 
     fun addMessage(message: Message){
         messages.add(message)
@@ -54,23 +56,23 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
 
     inner class MyMessageViewHolder (view: View) : MessageViewHolder(view) {
         private var messageText: TextView = view.chatbox
-        private var timeText: TextView = view.timeStamp
+//        private var timeText: TextView = view.timeStamp
 
         override fun bind(message: Message) {
             messageText.text = message.message
-            timeText.text = DateUtils.fromMillisToTimeString(message.time)
+//            timeText.text = DateUtils.fromMillisToTimeString(message.time)
         }
     }
 
     inner class OtherMessageViewHolder (view: View) : MessageViewHolder(view) {
         private var messageText: TextView = view.ChatBodyReceived
         private var userText: TextView = view.UserNickname
-        private var timeText: TextView = view.timeStampReceived
+//        private var timeText: TextView = view.timeStampReceived
 
         override fun bind(message: Message) {
             messageText.text = message.message
             userText.text = message.nickname
-            timeText.text = DateUtils.fromMillisToTimeString(message.time)
+//            timeText.text = DateUtils.fromMillisToTimeString(message.time)
         }
     }
 }

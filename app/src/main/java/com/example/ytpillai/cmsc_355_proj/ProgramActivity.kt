@@ -87,6 +87,8 @@ class ProgramActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Connecting...", Toast.LENGTH_SHORT).show()
 
+
+
             val intent = Intent(this, ConversationActivity::class.java)
             startActivity(intent)
             finish()

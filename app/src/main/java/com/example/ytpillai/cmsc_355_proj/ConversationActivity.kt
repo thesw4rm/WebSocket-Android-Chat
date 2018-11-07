@@ -22,6 +22,9 @@ private const val TAG = "ConversationActivity"
 
 class ConversationActivity : AppCompatActivity() {
 
+
+//    val messageObj = Message("balls", "ball")
+
     private lateinit var adapter: MessageAdapter
 
 
@@ -45,8 +48,8 @@ class ConversationActivity : AppCompatActivity() {
             if(chatbox.text.isNotEmpty()) {
                 val message = Message(
                         App.nickname,
-                        chatbox.text.toString(),
-                        Calendar.getInstance().timeInMillis
+                        chatbox.text.toString()
+//                        Calendar.getInstance().timeInMillis
                         )
 
                 val call = ChatService.create().postMessage(message)
@@ -66,12 +69,19 @@ class ConversationActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext,"Error when calling the service", Toast.LENGTH_SHORT).show()
                     }
                 })
+                    var nickname = "Joe"
+                sendMessage(nickname, chatbox.text.toString())
+                resetInput()
+
+
             }
+
+
 
 
         }
 
-        //sendMessage()
+
     }
 
     private fun resetInput() {
@@ -83,10 +93,14 @@ class ConversationActivity : AppCompatActivity() {
         inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
-    /*
-    private fun sendMessage(){
+    private fun sendMessage(nickname: String, message: String){
 
-        val message = Message("nickname", "message", "time".toLong())
+
+
+//        val message = Message("nickname", "message", "time".toLong())
+
+        val message = Message(nickname, message)
+
         Log.e(TAG, message.toString())
 
         runOnUiThread {
@@ -95,6 +109,5 @@ class ConversationActivity : AppCompatActivity() {
         }
 
     }
-    */
 
 }
