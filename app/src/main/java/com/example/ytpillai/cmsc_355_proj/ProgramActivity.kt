@@ -49,7 +49,11 @@ class ProgramActivity : AppCompatActivity() {
 
     fun isValidIP(view: View) {
 
+        val editTextNick = findViewById(R.id.nickname) as EditText
+
         val editTextHello = findViewById(R.id.ipAddress) as EditText
+
+        val nameOfFriend = editTextNick.text.toString()
 
         val check = editTextHello.text.toString()
 
@@ -87,14 +91,19 @@ class ProgramActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Connecting...", Toast.LENGTH_SHORT).show()
 
-
-
             val intent = Intent(this, ConversationActivity::class.java)
+
+            intent.putExtra(EXTRA_MESSAGE, nameOfFriend)
+
             startActivity(intent)
             finish()
         }
 
 
+    }
+
+    companion object {
+        val EXTRA_MESSAGE = "Friend"
     }
 
 
