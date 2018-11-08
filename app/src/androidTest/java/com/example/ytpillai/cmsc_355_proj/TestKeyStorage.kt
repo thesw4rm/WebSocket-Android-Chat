@@ -18,7 +18,7 @@ import com.example.ytpillai.cmsc_355_proj.security.KeyStorage
 @MediumTest
 class TestKeyStorage {
 
-    val ks = KeyStorage.instance
+    private val ks = KeyStorage.instance
 
     @Test
     fun testKeyInsertion() {
