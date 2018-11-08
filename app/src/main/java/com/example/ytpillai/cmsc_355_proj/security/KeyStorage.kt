@@ -8,8 +8,6 @@ import java.security.PublicKey
 import java.security.PrivateKey
 import java.security.KeyStore
 
-import java.util.Enumeration
-
 class KeyStorage {
 
     private object Holder { val INSTANCE = KeyStorage() }
@@ -75,14 +73,16 @@ class KeyStorage {
     }
 
     /**
-     * List all aliases entered into the KeyStore
+     * Verify an alias is in the Android KeyStore
+     *
+     * @alias: Alias to be checked
      */
-    fun listAliases(): Enumeration<String> {
+    fun containsAliases(alias: String): Boolean {
         val ks: KeyStore = KeyStore.getInstance("AndroidKeyStore").apply{
             load(null)
         }
 
-        return ks.aliases()
+        return ks.containsAlias(alias)
     }
 
     /**
@@ -97,6 +97,17 @@ class KeyStorage {
 
         ks.setKeyEntry(alias, key, null, null)
 
+    }
+
+    /**
+     * Deleted a key from the Android KeyStore
+     *
+     * @alias: The lias for the key to be deleted
+     */
+    fun deleteKey(alias: String) {
+        val ks = KeyStore.getInstance("AndroidKeyStore")
+
+        ks.deleteEntry(alias)
     }
 
 }
