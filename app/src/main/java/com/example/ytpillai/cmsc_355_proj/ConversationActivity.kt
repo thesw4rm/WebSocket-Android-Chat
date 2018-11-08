@@ -69,7 +69,12 @@ class ConversationActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext,"Error when calling the service", Toast.LENGTH_SHORT).show()
                     }
                 })
-                    var nickname = "Joe"
+
+                val intent = intent
+                val nameOfFriend = intent.getStringExtra(ProgramActivity.EXTRA_MESSAGE)
+
+                var nickname = nameOfFriend
+
                 sendMessage(nickname, chatbox.text.toString())
                 resetInput()
 
@@ -94,8 +99,6 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     private fun sendMessage(nickname: String, message: String){
-
-
 
 //        val message = Message("nickname", "message", "time".toLong())
 
