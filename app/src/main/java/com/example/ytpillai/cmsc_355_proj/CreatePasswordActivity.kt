@@ -1,9 +1,11 @@
 package com.example.ytpillai.cmsc_355_proj
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
@@ -23,6 +25,8 @@ class CreatePasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_password)
+
+        val vibratorService = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         mPatternLockView = findViewById(R.id.pattern_lock_view)
 
@@ -53,6 +57,7 @@ class CreatePasswordActivity : AppCompatActivity() {
 
                 }
                 else {
+                    vibratorService.vibrate(100)
                     Toast.makeText(this@CreatePasswordActivity, "Pattern not match, try again", Toast.LENGTH_SHORT).show()
                     x = null
                     mPatternLockView.clearPattern()
