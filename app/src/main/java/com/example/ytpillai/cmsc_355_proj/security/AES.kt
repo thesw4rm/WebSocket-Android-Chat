@@ -1,6 +1,14 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
-class AES : Cipher {
+open class AES private constructor() : Cipher {
+
+    val keyStorage: KeyStorage = KeyStorage.instance
+
+    private object Holder { val INSTANCE = AES() }
+
+    companion object {
+        val instance: AES by lazy { Holder.INSTANCE }
+    }
 
     /**
      * Encrypt plain text with key associated with the alias
