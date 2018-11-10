@@ -34,15 +34,17 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
     override fun getItemViewType(position: Int): Int {
         val message = messages[position]
 
-        return if(App.nickname == Me.nickname) {
+        return if(App.ip == message.ip) {
 
-            OTHER_MESSAGE
-            Log.i(TAG,"Their nickname was called: " + App.nickname)
+            MY_MESSAGE
+//            OTHER_MESSAGE
+//            Log.i(TAG,"Their nickname was called: " + App.nickname)
         }
         else {
 
-            MY_MESSAGE
-            Log.i(TAG,"My nickname was called: " + Me.nickname)
+//            MY_MESSAGE
+            OTHER_MESSAGE
+//            Log.i(TAG,"My nickname was called: " + Me.nickname)
 
         }
 
@@ -50,7 +52,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
         return if(viewType == MY_MESSAGE) {
-            Log.i(TAG,"The viewType is: " + viewType)
+            Log.i(TAG, "The viewType is: $viewType")
             MyMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.chat_sent, parent, false))
         } else {
             OtherMessageViewHolder(LayoutInflater.from(context).inflate(R.layout.chat_received, parent, false))

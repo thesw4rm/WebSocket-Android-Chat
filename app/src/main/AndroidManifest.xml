@@ -25,14 +25,12 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".CreatePasswordActivity"/>
         <activity android:name=".InputPasswordActivity"/>
         <activity android:name=".ProgramActivity"/>
-        <activity android:name=".OtherActivity"/>
 
         <meta-data
                 android:name="preloaded_fonts"
