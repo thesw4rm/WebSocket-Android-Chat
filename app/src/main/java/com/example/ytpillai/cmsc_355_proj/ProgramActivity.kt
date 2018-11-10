@@ -20,14 +20,11 @@ class ProgramActivity : AppCompatActivity() {
         setContentView(R.layout.activity_program)
 
 
-
         val messageServiceIntent = Intent(this, MessageServerService::class.java)
         this.startService(messageServiceIntent)
 
         val messageBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                Log.d("PROGRAM_ACTIVITY", "Something received by program activity: ${intent!!.extras["message"]}")
-
                 if (intent!!.action.equals(resources.getString(R.string.ACTION_RECEIVED_MESSAGE))) {
                     StringBuilder().apply {
                         append("Message received: ${intent.extras["message"]}")
@@ -37,6 +34,8 @@ class ProgramActivity : AppCompatActivity() {
                         }
                     }
                 }
+
+                Log.d("PROGRAM_ACTIVITY", "Something received by program activity: ${intent.extras["message"]}")
             }
 
         }
