@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.example.ytpillai.cmsc_355_proj.messaging.App
 import com.example.ytpillai.cmsc_355_proj.services.MessageServerService
 
 
@@ -48,9 +49,13 @@ class ProgramActivity : AppCompatActivity() {
 
     fun isValidIP(view: View) {
 
-        val editTextHello = findViewById(R.id.ipAddress) as EditText
+        val getNickname = findViewById(R.id.nickname) as EditText
 
-        val check = editTextHello.text.toString()
+        val getIP = findViewById(R.id.ipAddress) as EditText
+
+        val otherUser = getNickname.text.toString()
+
+        val check = getIP.text.toString()
 
         val checkarray = check.toCharArray()
 
@@ -87,12 +92,19 @@ class ProgramActivity : AppCompatActivity() {
             Toast.makeText(this, "Connecting...", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, ConversationActivity::class.java)
+            App.nickname = otherUser
+//            intent.putExtra(EXTRA_MESSAGE, nameOfFriend)
+
             startActivity(intent)
             finish()
         }
 
 
     }
+
+/*    companion object {
+        val EXTRA_MESSAGE = "Friend"
+    }*/
 
 
 }

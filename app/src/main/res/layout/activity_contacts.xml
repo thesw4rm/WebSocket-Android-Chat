@@ -5,19 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".Contacts">
+    tools:context=".ContactsActivity">
 
 
     <ImageButton
         android:id="@+id/moreInfoBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         android:tint="#343434"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_more_menu" />
 
@@ -26,13 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
-        android:fontFamily="@font/quicksand"
+        android:fontFamily="@font/rubik_light"
         android:text="Conversations"
         android:textColor="#343434"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,8 +49,8 @@
         android:id="@+id/newConBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         android:clickable="true"
         app:borderWidth="0dp"
         app:fabSize="normal"

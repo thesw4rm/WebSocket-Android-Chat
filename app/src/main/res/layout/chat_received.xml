@@ -9,60 +9,83 @@
     android:paddingTop="8dp">
 
 
+    <View
+        android:id="@+id/avatar2"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="8dp"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"/>
+        tools:src="@tools:sample/avatars" />
 
 
     <TextView
         android:id="@+id/UserNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/open_sans"
-        tools:text="@tools:sample/full_names"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/rubik_light"
         android:textColor="#343434"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/avatar"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/avatar2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
 
     <TextView
         android:id="@+id/ChatBodyReceived"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/chat_bubble_gray"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/rubik_light"
+        android:lineSpacingMultiplier="1.1"
         android:maxWidth="240dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="6dp"
-        android:paddingEnd="12dp"
-        android:paddingStart="12dp"
-        tools:text="@tools:sample/lorem"
-        app:layout_constraintLeft_toRightOf="@+id/avatar"
-        app:layout_constraintTop_toBottomOf="@+id/UserNickname" />
+        android:paddingStart="18dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="12dp"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@+id/avatar2"
+        app:layout_constraintTop_toTopOf="@+id/avatar2"
+        tools:text="@tools:sample/lorem" />
 
     <TextView
         android:id="@+id/timeStampReceived"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/rubik_light"
         tools:text="@tools:sample/date/hhmm"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/ChatBodyReceived"
         app:layout_constraintLeft_toRightOf="@+id/ChatBodyReceived" />
 
+    <ImageView
+        android:id="@+id/userIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar2"
+        app:layout_constraintEnd_toEndOf="@+id/avatar2"
+        app:layout_constraintStart_toStartOf="@+id/avatar2"
+        app:layout_constraintTop_toTopOf="@+id/avatar2"
+        app:srcCompat="@drawable/ic_user" />
 
 
 </android.support.constraint.ConstraintLayout>

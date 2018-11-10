@@ -1,22 +1,23 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
 import android.os.Build
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
 import android.support.annotation.RequiresApi
+
 import android.util.Base64
 import android.util.Log
+
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
+
 import java.security.KeyPair
 import java.security.KeyPairGenerator
-import java.security.KeyStore
-import java.security.PublicKey
 import java.security.interfaces.RSAPublicKey
+
 import javax.crypto.Cipher as jCipher
 
 open class RSA private constructor() : Cipher {
 
-    private var keyAliases: HashMap<String, PublicKey> = HashMap() // Won't be a hashmap for long
-    
+    val keyStorage: KeyStorage = KeyStorage.instance
     val KEY_ALIAS: String = "INKO_KEY"
 
     private object Holder { val INSTANCE = RSA() }
@@ -35,12 +36,12 @@ open class RSA private constructor() : Cipher {
 
         try {
 
-            val ks = KeyStore.getInstance("AndroidKeyStore")
-            ks.load(null, null)
-            if (!keyPairExists())
-                generateKeyPair()
-            val entry = ks.getEntry(KEY_ALIAS, null) as KeyStore.PrivateKeyEntry
-            val pubKey = entry.certificate.publicKey as RSAPublicKey
+            var pubKey = keyStorage.getEncryptionKey(KEY_ALIAS) as RSAPublicKey?
+
+            if (pubKey == null) {
+                val keyPair = generateKeyPair()
+                pubKey = keyPair.public as RSAPublicKey
+            }
 
             // Check for empty string
             if (plainText.isEmpty()) {
@@ -65,21 +66,16 @@ open class RSA private constructor() : Cipher {
      * Decrypt ciphers with using public key
      *
      * @cipherText: ciphertext to be decrypted
-     * @aliasID: Id of the alias to be used for decryption
+     * @alias: alias to be used for decryption
      */
     override fun decrypt(cipherText: String, alias: String): String? {
 
         try {
 
-//                val alias = keyAliases[aliasID]
+            val privateKey = keyStorage.getDecryptionKey(alias)
 
-            val ks = KeyStore.getInstance("AndroidKeyStore")
-            ks.load(null, null)
-            if (!keyPairExists())
-                generateKeyPair()
-            val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
             val output = jCipher.getInstance("RSA/ECB/PKCS1Padding")
-            output.init(jCipher.DECRYPT_MODE, privateKeyEntry.privateKey)
+            output.init(jCipher.DECRYPT_MODE, privateKey)
 
             val decryptedBytes = output.doFinal(Base64.decode(cipherText, Base64.DEFAULT))
 
@@ -93,34 +89,9 @@ open class RSA private constructor() : Cipher {
     }
 
 
-    /**
-     * Gets the local public key as a string if it exist, otherwise generates
-     *
-     * @alias: Alias of the key
-     */
-    @RequiresApi(Build.VERSION_CODES.M)
-    fun getEncryptionKey(alias: String = KEY_ALIAS): String {
-
-        return if (keyPairExists(alias)) {
-
-            val ks = KeyStore.getInstance("AndroidKeyStore")
-            ks.load(null)
-            val privateKeyEntry = ks.getEntry(alias, null) as KeyStore.PrivateKeyEntry
-            Log.d("HAHAHAHA", privateKeyEntry.certificate.publicKey.toString())
-
-            privateKeyEntry.certificate.publicKey.toString() // public key
-
-        } else {
-
-            val kp = generateKeyPair()
-
-            kp.public.toString()
-
-        }
-    }
 
     /**
-     * Generates a 2048 bit RSA key pair
+     * Generates a 2048 bit RSA key pair and add the keypair to the keystore
      */
     @RequiresApi(Build.VERSION_CODES.M)
      fun generateKeyPair(): KeyPair {
@@ -137,32 +108,9 @@ open class RSA private constructor() : Cipher {
 
         }
 
-
         gen.initialize(parameterSpec)
 
         return gen.genKeyPair()
-
-    }
-
-    /**
-     * Check android keystore for aliases
-     * TODO: validate keys in case of tampering. Maybe use some sort of signing method?
-     *
-     * @alias: nickname for the key
-     */
-    fun keyPairExists(alias: String = KEY_ALIAS): Boolean {
-
-        val ks = KeyStore.getInstance("AndroidKeyStore")
-        ks.load(null, null)
-        return ks.containsAlias(alias)
-    }
-
-    /**
-     * Don't worry, this won't be a hashmap for very long
-     */
-    fun insertKey(key: PublicKey, alias: String) {
-
-        keyAliases[alias] = key
 
     }
 

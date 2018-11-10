@@ -18,27 +18,26 @@
         android:background="?android:attr/panelBackground"
         app:layout_constraintBottom_toTopOf="@+id/chatRecycler"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inkochat"
+        app:layout_constraintTop_toTopOf="@+id/nicknameHeader"
         app:srcCompat="@drawable/ic_round_back" />
 
     <TextView
-        android:id="@+id/inkochat"
-        android:layout_width="404dp"
+        android:id="@+id/nicknameHeader"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="@font/quicksand"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/rubik_light"
+        android:gravity="center"
         android:padding="5dp"
-        android:text="inko chat"
-        android:textAlignment="center"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textColor="#343434"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/chatRecycler"
@@ -46,13 +45,12 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/chatboxLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inkochat"
-        app:layout_constraintBottom_toTopOf="@+id/chatboxLayout"
+        app:layout_constraintTop_toBottomOf="@+id/nicknameHeader"
         tools:itemCount="11"
-        tools:listitem="@layout/chat_received"
-        android:layout_marginBottom="8dp">
+        tools:listitem="@layout/chat_received">
     </android.support.v7.widget.RecyclerView>
 
 
@@ -60,38 +58,41 @@
         android:id="@+id/chatboxLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:minHeight="48dp"
-        android:background="@drawable/textbox_border"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/textbox_border"
+        android:gravity="bottom"
+        android:minHeight="42dp"
+        android:orientation="horizontal"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <EditText
             android:id="@+id/chatbox"
-            android:layout_width="0dp"
+            android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="3dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="6dp"
+            android:layout_marginBottom="14dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/rubik_light"
             android:hint="Enter chat"
             android:inputType="textCapSentences|textMultiLine"
-            android:maxLines="3" />
+            android:maxLines="3"
+            android:padding="0dp" />
 
         <Button
             android:id="@+id/sendBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginEnd="13dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/ic_round_send"
             android:clickable="true"
             android:focusable="true"
