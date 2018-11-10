@@ -24,18 +24,39 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
+    <View
+        android:id="@+id/avatar2"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/avatar2"
+        app:layout_constraintEnd_toEndOf="@+id/avatar2"
+        app:layout_constraintStart_toStartOf="@+id/avatar2"
+        app:layout_constraintTop_toTopOf="@+id/avatar2"
+        app:srcCompat="@drawable/ic_user" />
 
     <TextView
         android:id="@+id/nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="1dp"
-        android:fontFamily="@font/open_sans"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/rubik_light"
         android:textColor="#343434"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/avatar"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/avatar2"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
 
@@ -43,17 +64,18 @@
         android:id="@+id/ipAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/open_sans"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/rubik_light"
+        android:maxWidth="250dp"
+        android:maxLines="1"
         android:paddingBottom="4dp"
-        android:textAlignment="textStart"
+        android:textAlignment="viewStart"
         android:textColor="#9b9b9b"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/lineBelow"
+        android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@+id/avatar"
+        app:layout_constraintStart_toEndOf="@+id/avatar2"
         app:layout_constraintTop_toBottomOf="@id/nickname"
-        tools:text="@tools:sample/us_phones" />
+        tools:text="@tools:sample/lorem" />
 
 
     <View
@@ -62,7 +84,7 @@
         android:layout_height="1dp"
         android:background="#dfdfdf"
         android:paddingTop="16dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -74,9 +96,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/open_sans"
-        android:textSize="12sp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/rubik_light"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="@tools:sample/date/hhmm" />
