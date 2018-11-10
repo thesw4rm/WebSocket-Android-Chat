@@ -7,23 +7,16 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
-import com.example.ytpillai.cmsc_355_proj.messaging.App
-import com.example.ytpillai.cmsc_355_proj.messaging.ChatService
-import com.example.ytpillai.cmsc_355_proj.messaging.Message
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageAdapter
+import com.example.ytpillai.cmsc_355_proj.messaging.*
 import kotlinx.android.synthetic.main.activity_conversation.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 
 private const val TAG = "ConversationActivity"
 
 class ConversationActivity : AppCompatActivity() {
 
-
-//    val messageObj = Message("balls", "ball")
 
     private lateinit var adapter: MessageAdapter
 
@@ -42,67 +35,33 @@ class ConversationActivity : AppCompatActivity() {
         adapter = MessageAdapter(this)
         chatRecycler.adapter = adapter
 
+        val chatHeader: TextView = findViewById(R.id.nicknameHeader) as TextView
+        chatHeader.text = App.nickname
 
 
         sendBtn.setOnClickListener{
             if(chatbox.text.isNotEmpty()) {
-                val message = Message(
-                        App.nickname,
-                        chatbox.text.toString()
-//                        Calendar.getInstance().timeInMillis
-                        )
 
-                val call = ChatService.create().postMessage(message)
-
-                call.enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                        resetInput()
-                        if (!response.isSuccessful) {
-                            Log.e(TAG, response.code().toString());
-                            Toast.makeText(applicationContext,"Response was not successful", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        resetInput()
-                        Log.e(TAG, t.toString())
-                        Toast.makeText(applicationContext,"Error when calling the service", Toast.LENGTH_SHORT).show()
-                    }
-                })
-
-                val intent = intent
-                val nameOfFriend = intent.getStringExtra(ProgramActivity.EXTRA_MESSAGE)
-
-                var nickname = nameOfFriend
-
-                sendMessage(nickname, chatbox.text.toString())
+                sendMessage()
                 resetInput()
 
-
+/*              val intent = intent
+                val nameOfFriend = intent.getStringExtra(ProgramActivity.EXTRA_MESSAGE)
+                var nickname = nameOfFriend*/
             }
-
-
-
-
         }
 
-
     }
 
-    private fun resetInput() {
-        // Clean text box
-        chatbox.text.clear()
+    private fun sendMessage(){
 
-        // Hide keyboard
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-    }
+        Me.nickname = "me"
 
-    private fun sendMessage(nickname: String, message: String){
-
-//        val message = Message("nickname", "message", "time".toLong())
-
-        val message = Message(nickname, message)
+        val message = Message(
+//                App.nickname,
+                chatbox.text.toString(),
+                Calendar.getInstance().timeInMillis
+        )
 
         Log.e(TAG, message.toString())
 
@@ -111,6 +70,20 @@ class ConversationActivity : AppCompatActivity() {
             chatRecycler.scrollToPosition(adapter.itemCount - 1)
         }
 
+    }
+
+    private fun receiveMessage(){
+        TODO("Somehow be able to receive messages")
+    }
+
+
+    private fun resetInput() {
+        // Clean text box
+        chatbox.text.clear()
+
+        // Hide keyboard
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
 }
