@@ -21,7 +21,6 @@ class ProgramActivity : AppCompatActivity() {
         setContentView(R.layout.activity_program)
 
 
-
         val messageServiceIntent = Intent(this, MessageServerService::class.java)
         this.startService(messageServiceIntent)
 

@@ -2,12 +2,10 @@ package com.example.ytpillai.cmsc_355_proj
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 
 import com.andrognito.patternlockview.PatternLockView
@@ -21,10 +19,10 @@ class InputPasswordActivity : AppCompatActivity() {
     internal lateinit var mPatternLockView: PatternLockView
 
     val dialogBuilder = FingerprintDialogBuilder(this)
-            .setTitle("Inkko"/* Title of the fingerprint dialog */)
-            .setSubtitle("Fingerprint Authenticator"/* Subtitle of the fingerprint dialog */)
-            .setDescription("Touch your fingerprint scanner to enter the app. Or tap cancel to use a pattern lock instead."/* Description of the fingerprint dialog */)
-            .setNegativeButton("Cancel"/* Negative button of the fingerprint dialog */)
+            .setTitle("Inkko")
+            .setSubtitle("Fingerprint Authenticator")
+            .setDescription("Touch your fingerprint scanner to enter the app. Or tap cancel to use the pattern lock instead.")
+            .setNegativeButton("Cancel")
 
     val callback = object : AuthenticationCallback {
 
@@ -61,14 +59,14 @@ class InputPasswordActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
 
-            Log.d("balls", "YOU HAVE BEEN AUTHENTICATED")
+            Log.d("finger", "YOU HAVE BEEN AUTHENTICATED")
         }
 
         override fun onAuthenticationFailed() {
             // Authentication failed.
             // Library will continue scanning the fingerprint after this callback.
 
-            Log.d("balls", "WRONG FINGER")
+            Log.d("finger", "WRONG FINGER")
         }
     }
 
@@ -95,6 +93,7 @@ class InputPasswordActivity : AppCompatActivity() {
             override fun onProgress(progressPattern: List<PatternLockView.Dot>) {
 
             }
+
             /*This is the function that decides what activity will open when the user enters correct password. If you do not
             * want to use ProgramActivity as the activity to go to, then switch the ProgramActivity inside the intent with
              * whatever activity you want.*/
