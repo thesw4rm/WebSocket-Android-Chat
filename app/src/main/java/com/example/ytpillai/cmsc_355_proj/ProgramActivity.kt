@@ -31,17 +31,17 @@ class ProgramActivity : AppCompatActivity() {
 
         val messageBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                if (intent!!.action.equals(resources.getString(R.string.ACTION_RECEIVED_MESSAGE))) {
+                if (intent!!.action!!.equals(resources.getString(R.string.ACTION_RECEIVED_MESSAGE))) {
                     StringBuilder().apply {
-                        append("Message received: ${intent.extras["message"]}")
+                        append("Message received: ${intent.extras!!["message"]}")
                         toString().also { log ->
-                            Log.d("PROGRAM_ACTIVITY", "Message received by program activity: ${intent.extras["message"]}")
+                            Log.d("PROGRAM_ACTIVITY", "Message received by program activity: ${intent.extras!!["message"]}")
                             Toast.makeText(context, log, Toast.LENGTH_LONG).show()
                         }
                     }
                 }
 
-                Log.d("PROGRAM_ACTIVITY", "Something received by program activity: ${intent.extras["message"]}")
+                Log.d("PROGRAM_ACTIVITY", "Something received by program activity: ${intent.extras!!["message"]}")
             }
 
         }
