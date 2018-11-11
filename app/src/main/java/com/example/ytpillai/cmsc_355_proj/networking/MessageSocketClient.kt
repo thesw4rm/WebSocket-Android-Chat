@@ -52,10 +52,10 @@ class MessageSocketClient(uri: URI, var context: Context) : WebSocketListener() 
         }
     }
 
-    /*
-    override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response) {
-        Log.e("MESSAGE_SOCKET_CLIENT", "Err WebSocketListener " + t.message)
+
+    override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
+        Log.e("MESSAGE_SOCKET_CLIENT", "Err WebSocketListener " + t.stackTrace)
     }
-    */
+
 
 }

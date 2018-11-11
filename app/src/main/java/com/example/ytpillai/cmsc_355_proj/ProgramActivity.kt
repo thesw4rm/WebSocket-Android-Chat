@@ -96,7 +96,7 @@ class ProgramActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Connecting...", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, ConversationActivity::class.java)
+            val intent = Intent(this, ContactsActivity::class.java)
             App.nickname = otherUser
             App.ip = check
 //            intent.putExtra(EXTRA_MESSAGE, nameOfFriend)

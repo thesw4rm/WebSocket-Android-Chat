@@ -30,11 +30,12 @@ class ProgramActivityTest {
     @Test
     fun connectChat() {
 
-        onView(withId(R.id.ipAddress)).perform(typeText("192.168.1.1"));
+        onView(withId(R.id.nickname)).perform(typeText("Danny Mc"))
+        onView(withId(R.id.ipAddress)).perform(typeText("192.168.1.1"))
 
         Espresso.onView(ViewMatchers.withId(R.id.startChat)).perform(ViewActions.click())
 
-        intended(hasComponent(ConversationActivity::class.java!!.getName()))
+        intended(hasComponent(ContactsActivity::class.java!!.getName()))
     }
 
 

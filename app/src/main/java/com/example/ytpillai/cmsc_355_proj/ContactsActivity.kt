@@ -5,14 +5,20 @@ import android.os.Bundle
 import android.content.Intent
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageAdapter
+import com.example.ytpillai.cmsc_355_proj.messaging.*
 import kotlinx.android.synthetic.main.activity_contacts.*
 import kotlinx.android.synthetic.main.activity_conversation.*
+import java.util.*
+
+private const val TAG = "ContactsActivity"
 
 class ContactsActivity : AppCompatActivity() {
 
-    private lateinit var contactsAdapter: MessageAdapter
+    private lateinit var contactsAdapter: ContactsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +33,43 @@ class ContactsActivity : AppCompatActivity() {
         }
 
         contactList.layoutManager = LinearLayoutManager(this)
-        contactsAdapter = MessageAdapter(this)
+        contactsAdapter = ContactsAdapter(this)
         contactList.adapter = contactsAdapter
+
+        newContact()
+
+
+
     }
+
+    private fun newContact(){
+
+//        val getNickname = findViewById<TextView>(R.id.nicknameContactList)
+//        val contactNickname1 = getNickname.text.toString()
+        val contactNickname1 = App.nickname
+        val contactIP1 = App.ip
+
+//        val getIP = findViewById<TextView>(R.id.ipAddressContactList)
+
+        val contact = Contact(
+                contactNickname1,
+                contactIP1,
+                Calendar.getInstance().timeInMillis
+
+        )
+
+        Log.e(TAG, contact.toString())
+
+        //Log.e(TAG, message.toString())
+
+        runOnUiThread {
+            contactsAdapter.addContact(contact)
+//            chatRecycler.scrollToPosition(contactsAdapter.itemCount - 1)
+        }
+
+    }
+
+
+
+
 }

@@ -8,28 +8,30 @@ import android.os.IBinder
 import android.text.format.Formatter
 import android.util.Log
 import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketClient
+import com.tinder.scarlet.Scarlet
+import org.java_websocket.WebSocket
 import java.net.URI
 
 class MessageClientService : Service() {
-    private var messageSocketClient: MessageSocketClient?
+    private var messageSocketClient: Scarlet?
     private val DEFAULT_PORT = 8112
 
     init {
-        this.messageSocketClient = null;
+        this.messageSocketClient = null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        val destIP = intent!!.extras["destIP"]
-        val uri = URI("wss://$destIP:$DEFAULT_PORT/")
-        this.messageSocketClient = MessageSocketClient(uri, applicationContext) //TODO: Destroy this somehow in onDestroy
+        val destIP = intent!!.extras!!["destIP"]
+        val uri = URI("ws://$destIP:$DEFAULT_PORT/")
+         //TODO: Destroy this somehow in onDestroy
 
-
+        Log.e("THETHING", uri.toASCIIString()!!)
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onBind(intent: Intent): IBinder? {
-        return null;
+        return null
     }
 
 
@@ -38,5 +40,10 @@ class MessageClientService : Service() {
         val ip = Formatter.formatIpAddress(wm.connectionInfo.ipAddress)
         Log.d("NETWORKING_GETIP", "Found IP address $ip")
         return ip
+    }
+
+    override fun onDestroy() {
+
+        super.onDestroy()
     }
 }
