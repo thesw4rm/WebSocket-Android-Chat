@@ -20,8 +20,7 @@ class MessageServerService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-//        this.messageSocketServer!!.start()
-
+        this.messageSocketServer!!.start()
 
         return super.onStartCommand(intent, flags, startId)
     }
@@ -31,7 +30,8 @@ class MessageServerService : Service() {
     }
 
     override fun onCreate() {
-        val ipAddress = InetSocketAddress(getIpAddressIHope(), DEFAULT_PORT)
+        Log.e("IP", getIpAddressIHope())
+        val ipAddress = InetSocketAddress("192.168.200.2", DEFAULT_PORT)
         this.messageSocketServer = MessageSocketServer(ipAddress, this)
         super.onCreate()
     }
