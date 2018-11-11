@@ -38,7 +38,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/avatarIcon"
         android:layout_width="32dp"
         android:layout_height="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/avatar2"
@@ -48,12 +48,12 @@
         app:srcCompat="@drawable/ic_user" />
 
     <TextView
-        android:id="@+id/nickname"
+        android:id="@+id/nicknameContactList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/rubik_light"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/quicksand"
         android:textColor="#343434"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/avatar2"
@@ -65,17 +65,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:fontFamily="@font/rubik_light"
+        android:fontFamily="@font/quicksand"
         android:maxWidth="250dp"
         android:maxLines="1"
         android:paddingBottom="4dp"
         android:textAlignment="viewStart"
         android:textColor="#9b9b9b"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintLeft_toRightOf="@+id/avatar"
         app:layout_constraintStart_toEndOf="@+id/avatar2"
-        app:layout_constraintTop_toBottomOf="@id/nickname"
-        tools:text="@tools:sample/lorem" />
+        app:layout_constraintTop_toBottomOf="@id/nicknameContactList"
+        tools:text="@tools:sample/us_phones" />
 
 
     <View

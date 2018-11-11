@@ -3,10 +3,16 @@ package com.example.ytpillai.cmsc_355_proj
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.support.design.widget.FloatingActionButton
+import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
+import com.example.ytpillai.cmsc_355_proj.messaging.MessageAdapter
 import kotlinx.android.synthetic.main.activity_contacts.*
+import kotlinx.android.synthetic.main.activity_conversation.*
 
 class ContactsActivity : AppCompatActivity() {
+
+    private lateinit var contactsAdapter: MessageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,5 +25,9 @@ class ContactsActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        contactList.layoutManager = LinearLayoutManager(this)
+        contactsAdapter = MessageAdapter(this)
+        contactList.adapter = contactsAdapter
     }
 }

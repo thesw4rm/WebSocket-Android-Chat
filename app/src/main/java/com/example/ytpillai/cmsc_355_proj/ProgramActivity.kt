@@ -21,7 +21,6 @@ class ProgramActivity : AppCompatActivity() {
         setContentView(R.layout.activity_program)
 
 
-
         val messageServiceIntent = Intent(this, MessageServerService::class.java)
         this.startService(messageServiceIntent)
 
@@ -94,6 +93,7 @@ class ProgramActivity : AppCompatActivity() {
 
             val intent = Intent(this, ConversationActivity::class.java)
             App.nickname = otherUser
+            App.ip = check
 //            intent.putExtra(EXTRA_MESSAGE, nameOfFriend)
 
             startActivity(intent)

@@ -5,5 +5,6 @@ import android.app.Application
 class Me:Application() {
     companion object {
         lateinit var nickname:String
+        lateinit var ip:String
     }
 }
