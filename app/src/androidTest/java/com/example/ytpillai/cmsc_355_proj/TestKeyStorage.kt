@@ -28,7 +28,7 @@ class TestKeyStorage {
 
         ks.insertKey(pk, "TEST_KEY")
 
-        assertTrue("Inserting Key", ks.containsAliases("TEST_KEY"))
+        assertTrue("Inserting Key", ks.containsAlias("TEST_KEY"))
 
         ks.deleteKey("TEST_KEY")
 
@@ -44,7 +44,7 @@ class TestKeyStorage {
 
         ks.deleteKey("TEST_KEY")
 
-        assertFalse("Deleting Key", ks.containsAliases("TEST_KEY"))
+        assertFalse("Deleting Key", ks.containsAlias("TEST_KEY"))
 
     }
 
@@ -56,7 +56,7 @@ class TestKeyStorage {
 
         ks.insertKey(pk, "TEST_KEY")
 
-        assertNotNull("Should be a public key", ks.containsAliases("TEST_KEY"))
+        assertNotNull("Should be a public key", ks.containsAlias("TEST_KEY"))
 
         ks.deleteKey("TEST_KEY")
 
