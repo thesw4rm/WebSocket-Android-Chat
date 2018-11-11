@@ -19,7 +19,7 @@ class InputPasswordActivity : AppCompatActivity() {
     internal lateinit var mPatternLockView: PatternLockView
 
     val dialogBuilder = FingerprintDialogBuilder(this)
-            .setTitle("Inkko")
+            .setTitle("Inko")
             .setSubtitle("Fingerprint Authenticator")
             .setDescription("Touch your fingerprint scanner to enter the app. Or tap cancel to use the pattern lock instead.")
             .setNegativeButton("Cancel")

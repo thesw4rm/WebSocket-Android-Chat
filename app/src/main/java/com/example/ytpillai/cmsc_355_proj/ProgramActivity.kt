@@ -98,6 +98,7 @@ class ProgramActivity : AppCompatActivity() {
 
             val intent = Intent(this, ConversationActivity::class.java)
             App.nickname = otherUser
+            App.ip = check
 //            intent.putExtra(EXTRA_MESSAGE, nameOfFriend)
 
             startActivity(intent)

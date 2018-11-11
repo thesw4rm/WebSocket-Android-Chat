@@ -49,16 +49,19 @@ class ConversationActivity : AppCompatActivity() {
                 val nameOfFriend = intent.getStringExtra(ProgramActivity.EXTRA_MESSAGE)
                 var nickname = nameOfFriend*/
             }
+            else{
+                Toast.makeText(this, "Please enter text to send", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
 
     private fun sendMessage(){
 
-        Me.nickname = "me"
-
+        Me.ip = "0"
         val message = Message(
 //                App.nickname,
+                Me.ip,
                 chatbox.text.toString(),
                 Calendar.getInstance().timeInMillis
         )
@@ -73,7 +76,19 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     private fun receiveMessage(){
+        val message = Message(
+                App.ip,
+                 "testing",
+                Calendar.getInstance().timeInMillis
+        )
+
+        runOnUiThread {
+            adapter.addMessage(message)
+            chatRecycler.scrollToPosition(adapter.itemCount - 1)
+        }
+
         TODO("Somehow be able to receive messages")
+
     }
 
 
