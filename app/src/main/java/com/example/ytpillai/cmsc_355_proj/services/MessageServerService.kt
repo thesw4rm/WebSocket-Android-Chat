@@ -7,7 +7,7 @@ import android.net.wifi.WifiManager
 import android.os.IBinder
 import android.text.format.Formatter
 import android.util.Log
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketServer
+import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketServer
 import java.net.InetSocketAddress
 
 class MessageServerService : Service() {
@@ -22,7 +22,6 @@ class MessageServerService : Service() {
 
         this.messageSocketServer!!.start()
 
-
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -31,7 +30,8 @@ class MessageServerService : Service() {
     }
 
     override fun onCreate() {
-        val ipAddress = InetSocketAddress(getIpAddressIHope(), DEFAULT_PORT)
+        Log.e("IP", getIpAddressIHope())
+        val ipAddress = InetSocketAddress("192.168.200.2", DEFAULT_PORT)
         this.messageSocketServer = MessageSocketServer(ipAddress, this)
         super.onCreate()
     }

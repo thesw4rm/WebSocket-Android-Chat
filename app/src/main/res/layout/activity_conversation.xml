@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,44 +14,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="?android:attr/panelBackground"
+        android:tint="#343434"
         app:layout_constraintBottom_toTopOf="@+id/chatRecycler"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inkochat"
-        app:srcCompat="@drawable/ic_arrow_back_gray" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_round_back" />
 
     <TextView
-        android:id="@+id/inkochat"
-        android:layout_width="404dp"
+        android:id="@+id/nicknameHeader"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/rubik_light"
         android:padding="5dp"
-        android:fontFamily="@font/open_sans"
-        android:text="inko chat"
-        android:textAlignment="center"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textColor="#343434"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@+id/backArrowBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/chatRecycler"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/chatboxLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inkochat"
+        app:layout_constraintTop_toBottomOf="@+id/nicknameHeader"
         tools:itemCount="11"
-        tools:listitem="@layout/recycler_view_item_1">
+        tools:listitem="@layout/chat_received">
     </android.support.v7.widget.RecyclerView>
 
 
@@ -58,44 +57,46 @@
         android:id="@+id/chatboxLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:minHeight="48dp"
-        android:background="@drawable/textbox_border"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/textbox_border"
+        android:gravity="bottom"
+        android:minHeight="42dp"
+        android:orientation="horizontal"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <EditText
             android:id="@+id/chatbox"
-            android:layout_width="0dp"
+            android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="3dp"
+            android:layout_marginBottom="14dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/rubik_light"
             android:hint="Enter chat"
             android:inputType="textCapSentences|textMultiLine"
-            android:maxLines="3" />
+            android:maxLines="3"
+            android:padding="0dp" />
 
         <Button
-            android:id="@+id/sendbtn"
-            android:layout_width="64dp"
-            android:layout_height="48dp"
+            android:id="@+id/sendBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginRight="5dp"
-            android:background="?attr/selectableItemBackground"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_round_send"
             android:clickable="true"
             android:focusable="true"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="SEND"
-            android:textColor="#343434"
             android:textSize="14sp" />
 
     </LinearLayout>

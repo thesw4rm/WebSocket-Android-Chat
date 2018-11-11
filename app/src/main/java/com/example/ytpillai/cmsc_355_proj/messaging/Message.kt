@@ -1,7 +1,6 @@
 package com.example.ytpillai.cmsc_355_proj.messaging
 
-data class Message(
-        val message: String,
-
-        val messageName: String
-)
+data class Message(/*var nickname:String,*/
+                    var ip:String,
+                    var message:String,
+                    var time:Long)

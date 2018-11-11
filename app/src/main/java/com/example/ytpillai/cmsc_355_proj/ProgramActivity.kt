@@ -10,38 +10,22 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageSocketClient
+import com.example.ytpillai.cmsc_355_proj.messaging.App
+import com.example.ytpillai.cmsc_355_proj.messaging.MessageAdapter
+import com.example.ytpillai.cmsc_355_proj.services.MessageClientService
 import com.example.ytpillai.cmsc_355_proj.services.MessageServerService
 
 
 class ProgramActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
 
 
+        /*val messageServiceIntent = Intent(this, MessageServerService::class.java)
+        this.startService(messageServiceIntent)*/
 
-        val messageServiceIntent = Intent(this, MessageServerService::class.java)
-        this.startService(messageServiceIntent)
 
-        val messageBroadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                Log.d("PROGRAM_ACTIVITY", "Something received by program activity: ${intent!!.extras["message"]}")
-
-                if (intent!!.action.equals(resources.getString(R.string.ACTION_RECEIVED_MESSAGE))) {
-                    StringBuilder().apply {
-                        append("Message received: ${intent.extras["message"]}")
-                        toString().also { log ->
-                            Log.d("PROGRAM_ACTIVITY", "Message received by program activity: ${intent.extras["message"]}")
-                            Toast.makeText(context, log, Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
-            }
-
-        }
-        registerReceiver(messageBroadcastReceiver, IntentFilter(resources.getString(R.string.ACTION_RECEIVED_MESSAGE)))
 
 
     }
@@ -50,9 +34,13 @@ class ProgramActivity : AppCompatActivity() {
 
     fun isValidIP(view: View) {
 
-        val editTextHello = findViewById(R.id.ipAddress) as EditText
+        val getNickname = findViewById<EditText>(R.id.nickname)
 
-        val check = editTextHello.text.toString()
+        val getIP = findViewById<EditText>(R.id.ipAddress)
+
+        val otherUser = getNickname.text.toString()
+
+        val check = getIP.text.toString()
 
         val checkarray = check.toCharArray()
 
@@ -82,18 +70,26 @@ class ProgramActivity : AppCompatActivity() {
 
         }
 
-        if (validChar == false) {
+        if (!validChar) {
             Toast.makeText(this, "Please Enter Valid IP", Toast.LENGTH_SHORT).show()
 
         } else {
             Toast.makeText(this, "Connecting...", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, ConversationActivity::class.java)
+            App.nickname = otherUser
+            App.ip = check
+//            intent.putExtra(EXTRA_MESSAGE, nameOfFriend)
             startActivity(intent)
+            finish()
         }
 
 
     }
+
+/*    companion object {
+        val EXTRA_MESSAGE = "Friend"
+    }*/
 
 
 }

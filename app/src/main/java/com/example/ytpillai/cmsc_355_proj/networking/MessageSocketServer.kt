@@ -1,16 +1,14 @@
-package com.example.ytpillai.cmsc_355_proj.messaging
+package com.example.ytpillai.cmsc_355_proj.networking
 
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.example.ytpillai.cmsc_355_proj.ConversationActivity
-import com.example.ytpillai.cmsc_355_proj.ProgramActivity
 import com.example.ytpillai.cmsc_355_proj.R
-import com.example.ytpillai.cmsc_355_proj.security.SecurityUtils
+import com.example.ytpillai.cmsc_355_proj.security.RSA
+import com.example.ytpillai.cmsc_355_proj.security.KeyStorage
 import org.java_websocket.WebSocket
 import org.java_websocket.handshake.ClientHandshake
 import org.java_websocket.server.WebSocketServer
-import java.lang.Exception
 import java.net.InetSocketAddress
 
 class MessageSocketServer(address: InetSocketAddress, var context: Context) : WebSocketServer(address) {
@@ -22,7 +20,8 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
         if (conn == null) {
             Log.e("MESSAGE_SOCKET_SERVER", "Tried to open a client's connection the ws server on this device, but got null connection. ")
         }
-        conn!!.send("RSA_PUBLIC_KEY\n" + SecurityUtils.getEncryptionKey()) //Need to make this do important stuff like initial handshake stuff and things. Eventually symmetric key encrypt this
+
+        conn!!.send("RSA_PUBLIC_KEY\n" + KeyStorage.instance.getEncryptionKey(RSA.instance.KEY_ALIAS)) //Need to make this do important stuff like initial handshake stuff and things. Eventually symmetric key encrypt this
 
     }
 
@@ -44,7 +43,7 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
             Log.d("MESSAGE_SOCKET_SERVER", "I GOT UR MESSAGE $message")
 
         if (message!!.substring(0, "RSA_PUBLIC_KEY\n".length) == "RSA_PUBLIC_KEY\n")
-            //setOtherKeyAlias("${getRemoteSocketAddress(conn).address}_PUBLIC_KEY", message.substring("RSA_PUBLIC_KEY\n".length - 1, message.length))
+        //setOtherKeyAlias("${getRemoteSocketAddress(conn).address}_PUBLIC_KEY", message.substring("RSA_PUBLIC_KEY\n".length - 1, message.length))
         else {
             Intent().also { intent ->
                 intent.action = context.resources.getString(R.string.ACTION_RECEIVED_MESSAGE)
