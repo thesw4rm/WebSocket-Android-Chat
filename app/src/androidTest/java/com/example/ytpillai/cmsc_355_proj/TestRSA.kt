@@ -41,7 +41,7 @@ class TestRSA {
     @Test
     fun testGenKeyPair(){
         rsa.encrypt(SENT_MESSAGE, rsa.KEY_ALIAS) //Should auto generate keypair
-        assertTrue(rsa.keyStorage.keyPairExists(rsa.KEY_ALIAS))
+        assertTrue(rsa.keyStorage.keyPairInStore(rsa.KEY_ALIAS))
     }
 }
 

@@ -8,12 +8,15 @@ import java.security.PublicKey
 import java.security.PrivateKey
 import java.security.KeyStore
 
-class KeyStorage {
+import java.util.HashMap
+
+open class KeyStorage private constructor() {
 
     private object Holder { val INSTANCE = KeyStorage() }
 
     companion object {
         val instance: KeyStorage by lazy { Holder.INSTANCE }
+        val keys: HashMap<String, PublicKey> = HashMap()
     }
 
     /**
@@ -25,7 +28,7 @@ class KeyStorage {
     @RequiresApi(Build.VERSION_CODES.M)
     fun getEncryptionKey(alias: String): PublicKey? {
 
-        return if (keyPairExists(alias)) {
+        return if (keyPairInStore(alias)) {
 
             val ks = KeyStore.getInstance("AndroidKeyStore")
             ks.load(null)
@@ -35,7 +38,9 @@ class KeyStorage {
             privateKeyEntry.certificate.publicKey // public key
 
         } else {
-            return null
+
+            return keys[alias]
+
         }
     }
 
@@ -47,7 +52,7 @@ class KeyStorage {
      */
     fun getDecryptionKey(alias: String): PrivateKey? {
 
-        return if (keyPairExists(alias)) {
+        return if (keyPairInStore(alias)) {
             val ks = KeyStore.getInstance("AndroidKeyStore")
             ks.load(null, null)
 
@@ -65,49 +70,36 @@ class KeyStorage {
      *
      * @alias: nickname for the key
      */
-    fun keyPairExists(alias: String): Boolean {
+    fun keyPairInStore(alias: String): Boolean {
 
         val ks = KeyStore.getInstance("AndroidKeyStore")
         ks.load(null, null)
         return ks.containsAlias(alias)
     }
 
-    /**
-     * Verify an alias is in the Android KeyStore
-     *
-     * @alias: Alias to be checked
-     */
-    fun containsAliases(alias: String): Boolean {
-        val ks: KeyStore = KeyStore.getInstance("AndroidKeyStore").apply{
-            load(null)
-        }
-
-        return ks.containsAlias(alias)
+    fun containsAlias(alias: String): Boolean {
+        return keys[alias] != null
     }
 
     /**
-     * Insert a new key into the Android KeyStore
+     * Insert a new key into the database
      *
      * @key: The public key to insert
      * @alias: The alias for the key
      */
     fun insertKey(key: PublicKey, alias: String) {
 
-        val ks = KeyStore.getInstance("AndroidKeyStore")
-
-        ks.setKeyEntry(alias, key, null, null)
+        keys[alias] = key
 
     }
 
     /**
-     * Deleted a key from the Android KeyStore
+     * Deleted a key from the database
      *
-     * @alias: The lias for the key to be deleted
+     * @alias: The alias for the key to be deleted
      */
     fun deleteKey(alias: String) {
-        val ks = KeyStore.getInstance("AndroidKeyStore")
-
-        ks.deleteEntry(alias)
+        keys.remove(alias)
     }
 
 }
