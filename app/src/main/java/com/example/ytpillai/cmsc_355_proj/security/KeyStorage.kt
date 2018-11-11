@@ -1,9 +1,5 @@
 package com.example.ytpillai.cmsc_355_proj.security
 
-import android.app.Application
-import android.arch.persistence.room.Room
-import android.content.Context
-
 import android.os.Build
 import android.support.annotation.RequiresApi
 import android.util.Log
@@ -12,18 +8,16 @@ import java.security.PublicKey
 import java.security.PrivateKey
 import java.security.KeyStore
 
-open class KeyStorage private constructor() : Application() {
+import java.util.HashMap
+
+open class KeyStorage private constructor() {
 
     private object Holder { val INSTANCE = KeyStorage() }
 
     companion object {
         val instance: KeyStorage by lazy { Holder.INSTANCE }
+        val keys: HashMap<String, PublicKey> = HashMap()
     }
-
-    private val db = Room.databaseBuilder(
-            applicationContext,
-            UserDatabase::class.java, "ContactEntries"
-    ).build()
 
     /**
      * Gets the public key from an alias if it exist
@@ -45,7 +39,7 @@ open class KeyStorage private constructor() : Application() {
 
         } else {
 
-            return db.userDao().findByAlias(alias)?.publicKey;
+            return keys[alias]
 
         }
     }
@@ -84,7 +78,7 @@ open class KeyStorage private constructor() : Application() {
     }
 
     fun containsAlias(alias: String): Boolean {
-        return db.userDao().findByAlias(alias) != null
+        return keys[alias] != null
     }
 
     /**
@@ -95,17 +89,17 @@ open class KeyStorage private constructor() : Application() {
      */
     fun insertKey(key: PublicKey, alias: String) {
 
-        db.userDao().insertAll(User(alias, key))
+        keys[alias] = key
 
     }
 
     /**
      * Deleted a key from the database
      *
-     * @alias: The lias for the key to be deleted
+     * @alias: The alias for the key to be deleted
      */
     fun deleteKey(alias: String) {
-        db.userDao().delete(db.userDao().findByAlias(alias))
+        keys.remove(alias)
     }
 
 }
