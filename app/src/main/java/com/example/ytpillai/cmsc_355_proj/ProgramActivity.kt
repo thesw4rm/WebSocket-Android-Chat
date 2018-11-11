@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.example.ytpillai.cmsc_355_proj.messaging.App
+import com.example.ytpillai.cmsc_355_proj.services.MessageClientService
 import com.example.ytpillai.cmsc_355_proj.services.MessageServerService
 
 
@@ -21,8 +22,12 @@ class ProgramActivity : AppCompatActivity() {
         setContentView(R.layout.activity_program)
 
 
-        val messageServiceIntent = Intent(this, MessageServerService::class.java)
-        this.startService(messageServiceIntent)
+        /*val messageServiceIntent = Intent(this, MessageServerService::class.java)
+        this.startService(messageServiceIntent)*/
+
+        val messageClientIntent = Intent(this, MessageClientService::class.java)
+        messageClientIntent.putExtra("destIP", "10.0.2.2")
+        this.startService(messageClientIntent)
 
         val messageBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
