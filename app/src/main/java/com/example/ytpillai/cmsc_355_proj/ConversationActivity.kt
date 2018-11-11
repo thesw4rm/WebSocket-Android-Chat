@@ -35,7 +35,7 @@ class ConversationActivity : AppCompatActivity() {
         adapter = MessageAdapter(this)
         chatRecycler.adapter = adapter
 
-        val chatHeader: TextView = findViewById(R.id.nicknameHeader) as TextView
+        val chatHeader: TextView = findViewById(R.id.nicknameHeader)
         chatHeader.text = App.nickname
 
 
@@ -66,7 +66,7 @@ class ConversationActivity : AppCompatActivity() {
                 Calendar.getInstance().timeInMillis
         )
 
-        Log.e(TAG, message.toString())
+        //Log.e(TAG, message.toString())
 
         runOnUiThread {
             adapter.addMessage(message)
