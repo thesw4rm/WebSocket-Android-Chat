@@ -11,10 +11,11 @@ import com.example.ytpillai.cmsc_355_proj.R
 import kotlinx.android.synthetic.main.activity_conversation.view.*
 import kotlinx.android.synthetic.main.chat_sent.view.*
 import kotlinx.android.synthetic.main.chat_received.view.*
+import kotlinx.android.synthetic.main.contact_list.view.*
 
 
-private const val MY_MESSAGE = 1
-private const val OTHER_MESSAGE = 2
+private const val MY_MESSAGE = 2
+private const val OTHER_MESSAGE = 1
 
 private const val TAG = "Adapter"
 
@@ -36,14 +37,14 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
 
         return if(App.ip == message.ip) {
 
-            MY_MESSAGE
-//            OTHER_MESSAGE
+//            MY_MESSAGE
+            OTHER_MESSAGE
 //            Log.i(TAG,"Their nickname was called: " + App.nickname)
         }
         else {
 
-//            MY_MESSAGE
-            OTHER_MESSAGE
+            MY_MESSAGE
+//            OTHER_MESSAGE
 //            Log.i(TAG,"My nickname was called: " + Me.nickname)
 
         }
@@ -67,7 +68,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
     }
 
     inner class MyMessageViewHolder (view: View) : MessageViewHolder(view) {
-        private var messageText: TextView = view.chatbox
+        private var messageText: TextView = view.ChatBodySent
         private var timeText: TextView = view.timeStamp
 
         override fun bind(message: Message) {
@@ -87,6 +88,7 @@ class MessageAdapter (val context: Context) : RecyclerView.Adapter<MessageViewHo
             timeText.text = DateUtils.fromMillisToTimeString(message.time)
         }
     }
+
 }
 
     open class MessageViewHolder (view: View) : RecyclerView.ViewHolder(view) {

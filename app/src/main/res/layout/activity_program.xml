@@ -16,7 +16,7 @@
         android:layout_marginTop="89dp"
         android:fontFamily="@font/quicksand"
         android:text="Getting\nConnected"
-        android:textColor="#343434"
+        android:textColor="@color/textgray"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toTopOf="parent" />

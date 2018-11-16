@@ -1,16 +1,19 @@
-from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
+from tornado import websocket
+import tornado.ioloop
 
-class SimpleEcho(WebSocket):
+class EchoWebSocket(websocket.WebSocketHandler):
+    def open(self):
+        print("Websocket Opened")
+        
 
-    def handleMessage(self):
-        # echo message back to client
-        self.sendMessage(self.data)
+    def on_message(self, message):
+        self.write_message(u"You said: %s" % message)
 
-    def handleConnected(self):
-        print(self.address, 'connected')
+    def on_close(self):
+        print("Websocket closed")
 
-    def handleClose(self):
-        print(self.address, 'closed')
+application = tornado.web.Application([(r"/", EchoWebSocket),])
 
-server = SimpleWebSocketServer('127.0.0.1', 8113, SimpleEcho)
-server.serveforever()
+if __name__ == "__main__":
+    application.listen(8112)
+    tornado.ioloop.IOLoop.instance().start()
