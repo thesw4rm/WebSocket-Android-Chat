@@ -20,6 +20,7 @@ class TestKeyStorage {
 
     private val ks = KeyStorage.instance
 
+    // Scenario 1
     @Test
     fun testKeyInsertion() {
 
@@ -34,6 +35,7 @@ class TestKeyStorage {
 
     }
 
+    // Scenario 2
     @Test
     fun testKeyDeletion() {
 
@@ -48,6 +50,7 @@ class TestKeyStorage {
 
     }
 
+    // Scenario 3
     @Test
     fun testGetEncryptionKey() {
 

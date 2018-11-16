@@ -12,10 +12,8 @@ interface UserDao {
 
     @Query("SELECT * FROM user WHERE alias LIKE :alias")
     fun findByAlias(alias: String): User?
-
     @Insert
     fun insertAll(vararg users: User?)
-
     @Delete
     fun delete(user: User?)
 }
