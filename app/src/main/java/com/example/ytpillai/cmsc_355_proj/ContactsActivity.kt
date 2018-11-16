@@ -6,6 +6,7 @@ import android.content.Intent
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -35,6 +36,10 @@ class ContactsActivity : AppCompatActivity() {
         contactList.layoutManager = LinearLayoutManager(this)
         contactsAdapter = ContactsAdapter(this)
         contactList.adapter = contactsAdapter
+
+
+
+        /*contactList.addOnItemTouchListener() =*/
 
         newContact()
 
