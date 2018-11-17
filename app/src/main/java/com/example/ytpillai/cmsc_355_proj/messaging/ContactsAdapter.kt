@@ -45,12 +45,10 @@ class ContactsAdapter (val context: Context) : RecyclerView.Adapter<ContactViewH
         val contact = contacts[position]
         holder.bind(contact)
 
-       /* holder.AdapterView.OnItemClickListener{
+        /*holder.itemView.setOnClickListener {
 
             Toast.makeText(context, "You clicked the contact", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(this, ConversationActivity::class.java)
-            startActivity(intent)
         }*/
     }
 
@@ -65,9 +63,16 @@ class ContactsAdapter (val context: Context) : RecyclerView.Adapter<ContactViewH
             contactNickname.text = App.nickname
             contactIP.text = App.ip
             timeText.text = DateUtils.fromMillisToTimeString(contact.time)
-    }
+        }
 
-}
+        init {
+            view.setOnClickListener {
+                val intent = Intent(view.context, ConversationActivity::class.java)
+                view.context.startActivity(intent)
+            }
+        }
+
+    }
 
 open class ContactViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     open fun bind(contact:Contact) {}

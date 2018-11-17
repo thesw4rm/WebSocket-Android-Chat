@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,30 +12,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="18dp"
         android:background="@drawable/chat_bubble_blue"
         android:fontFamily="@font/rubik_light"
         android:lineSpacingMultiplier="1.1"
         android:maxWidth="240dp"
+        android:paddingStart="15dp"
         android:paddingTop="12dp"
+        android:paddingEnd="15dp"
         android:paddingBottom="11dp"
-        android:paddingEnd="18dp"
-        android:paddingStart="18dp"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/timeStamp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="@tools:sample/lorem" />
 
     <TextView
         android:id="@+id/timeStamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="33dp"
         android:fontFamily="@font/rubik_light"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ChatBodySent"
-        app:layout_constraintRight_toLeftOf="@+id/ChatBodySent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ChatBodySent"
         tools:text="@tools:sample/date/hhmm" />
 
 </android.support.constraint.ConstraintLayout>

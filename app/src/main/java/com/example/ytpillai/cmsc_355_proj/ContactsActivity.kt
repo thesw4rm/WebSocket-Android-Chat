@@ -37,12 +37,11 @@ class ContactsActivity : AppCompatActivity() {
         contactsAdapter = ContactsAdapter(this)
         contactList.adapter = contactsAdapter
 
-
-
-        /*contactList.addOnItemTouchListener() =*/
-
         newContact()
 
+
+/*        val shortmessage: TextView = findViewById(R.id.ipAddressContactList)
+        shortmessage.text = contactsAdapter.getItemId(contactsAdapter.itemCount - 1).toString()*/
 
 
     }
@@ -60,7 +59,6 @@ class ContactsActivity : AppCompatActivity() {
                 contactNickname1,
                 contactIP1,
                 Calendar.getInstance().timeInMillis
-
         )
 
         Log.e(TAG, contact.toString())

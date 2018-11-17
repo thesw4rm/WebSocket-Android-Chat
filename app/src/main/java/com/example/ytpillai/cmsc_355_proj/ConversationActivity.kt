@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.ytpillai.cmsc_355_proj.messaging.App
@@ -53,25 +52,23 @@ class ConversationActivity : AppCompatActivity() {
         chatHeader.text = App.nickname
 
 
+        //TEMP
+//        receiveMessage(message = "Testing...")
+
+
         sendBtn.setOnClickListener {
             if (chatbox.text.isNotEmpty()) {
 
                 sendMessage()
                 resetInput()
 
-/*              val intent = intent
-                val nameOfFriend = intent.getStringExtra(ProgramActivity.EXTRA_MESSAGE)
-                var nickname = nameOfFriend*/
+                //TEMP
+//                receiveMessage(message = "Testing...")
+
             } else {
                 Toast.makeText(this, "Please enter text to send", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-        /*val messageServiceIntent = Intent(this, MessageServerService::class.java)
-        this.startService(messageServiceIntent)*/
-
-
 
         messageClientService = MessageClientService()
         val messageClientServiceIntent = Intent(this, MessageClientService::class.java)
@@ -98,7 +95,6 @@ class ConversationActivity : AppCompatActivity() {
                             Log.d("PROGRAM_ACTIVITY", "Message received : ${intent.extras!!["message"]}")
 
                         }
-
                     }
                     receiveMessage("${intent.extras!!["message"]}")
                 } else {
@@ -108,7 +104,6 @@ class ConversationActivity : AppCompatActivity() {
 
         }
         registerReceiver(messageBroadcastReceiver, IntentFilter(resources.getString(R.string.ACTION_RECEIVED_MESSAGE)))
-
     }
 
 
@@ -118,7 +113,7 @@ class ConversationActivity : AppCompatActivity() {
         val message = Message(
 //                App.nickname,
                 Me.ip,
-                "test",
+                chatbox.text.toString(),
                 Calendar.getInstance().timeInMillis
         )
 
@@ -128,13 +123,12 @@ class ConversationActivity : AppCompatActivity() {
             adapter.addMessage(message)
             chatRecycler.scrollToPosition(adapter.itemCount - 1)
         }
-
     }
 
-    private fun receiveMessage(yourmom: String) {
+    private fun receiveMessage(message: String) {
         val message = Message(
                 App.ip,
-                yourmom,
+                message,
                 Calendar.getInstance().timeInMillis
         )
 
@@ -142,10 +136,7 @@ class ConversationActivity : AppCompatActivity() {
             adapter.addMessage(message)
             chatRecycler.scrollToPosition(adapter.itemCount - 1)
         }
-
-
     }
-
 
     private fun resetInput() {
         // Clean text box
@@ -155,5 +146,4 @@ class ConversationActivity : AppCompatActivity() {
         val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
-
 }
