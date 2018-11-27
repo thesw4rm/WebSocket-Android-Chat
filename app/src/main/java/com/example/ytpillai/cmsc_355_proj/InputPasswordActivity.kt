@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 
 import com.andrognito.patternlockview.PatternLockView
@@ -113,5 +114,20 @@ class InputPasswordActivity : AppCompatActivity() {
 
             }
         })
+
+
     }
+
+
+    fun functionName(view: View) {
+        dialogBuilder.show(supportFragmentManager, callback)
+    }
+
+//    fun skipPassword2(view: View) {
+//        val intent2 = Intent(this, ProgramActivity::class.java)
+//        startActivity(intent2)
+//        finish()
+//    }
+
 }
+
