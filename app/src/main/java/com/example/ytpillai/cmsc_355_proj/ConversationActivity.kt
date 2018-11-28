@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.ytpillai.cmsc_355_proj.messaging.App
@@ -39,7 +41,7 @@ class ConversationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_conversation)
 
         backArrowBtn.setOnClickListener {
-            val intent = Intent(this, ContactsActivity::class.java)
+            val intent = Intent( this, ContactsActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -48,13 +50,19 @@ class ConversationActivity : AppCompatActivity() {
         adapter = MessageAdapter(this)
         chatRecycler.adapter = adapter
 
+
+        //Display chat messages bottom top
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.stackFromEnd = true
+        chatRecycler.setLayoutManager(layoutManager)
+
+
         val chatHeader: TextView = findViewById(R.id.nicknameHeader)
         chatHeader.text = App.nickname
 
 
         //TEMP
-//        receiveMessage(message = "Testing...")
-
+//        receiveMessage(message)
 
         sendBtn.setOnClickListener {
             if (chatbox.text.isNotEmpty()) {
@@ -117,12 +125,31 @@ class ConversationActivity : AppCompatActivity() {
                 Calendar.getInstance().timeInMillis
         )
 
+
         //Log.e(TAG, message.toString())
 
         runOnUiThread {
             adapter.addMessage(message)
             chatRecycler.scrollToPosition(adapter.itemCount - 1)
         }
+
+/*        if(chatbox.text.toString().equals("Hey Elon!")){
+
+            Handler().postDelayed({
+                receiveMessage(message = "what.")
+            },1600)
+        }
+        else {
+        }
+
+        if(chatbox.text.toString().equals("Can I have a free Tesla?")){
+
+            Handler().postDelayed({
+                receiveMessage(message = "NO. Who is this?")
+            },2300)
+        }
+        else {
+        }*/
     }
 
     private fun receiveMessage(message: String) {

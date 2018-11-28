@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }, 0)
+        }, 600)
 
         val PASSWORD_HASH = getSharedPreferences("PREFS", 0).getString("password", "0")
 
