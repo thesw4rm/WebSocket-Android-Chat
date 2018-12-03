@@ -54,7 +54,7 @@ class ConversationActivity : AppCompatActivity() {
         //Display chat messages bottom top
         val layoutManager = LinearLayoutManager(this)
         layoutManager.stackFromEnd = true
-        chatRecycler.setLayoutManager(layoutManager)
+        chatRecycler.layoutManager = layoutManager
 
 
         val chatHeader: TextView = findViewById(R.id.nicknameHeader)
@@ -116,9 +116,6 @@ class ConversationActivity : AppCompatActivity() {
                 Calendar.getInstance().timeInMillis
         )
 
-
-        //Log.e(TAG, message.toString())
-
         runOnUiThread {
             adapter.addMessage(message)
             chatRecycler.scrollToPosition(adapter.itemCount - 1)
@@ -129,7 +126,7 @@ class ConversationActivity : AppCompatActivity() {
             applicationContext.sendBroadcast(intent)
         }
 
-/*        if(chatbox.text.toString().equals("Hey Elon!")){
+        /*if(chatbox.text.toString().equals("Hey Elon!")){
 
             Handler().postDelayed({
                 receiveMessage(message = "what.")
@@ -166,7 +163,7 @@ class ConversationActivity : AppCompatActivity() {
         chatbox.text.clear()
 
         // Hide keyboard
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        /*val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)*/
     }
 }
