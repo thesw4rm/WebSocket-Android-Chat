@@ -146,14 +146,14 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     private fun receiveMessage(message: String) {
-        val message = Message(
+        val messageObject = Message(
                 App.ip,
                 message,
                 Calendar.getInstance().timeInMillis
         )
 
         runOnUiThread {
-            adapter.addMessage(message)
+            adapter.addMessage(messageObject)
             chatRecycler.scrollToPosition(adapter.itemCount - 1)
         }
     }
