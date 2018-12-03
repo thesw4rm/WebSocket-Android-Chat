@@ -20,6 +20,8 @@ import android.support.test.espresso.matcher.ViewMatchers.withText
 import org.hamcrest.CoreMatchers.not
 import org.junit.Before
 
+import com.example.ytpillai.cmsc_355_proj.InputPasswordActivity
+
 class InputPasswordActivityTest {
 
     @Rule
@@ -48,8 +50,9 @@ class InputPasswordActivityTest {
 
         onView(withText("Inko")).check(doesNotExist());
 
-
     }
+
+
 
 
 
