@@ -62,7 +62,7 @@
             android:fontFamily="@font/rubik_light"
             android:gravity="center"
             android:hint="Enter Nickname"
-            android:inputType="textCapSentences|textPersonName"
+            android:inputType="text"
             android:paddingStart="3dp"
             android:paddingTop="10dp"
             android:paddingEnd="3dp"
