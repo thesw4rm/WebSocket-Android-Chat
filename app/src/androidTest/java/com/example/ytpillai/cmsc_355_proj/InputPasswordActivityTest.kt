@@ -50,9 +50,19 @@ class InputPasswordActivityTest {
 
         onView(withText("Inko")).check(doesNotExist());
 
+        Intents.release()
+
     }
 
+    // Scenario 303
+    @Test
+    fun reopenFingerPrintDialog() {
 
+        onView(withText("Inko")).check(matches((isDisplayed()))).perform(pressBack());
+
+        onView(withText("Use Fingerprint")).check(matches((isDisplayed()))).perform(click())
+
+    }
 
 
 
