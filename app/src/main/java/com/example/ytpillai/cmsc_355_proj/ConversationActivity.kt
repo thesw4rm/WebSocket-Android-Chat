@@ -78,20 +78,11 @@ class ConversationActivity : AppCompatActivity() {
             }
         }
 
-        messageClientService = MessageClientService()
         val messageClientServiceIntent = Intent(this, MessageClientService::class.java)
-        messageClientServiceIntent.putExtra("destIP", "10.0.2.2")
+        messageClientServiceIntent.putExtra("destIP", App.ip)
         startService(messageClientServiceIntent)
-        val destIP = "10.0.2.2"
-        val uri = "ws://$destIP:8112/"
-        //TODO: Destroy this somehow in onDestroy
-        val request = Request.Builder().url(uri).build()
-        val okHttpClient = OkHttpClient.Builder().build()
 
-        val messageSocketClient = MessageSocketClient(URI(uri), applicationContext)
-        val webSocket = okHttpClient.newWebSocket(request, messageSocketClient)
 
-        val okHttpClientService = okHttpClient.dispatcher().executorService()
 
 
         val messageBroadcastReceiver = object : BroadcastReceiver() {
@@ -129,6 +120,11 @@ class ConversationActivity : AppCompatActivity() {
             adapter.addMessage(message)
             chatRecycler.scrollToPosition(adapter.itemCount - 1)
         }
+        Intent().also { intent ->
+            intent.action = applicationContext.resources.getString(R.string.ACTION_SENT_MESSAGE)
+            intent.putExtra("message", chatbox.text.toString())
+            applicationContext.sendBroadcast(intent)
+        }
 
         /*if(chatbox.text.toString().equals("Hey Elon!")){
 
@@ -150,14 +146,14 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     private fun receiveMessage(message: String) {
-        val message = Message(
+        val messageObject = Message(
                 App.ip,
                 message,
                 Calendar.getInstance().timeInMillis
         )
 
         runOnUiThread {
-            adapter.addMessage(message)
+            adapter.addMessage(messageObject)
             chatRecycler.scrollToPosition(adapter.itemCount - 1)
         }
     }
