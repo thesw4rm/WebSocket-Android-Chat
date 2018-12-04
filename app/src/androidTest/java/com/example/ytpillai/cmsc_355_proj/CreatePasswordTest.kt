@@ -24,6 +24,8 @@ class CreatePasswordTest {
         Intents.init()
     }
 
+    // Scenario 302
+
     @Test
     fun createPasswordLater() {
 
