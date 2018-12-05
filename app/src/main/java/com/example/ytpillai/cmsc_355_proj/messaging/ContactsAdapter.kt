@@ -2,23 +2,14 @@ package com.example.ytpillai.cmsc_355_proj.messaging
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import com.example.ytpillai.cmsc_355_proj.ConversationActivity
 import com.example.ytpillai.cmsc_355_proj.R
 import kotlinx.android.synthetic.main.contact_list.view.*
-
-
-/*private const val MY_MESSAGE = 1
-private const val OTHER_MESSAGE = 2*/
-
-private const val TAG = "ContactsAdapter"
 
 
 class ContactsAdapter (val context: Context) : RecyclerView.Adapter<ContactViewHolder>() {
@@ -45,11 +36,6 @@ class ContactsAdapter (val context: Context) : RecyclerView.Adapter<ContactViewH
         val contact = contacts[position]
         holder.bind(contact)
 
-        /*holder.itemView.setOnClickListener {
-
-            Toast.makeText(context, "You clicked the contact", Toast.LENGTH_LONG).show()
-
-        }*/
     }
 
     }
@@ -71,7 +57,6 @@ class ContactsAdapter (val context: Context) : RecyclerView.Adapter<ContactViewH
                 view.context.startActivity(intent)
             }
         }
-
     }
 
 open class ContactViewHolder (view: View) : RecyclerView.ViewHolder(view) {

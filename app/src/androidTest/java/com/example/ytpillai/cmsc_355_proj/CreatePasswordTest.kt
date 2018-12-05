@@ -31,7 +31,7 @@ class CreatePasswordTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.SkipPass)).perform(ViewActions.click())
 
-        intended(hasComponent(ProgramActivity::class.java!!.getName()))
+        intended(hasComponent(ProgramActivity::class.java!!.name))
     }
 
 

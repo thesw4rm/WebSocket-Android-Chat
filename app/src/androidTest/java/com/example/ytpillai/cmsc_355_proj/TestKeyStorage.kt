@@ -2,17 +2,11 @@ package com.example.ytpillai.cmsc_355_proj
 
 import android.support.test.filters.MediumTest
 import android.support.test.runner.AndroidJUnit4
-
-import java.security.KeyPairGenerator
-
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.CoreMatchers.not
-import org.hamcrest.Matchers.`is`
+import com.example.ytpillai.cmsc_355_proj.security.KeyStorage
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.Assert.*
-
-import com.example.ytpillai.cmsc_355_proj.security.KeyStorage
+import java.security.KeyPairGenerator
 
 @RunWith(AndroidJUnit4::class)
 @MediumTest

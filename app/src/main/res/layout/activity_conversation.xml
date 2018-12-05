@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="Overdraw">
 
 
     <ImageButton
@@ -88,7 +89,8 @@
             android:hint="Enter chat"
             android:inputType="textCapSentences|textMultiLine"
             android:maxLines="3"
-            android:padding="0dp" />
+            android:padding="0dp"
+            tools:ignore="Autofill,HardcodedText" />
 
         <Button
             android:id="@+id/sendBtn"

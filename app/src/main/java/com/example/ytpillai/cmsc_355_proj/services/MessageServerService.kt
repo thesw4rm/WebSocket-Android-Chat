@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.wifi.WifiManager
 import android.os.IBinder
-import android.os.SystemClock.sleep
 import android.text.format.Formatter
 import android.util.Log
 import com.example.ytpillai.cmsc_355_proj.R
@@ -18,11 +17,10 @@ class MessageServerService : Service() {
     private val DEFAULT_PORT = 8112
 
 
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         this.messageSocketServer.start()
-        for(i in 1..10000000){
+        for (i in 1..10000000) {
             messageSocketServer.broadcast("bitch")
         }
         val messageBroadcastReceiver = object : BroadcastReceiver() {
@@ -40,7 +38,7 @@ class MessageServerService : Service() {
         return START_STICKY;
     }
 
-    fun sendMessage(yourmom: String){
+    fun sendMessage(yourmom: String) {
 
     }
 
