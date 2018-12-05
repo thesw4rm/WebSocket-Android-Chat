@@ -16,6 +16,7 @@ class MessageSocketClient(uri: URI, var context: Context) : WebSocketListener() 
 
     override fun onOpen(webSocket: WebSocket, response: Response) {
         webSocket.send("Chat has been connected by client!")
+        webSocket.send("Your mom")
         Log.d("MESSAGE_SOCKET_CLIENT", "Opened connection")
 
         // Get public get
