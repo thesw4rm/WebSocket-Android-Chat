@@ -15,5 +15,5 @@ class EchoWebSocket(websocket.WebSocketHandler):
 application = tornado.web.Application([(r"/", EchoWebSocket),])
 
 if __name__ == "__main__":
-    application.listen(8112)
+    application.listen(8114)
     tornado.ioloop.IOLoop.instance().start()

@@ -14,20 +14,18 @@ import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketServer
 import com.tinder.scarlet.Scarlet
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.java_websocket.WebSocket
+import okhttp3.WebSocket
 import org.java_websocket.WebSocketFactory
 import java.net.InetSocketAddress
 import java.net.URI
 import java.util.concurrent.ExecutorService
 
 class MessageClientService : Service() {
-    private var messageSocketClient: MessageSocketClient?
+    private lateinit var messageSocketClient: MessageSocketClient
     private val DEFAULT_PORT = 8112
     private lateinit var okHttpClientService: ExecutorService
     private lateinit var okHttpClient: OkHttpClient
-    init{
-        messageSocketClient = null;
-    }
+    private lateinit var webSocket: WebSocket
 
     override fun onCreate() {
         Log.e("IP", getIpAddressIHope())
@@ -39,30 +37,22 @@ class MessageClientService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         val destIP = intent!!.extras!!["destIP"]
-        val uri ="ws://$destIP:$DEFAULT_PORT/"
+        val uri = "ws://$destIP/"
+        Log.e("THETHING", uri)
         //TODO: Destroy this somehow in onDestroy
         val request = Request.Builder().url(uri).build()
-        val messageSocketClient = MessageSocketClient(URI(uri), applicationContext)
-        val webSocket = okHttpClient.newWebSocket(request, messageSocketClient)
+        val messageSocketClient = MessageSocketClient(
+                URI(uri),
+                applicationContext
+        )
+        webSocket = okHttpClient.newWebSocket(request, messageSocketClient)
         okHttpClientService = okHttpClient.dispatcher().executorService()
 
-        val messageBroadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                if (intent!!.action!!.equals(resources.getString(R.string.ACTION_SENT_MESSAGE))) {
-                    webSocket.send("${intent.extras!!["message"]}")
-                    Log.d("PROGRAM_ACTIVITY", "Something happened : ${intent.extras!!["message"]}")
-
-                } else {
-                    Log.d("PROGRAM_ACTIVITY", "Something happened : ${intent.extras!!["message"]}")
-                }
-            }
-
-        }
 
 
-        Log.e("THETHING", uri)
 
-        return super.onStartCommand(intent, flags, startId)
+
+        return START_STICKY
     }
 
     override fun onBind(intent: Intent): IBinder? {
