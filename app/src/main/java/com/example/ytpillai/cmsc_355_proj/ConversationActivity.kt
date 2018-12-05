@@ -61,22 +61,11 @@ class ConversationActivity : AppCompatActivity() {
         chatHeader.text = App.nickname
 
 
-        //TEMP
-//        receiveMessage(message)
-
-        Handler().postDelayed({
-            receiveMessage(message = "testing")
-        },8000)
-
-
         sendBtn.setOnClickListener {
             if (chatbox.text.isNotEmpty()) {
 
                 sendMessage()
                 resetInput()
-
-                //TEMP
-//                receiveMessage(message = "Testing...")
 
             } else {
                 Toast.makeText(this, "Please enter text to send", Toast.LENGTH_SHORT).show()
@@ -86,9 +75,6 @@ class ConversationActivity : AppCompatActivity() {
         val messageClientServiceIntent = Intent(this, MessageClientService::class.java)
         messageClientServiceIntent.putExtra("destIP", App.ip)
         startService(messageClientServiceIntent)
-
-
-
 
         val messageBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
@@ -130,35 +116,6 @@ class ConversationActivity : AppCompatActivity() {
             intent.putExtra("message", chatbox.text.toString())
             applicationContext.sendBroadcast(intent)
         }
-
-        /*if(chatbox.text.toString().equals("testing")){
-
-            Handler().postDelayed({
-                receiveMessage(message = "is it working?")
-            },5000)
-        }
-        else {
-        }
-
-        if(chatbox.text.toString().equals("awesome")){
-
-            Handler().postDelayed({
-                receiveMessage(message = "you're awesome!!")
-            },5000)
-        }
-        else {
-        }*/
-
-        if(chatbox.text.toString().equals("is it working?")){
-
-            Handler().postDelayed({
-                receiveMessage(message = "awesome")
-            },8000)
-        }
-        else {
-        }
-
-
     }
 
     private fun receiveMessage(message: String) {
