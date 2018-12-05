@@ -60,7 +60,7 @@ class InputPasswordActivityTest {
 
         onView(withText("Inko")).check(matches((isDisplayed()))).perform(pressBack());
 
-        onView(withText("Use Fingerprint")).check(matches((isDisplayed()))).perform(click())
+        onView(withText("Fingerprint")).check(matches((isDisplayed()))).perform(click())
 
     }
 
