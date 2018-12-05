@@ -119,7 +119,7 @@ class InputPasswordActivity : AppCompatActivity() {
     }
 
 
-    fun functionName(view: View) {
+    fun displayFingerprintDialog(view: View) {
         dialogBuilder.show(supportFragmentManager, callback)
     }
 

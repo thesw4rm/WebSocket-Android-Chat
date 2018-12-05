@@ -6,77 +6,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
     <TextView
         android:id="@+id/GetStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="89dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/quicksand"
-        android:text="Getting\nConnected"
+        android:text="Getting Connected"
+        android:textAlignment="center"
         android:textColor="@color/textgray"
         android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/nickname"
-        android:layout_width="337dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/textbox_border"
-        android:ems="10"
-        android:fontFamily="@font/rubik_light"
-        android:hint="Enter Nickname"
-        android:inputType="textCapSentences|textPersonName"
-        android:paddingStart="24dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="14dp"
-        android:textColor="#343434"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/GetStart" />
-
-    <EditText
-            android:id="@+id/ipAddress"
-            android:layout_width="337dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/textbox_border"
-            android:ems="10"
-            android:fontFamily="@font/rubik_light"
-            android:hint="Enter IP Address"
-            android:inputType="text"
-            android:paddingStart="24dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="14dp"
-            android:textColor="#343434"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-            app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
-            app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@+id/nickname"/>
-
-     <Button
+    <Button
         android:id="@+id/startChat"
         android:layout_width="125dp"
         android:layout_height="42dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/round_button"
+        android:background="@drawable/chat_bubble_blue"
         android:fontFamily="@font/rubik_medium"
-        android:text="Start Chat"
         android:onClick="isValidIP"
+        android:text="Start Chat"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@+id/ipAddress" />
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/ipAddressHolder" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/nicknameHolder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="60dp"
+        android:textColor="#777777"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/GetStart">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_light"
+            android:gravity="center"
+            android:hint="Enter Nickname"
+            android:inputType="text|textCapSentences"
+            android:paddingStart="3dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="3dp"
+            android:paddingBottom="15dp"
+            android:textColor="#343434"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/ipAddressHolder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="60dp"
+        android:textAlignment="center"
+        android:textColor="#777777"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        app:layout_constraintLeft_toRightOf="@+id/guidelineLeft"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/nicknameHolder">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/ipAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="1234567890.:"
+            android:fontFamily="@font/rubik_light"
+            android:gravity="center"
+            android:hint="Enter IP Address"
+            android:inputType="text"
+            android:paddingStart="3dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="3dp"
+            android:paddingBottom="15dp"
+            android:textColor="#343434"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineLeft"
@@ -92,31 +117,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="30dp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="230dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="96dp"
-        android:textAlignment="center"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@id/guidelineRight"
-        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/ipAddress">
 
-        <android.support.design.widget.TextInputEditText
-            style="@style/AlertDialog.AppCompat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_light"
-            android:gravity="center"
-            android:hint="Enter Text"
-            android:inputType="textCapSentences|textPersonName"
-            android:lineSpacingExtra="8sp"
-            android:paddingBottom="18dp"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:visibility="invisible" />
-    </android.support.design.widget.TextInputLayout>
 
 </android.support.constraint.ConstraintLayout>
