@@ -9,5 +9,7 @@ Because of the complicated nature of our application, testing became quite diffi
 
 Targeted testing device: Pixel 2XL 
 
+Video Demo is under a Wiki page
+
 Android Lint:
 240 typos: not actually typos  
