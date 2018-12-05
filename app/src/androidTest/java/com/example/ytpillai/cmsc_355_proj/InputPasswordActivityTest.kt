@@ -1,5 +1,8 @@
 package com.example.ytpillai.cmsc_355_proj
 
+/**
+ * As a User, when I open the app, I want security so that only I get to use the app on my phone.
+ */
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.pressBack

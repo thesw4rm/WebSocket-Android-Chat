@@ -1,5 +1,8 @@
 package com.example.ytpillai.cmsc_355_proj
 
+/**
+ * As a user, when I get someone else's public encryption key, then I want to be able to store it in the app. #13
+ */
 import android.support.test.filters.MediumTest
 import android.support.test.runner.AndroidJUnit4
 import com.example.ytpillai.cmsc_355_proj.security.KeyStorage

@@ -1,5 +1,8 @@
 package com.example.ytpillai.cmsc_355_proj
 
+/**
+ *  As a user, when I launch up the app screen, I want to be able to send and receive messages #15
+ */
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.*
