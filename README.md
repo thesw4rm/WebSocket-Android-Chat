@@ -23,8 +23,10 @@ Correctness:
 
 Security:
 * permission based service is a future feature
+
 Kotlin:
 * We apologise for inventing our own naming conventions for this project
+
 Spelling
 * Everything is our variable names or other stuff.
 
