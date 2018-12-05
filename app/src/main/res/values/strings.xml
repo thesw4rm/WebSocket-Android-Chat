@@ -8,4 +8,5 @@
     <string name="ACTION_STOP">com.example.ytpillai.cmsc_355_proj.services.action.MESSAGE_SERVER_STOP</string>
     <string name="ACTION_RECEIVED_MESSAGE">com.example.ytpillai.cmsc_355_proj.services.action.MESSAGE_SERVER_RECEIVED</string>
     <string name="ACTION_CONVO_CLOSED">com.example.ytpillai.actions.ACTION_CONVO_CLOSED</string>
+    <string name="ACTION_SENT_MESSAGE">com.ytpillai.cmsc_355_proj.ACTION_SENT_MESSAGE</string>
 </resources>

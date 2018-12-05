@@ -6,15 +6,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="Overdraw">
 
 
     <ImageButton
         android:id="@+id/backArrowBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
         android:layout_marginBottom="8dp"
         android:background="?android:attr/panelBackground"
         android:tint="#343434"
@@ -27,13 +28,14 @@
         android:id="@+id/nicknameHeader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/rubik_light"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/quicksand"
+        android:gravity="center"
         android:padding="5dp"
         android:textAllCaps="false"
         android:textColor="#343434"
-        android:textSize="26sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/backArrowBtn"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
@@ -44,6 +46,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:scrollbars="vertical"
+        android:stackFromBottom="true"
         app:layout_constraintBottom_toTopOf="@+id/chatboxLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -58,23 +61,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/textbox_border"
         android:gravity="bottom"
         android:minHeight="42dp"
-        android:orientation="horizontal"
 
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatRecycler">
 
         <EditText
             android:id="@+id/chatbox"
-            android:layout_width="341dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="14dp"
@@ -84,7 +89,8 @@
             android:hint="Enter chat"
             android:inputType="textCapSentences|textMultiLine"
             android:maxLines="3"
-            android:padding="0dp" />
+            android:padding="0dp"
+            tools:ignore="Autofill,HardcodedText" />
 
         <Button
             android:id="@+id/sendBtn"

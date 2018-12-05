@@ -7,16 +7,7 @@
     </solid>
 
     <corners
-        android:radius="30dp">
+        android:radius="25dp">
     </corners>
-
-    <TextView
-        android:text="Testing.."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textColor="#000000"
-        android:layout_marginTop="4dp"/>
-    <!-- android:background="@drawable/chat_bubble_gray" -->
 
 </shape>

@@ -1,9 +1,6 @@
 package com.example.ytpillai.cmsc_355_proj
 
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -11,8 +8,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.example.ytpillai.cmsc_355_proj.messaging.App
-import com.example.ytpillai.cmsc_355_proj.messaging.MessageAdapter
-import com.example.ytpillai.cmsc_355_proj.services.MessageClientService
 import com.example.ytpillai.cmsc_355_proj.services.MessageServerService
 
 
@@ -21,13 +16,13 @@ class ProgramActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
 
-
-        /*val messageServiceIntent = Intent(this, MessageServerService::class.java)
-        this.startService(messageServiceIntent)*/
-
-
+        val messageServiceIntent = Intent(this, MessageServerService::class.java)
+        stopService(messageServiceIntent)
+        this.startService(messageServiceIntent)
 
 
+        /*val messageServerServiceIntent = Intent(this, MessageServerService::class.java)
+        startService(messageServerServiceIntent)*/
     }
 
     /*This is the activity that is loaded after user creates password for the first time or enters correct password*/
@@ -41,12 +36,12 @@ class ProgramActivity : AppCompatActivity() {
         val otherUser = getNickname.text.toString()
 
         val check = getIP.text.toString()
-
+        Log.e("CHECK", check)
         val checkarray = check.toCharArray()
 
-        var validChar = false
+        var validChar = true //false
 
-        for (i in checkarray) {
+        /*for (i in checkarray) {
             when (i) {
                 '0' -> validChar = true
                 '1' -> validChar = true
@@ -59,6 +54,7 @@ class ProgramActivity : AppCompatActivity() {
                 '8' -> validChar = true
                 '9' -> validChar = true
                 '.' -> validChar = true
+                ':' -> validChar = true
                 else -> {
                     validChar = false
 
@@ -69,9 +65,10 @@ class ProgramActivity : AppCompatActivity() {
             }
 
         }
-
+*/
         if (!validChar) {
             Toast.makeText(this, "Please Enter Valid IP", Toast.LENGTH_SHORT).show()
+            //TODO: remove this from the validation ting
 
         } else {
             Toast.makeText(this, "Connecting...", Toast.LENGTH_SHORT).show()

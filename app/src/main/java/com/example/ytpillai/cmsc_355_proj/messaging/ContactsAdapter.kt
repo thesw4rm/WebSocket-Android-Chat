@@ -2,23 +2,14 @@ package com.example.ytpillai.cmsc_355_proj.messaging
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import com.example.ytpillai.cmsc_355_proj.ConversationActivity
 import com.example.ytpillai.cmsc_355_proj.R
 import kotlinx.android.synthetic.main.contact_list.view.*
-
-
-/*private const val MY_MESSAGE = 1
-private const val OTHER_MESSAGE = 2*/
-
-private const val TAG = "ContactsAdapter"
 
 
 class ContactsAdapter (val context: Context) : RecyclerView.Adapter<ContactViewHolder>() {
@@ -45,13 +36,6 @@ class ContactsAdapter (val context: Context) : RecyclerView.Adapter<ContactViewH
         val contact = contacts[position]
         holder.bind(contact)
 
-        holder.itemView.setOnClickListener{
-
-            Toast.makeText(context, "You clicked the contact", Toast.LENGTH_LONG).show()
-
-            /*val intent = Intent(this, ConversationActivity::class.java)
-            startActivity(intent)*/
-        }
     }
 
     }
@@ -62,12 +46,18 @@ class ContactsAdapter (val context: Context) : RecyclerView.Adapter<ContactViewH
         private var timeText: TextView = view.timeStampContactList
 
         override fun bind(contact: Contact) {
-            contactNickname.text = contact.nickname
-            contactIP.text = contact.ip
+            contactNickname.text = App.nickname
+            contactIP.text = App.ip
             timeText.text = DateUtils.fromMillisToTimeString(contact.time)
-    }
+        }
 
-}
+        init {
+            view.setOnClickListener {
+                val intent = Intent(view.context, ConversationActivity::class.java)
+                view.context.startActivity(intent)
+            }
+        }
+    }
 
 open class ContactViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     open fun bind(contact:Contact) {}

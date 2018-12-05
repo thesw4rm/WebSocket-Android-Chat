@@ -6,12 +6,9 @@ import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import org.junit.Rule
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.typeText
 import android.support.test.espresso.intent.Intents
 import android.support.test.espresso.intent.Intents.intended
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent
-import android.support.test.espresso.matcher.ViewMatchers.withId
 import org.junit.Before
 
 class CreatePasswordTest {
@@ -27,14 +24,14 @@ class CreatePasswordTest {
         Intents.init()
     }
 
+    // Scenario 302
+
     @Test
     fun createPasswordLater() {
 
-//        onView(withId(R.id.ipAddress)).perform(typeText("192.168.1.1"));
-
         Espresso.onView(ViewMatchers.withId(R.id.SkipPass)).perform(ViewActions.click())
 
-        intended(hasComponent(ProgramActivity::class.java!!.getName()))
+        intended(hasComponent(ProgramActivity::class.java!!.name))
     }
 
 

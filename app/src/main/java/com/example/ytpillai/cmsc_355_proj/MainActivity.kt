@@ -1,10 +1,9 @@
 package com.example.ytpillai.cmsc_355_proj
 
 import android.content.Intent
-import android.content.SharedPreferences
+import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }, 0)
+        }, 600)
 
         val PASSWORD_HASH = getSharedPreferences("PREFS", 0).getString("password", "0")
 

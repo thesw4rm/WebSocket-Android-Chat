@@ -8,26 +8,46 @@ import android.os.IBinder
 import android.text.format.Formatter
 import android.util.Log
 import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketClient
-import com.tinder.scarlet.Scarlet
-import org.java_websocket.WebSocket
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.WebSocket
 import java.net.URI
+import java.util.concurrent.ExecutorService
+
 
 class MessageClientService : Service() {
-    private var messageSocketClient: Scarlet?
+    private lateinit var messageSocketClient: MessageSocketClient
     private val DEFAULT_PORT = 8112
+    private lateinit var okHttpClientService: ExecutorService
+    private lateinit var okHttpClient: OkHttpClient
+    private lateinit var webSocket: WebSocket
 
-    init {
-        this.messageSocketClient = null
+    override fun onCreate() {
+        Log.e("IP", getIpAddressIHope())
+        okHttpClient = OkHttpClient.Builder().build()
+
+        super.onCreate()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         val destIP = intent!!.extras!!["destIP"]
-        val uri = URI("ws://$destIP:$DEFAULT_PORT/")
-         //TODO: Destroy this somehow in onDestroy
+        val uri = "ws://$destIP/"
+        Log.e("THETHING", uri)
+        //TODO: Destroy this somehow in onDestroy
+        val request = Request.Builder().url(uri).build()
+        val messageSocketClient = MessageSocketClient(
+                URI(uri),
+                applicationContext
+        )
+        webSocket = okHttpClient.newWebSocket(request, messageSocketClient)
+        okHttpClientService = okHttpClient.dispatcher().executorService()
 
-        Log.e("THETHING", uri.toASCIIString()!!)
-        return super.onStartCommand(intent, flags, startId)
+
+
+
+
+        return START_STICKY
     }
 
     override fun onBind(intent: Intent): IBinder? {
@@ -43,7 +63,7 @@ class MessageClientService : Service() {
     }
 
     override fun onDestroy() {
-
+        okHttpClientService.shutdown()
         super.onDestroy()
     }
 }

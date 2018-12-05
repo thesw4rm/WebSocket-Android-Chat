@@ -5,16 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".ContactsActivity">
+    tools:context=".ContactsActivity"
+    tools:ignore="Overdraw">
 
 
     <ImageButton
-        android:id="@+id/moreInfoBtn"
+        android:id="@+id/settingsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="10dp"
+        android:adjustViewBounds="true"
         android:background="@android:color/transparent"
+        android:cropToPadding="true"
         android:tint="#343434"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +36,8 @@
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/contactList"

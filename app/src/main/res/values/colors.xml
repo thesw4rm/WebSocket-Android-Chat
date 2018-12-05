@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#80deea</color>
     <color name="white">#ffffff</color>
+    <color name="inkoColor">#6894ED</color>
+    <color name="textgray">#343434</color>
 </resources>

@@ -42,15 +42,15 @@ class MessageSocketServer(address: InetSocketAddress, var context: Context) : We
         else
             Log.d("MESSAGE_SOCKET_SERVER", "I GOT UR MESSAGE $message")
 
-        if (message!!.substring(0, "RSA_PUBLIC_KEY\n".length) == "RSA_PUBLIC_KEY\n")
-        //setOtherKeyAlias("${getRemoteSocketAddress(conn).address}_PUBLIC_KEY", message.substring("RSA_PUBLIC_KEY\n".length - 1, message.length))
-        else {
+       /* if (message!!.substring(0, "RSA_PUBLIC_KEY\n".length) == "RSA_PUBLIC_KEY\n")
+        //setOtherKeyAlias("${getRemoteSocketAddress(conn).address}_PUBLIC_KEY", message.substring("RSA_PUBLIC_KEY\n".length - 1, message.length))*/
+        /*else {*/
             Intent().also { intent ->
                 intent.action = context.resources.getString(R.string.ACTION_RECEIVED_MESSAGE)
                 intent.putExtra("message", message)
                 context.sendBroadcast(intent)
             }
-        }
+        /*}*/
 
     }
 

@@ -1,43 +1,63 @@
 package com.example.ytpillai.cmsc_355_proj.services
 
 import android.app.Service
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.wifi.WifiManager
 import android.os.IBinder
 import android.text.format.Formatter
 import android.util.Log
+import com.example.ytpillai.cmsc_355_proj.R
 import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketServer
 import java.net.InetSocketAddress
 
 class MessageServerService : Service() {
-    private var messageSocketServer: MessageSocketServer?
+    private lateinit var messageSocketServer: MessageSocketServer
     private val DEFAULT_PORT = 8112
 
-    init {
-        this.messageSocketServer = null
-    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        this.messageSocketServer!!.start()
+        this.messageSocketServer.start()
+        for (i in 1..10000000) {
+            messageSocketServer.broadcast("bitch")
+        }
+        val messageBroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent!!.action!!.equals(resources.getString(R.string.ACTION_SENT_MESSAGE))) {
+                    messageSocketServer.broadcast("${intent.extras!!["message"]}")
+                    Log.d("PROGRAM_ACTIVITY", "Something happened : ${intent.extras!!["message"]}")
 
-        return super.onStartCommand(intent, flags, startId)
+                } else {
+                    Log.d("PROGRAM_ACTIVITY", "Something happened : ${intent.extras!!["message"]}")
+                }
+            }
+
+        }
+        return START_STICKY;
+    }
+
+    fun sendMessage(yourmom: String) {
+
     }
 
     override fun onBind(intent: Intent): IBinder? {
-        return null;
+        return null
     }
 
+    /**
+     * In a real device get the actual IP. In this case we are using ADB tactics
+     */
     override fun onCreate() {
         Log.e("IP", getIpAddressIHope())
-        val ipAddress = InetSocketAddress("192.168.200.2", DEFAULT_PORT)
+        val ipAddress = InetSocketAddress("127.0.0.1", DEFAULT_PORT) //127.0.0.1 should be getIpAddressIHope()
         this.messageSocketServer = MessageSocketServer(ipAddress, this)
         super.onCreate()
     }
 
     override fun onDestroy() {
-        messageSocketServer!!.stop()
+        messageSocketServer.stop()
         super.onDestroy()
     }
 
