@@ -64,6 +64,11 @@ class ConversationActivity : AppCompatActivity() {
         //TEMP
 //        receiveMessage(message)
 
+        Handler().postDelayed({
+            receiveMessage(message = "testing")
+        },8000)
+
+
         sendBtn.setOnClickListener {
             if (chatbox.text.isNotEmpty()) {
 
@@ -126,23 +131,34 @@ class ConversationActivity : AppCompatActivity() {
             applicationContext.sendBroadcast(intent)
         }
 
-        /*if(chatbox.text.toString().equals("Hey Elon!")){
+        /*if(chatbox.text.toString().equals("testing")){
 
             Handler().postDelayed({
-                receiveMessage(message = "what.")
-            },1600)
+                receiveMessage(message = "is it working?")
+            },5000)
         }
         else {
         }
 
-        if(chatbox.text.toString().equals("Can I have a free Tesla?")){
+        if(chatbox.text.toString().equals("awesome")){
 
             Handler().postDelayed({
-                receiveMessage(message = "NO. Who is this?")
-            },2300)
+                receiveMessage(message = "you're awesome!!")
+            },5000)
         }
         else {
         }*/
+
+        if(chatbox.text.toString().equals("is it working?")){
+
+            Handler().postDelayed({
+                receiveMessage(message = "awesome")
+            },8000)
+        }
+        else {
+        }
+
+
     }
 
     private fun receiveMessage(message: String) {

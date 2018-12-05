@@ -35,7 +35,7 @@ class ProgramActivityTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.startChat)).perform(ViewActions.click())
 
-        intended(hasComponent(ContactsActivity::class.java!!.getName()))
+        intended(hasComponent(ConversationActivity::class.java!!.name))
     }
 
 

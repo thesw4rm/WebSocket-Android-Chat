@@ -26,7 +26,7 @@ class ContactsActivityTest {
 
     @Rule
     @JvmField
-    var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
+    var mActivityTestRule = ActivityTestRule(ProgramActivity::class.java)
 
     @Test
     fun contactsActivityTest() {
@@ -35,7 +35,7 @@ class ContactsActivityTest {
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(600)
 
-        val appCompatButton = onView(
+        /*val appCompatButton = onView(
                 allOf(withId(R.id.SkipPass), withText("Set up Later"),
                         childAtPosition(
                                 childAtPosition(
@@ -43,7 +43,7 @@ class ContactsActivityTest {
                                         0),
                                 2),
                         isDisplayed()))
-        appCompatButton.perform(click())
+        appCompatButton.perform(click())*/
 
         val textInputEditText = onView(
                 allOf(withId(R.id.nickname),
