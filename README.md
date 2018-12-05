@@ -11,9 +11,14 @@ Targeted testing device: Pixel 2XL
 
 Video Demo is under a Wiki page
 
+
 Android Lint:
-240 typos: not actually typos 
-Correctness: ignore round_button.xml error 
-Hardcoded Text: ignore all 
-Performance>Used Resources: ignore default icon and ignore extra design elements  
+
+240 typos: not actually typos, 
+
+Correctness: ignore round_button.xml error, 
+
+Hardcoded Text: ignore all, 
+
+Performance>Used Resources: ignore default icon and ignore extra design elements,  
 
