@@ -5,30 +5,19 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.ytpillai.cmsc_355_proj.messaging.App
 import com.example.ytpillai.cmsc_355_proj.messaging.Me
 import com.example.ytpillai.cmsc_355_proj.messaging.Message
 import com.example.ytpillai.cmsc_355_proj.messaging.MessageAdapter
-import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketClient
 import com.example.ytpillai.cmsc_355_proj.services.MessageClientService
-import com.example.ytpillai.cmsc_355_proj.services.MessageServerService
-import com.tinder.scarlet.Scarlet
 import kotlinx.android.synthetic.main.activity_conversation.*
-import java.net.URI
 import java.util.*
-import okhttp3.OkHttpClient
-import okhttp3.Request
 
-
-private const val TAG = "ConversationActivity"
 
 class ConversationActivity : AppCompatActivity() {
 

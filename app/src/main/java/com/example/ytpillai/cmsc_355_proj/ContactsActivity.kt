@@ -1,18 +1,14 @@
 package com.example.ytpillai.cmsc_355_proj
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
-import android.support.design.widget.FloatingActionButton
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.widget.AdapterView
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import com.example.ytpillai.cmsc_355_proj.messaging.*
+import com.example.ytpillai.cmsc_355_proj.messaging.App
+import com.example.ytpillai.cmsc_355_proj.messaging.Contact
+import com.example.ytpillai.cmsc_355_proj.messaging.ContactsAdapter
 import kotlinx.android.synthetic.main.activity_contacts.*
-import kotlinx.android.synthetic.main.activity_conversation.*
 import java.util.*
 
 private const val TAG = "ContactsActivity"

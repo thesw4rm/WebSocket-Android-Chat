@@ -10,13 +10,8 @@ import android.text.format.Formatter
 import android.util.Log
 import com.example.ytpillai.cmsc_355_proj.R
 import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketClient
-import com.example.ytpillai.cmsc_355_proj.networking.MessageSocketServer
-import com.tinder.scarlet.Scarlet
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.java_websocket.WebSocket
-import org.java_websocket.WebSocketFactory
-import java.net.InetSocketAddress
 import java.net.URI
 import java.util.concurrent.ExecutorService
 

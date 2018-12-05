@@ -8,7 +8,8 @@
     android:background="@android:color/white"
     tools:context=".MainActivity"
     android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/GetStart"
@@ -24,8 +25,10 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
+    <!--suppress AndroidMissingOnClickHandler -->
     <Button
         android:id="@+id/startChat"
         android:layout_width="125dp"
@@ -40,7 +43,8 @@
         android:textColor="#ffffff"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/ipAddressHolder" />
+        app:layout_constraintTop_toBottomOf="@+id/ipAddressHolder"
+        tools:ignore="HardcodedText" />
 
 
     <android.support.design.widget.TextInputLayout
@@ -68,7 +72,8 @@
             android:paddingEnd="3dp"
             android:paddingBottom="15dp"
             android:textColor="#343434"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -99,7 +104,8 @@
             android:paddingEnd="3dp"
             android:paddingBottom="15dp"
             android:textColor="#343434"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
     </android.support.design.widget.TextInputLayout>
 
 
