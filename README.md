@@ -1,9 +1,9 @@
 # project-404-name-not-found
 
 # NOTE
-  This is a manually cloned version of the original repository so some of the original documentation (like the wiki) aren't available. However, the code is untouched.
+  This is a manually cloned version of the original repository so some of the original documentation (like the wiki) aren't available. I also edited the ReadMe slightly to be more clear. However, the code is untouched.
 
-project-404-name-not-found created by GitHub Classroom
+# Project name: project-404-name-not-found
 
 Team composed of: Jeremy Bailey, Yadunandan Pillai, Daniel McNamara, John Naylor.
 
