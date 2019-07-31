@@ -1,7 +1,7 @@
 # project-404-name-not-found
 project-404-name-not-found created by GitHub Classroom
 
-Team composed of: Jeremy Bailey, Yadunandan Pillai, Daniel McNamara, John Nayor.
+Team composed of: Jeremy Bailey, Yadunandan Pillai, Daniel McNamara, John Naylor.
 
 The initial idea of our application was to create an app that would allow users to chat over Wi-Fi using public-key encryption. This would ensure that users messages could not be intercepted over Wi-Fi and read. We also decided that we would be using Kotlin instead of Java. 
 
